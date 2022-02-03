@@ -1,0 +1,54 @@
+
+<div class="container">
+    <div class="header">
+        <div class="form-control mt-2" style="width: 300px;">
+            <input class="form-control" type="text" placeholder="search" [(ngModel)]="filterOne" >
+            <!-- {{filterOne}} -->
+            <!-- [(ngModel)]="filter"{{filter}} -->
+        </div>
+
+        <!-- [] square bracket is for property binding
+         () parenthesis is for event binding
+         ([]) event and property is for banana box  --([ngModel]) -->
+        <a [routerLink]="" class="btn btn-warning btn-outline-success text-dark"
+            style="float: right; margin-top: 10px; margin-right: 0px; margin-bottom: 10px;" onclick="alert('Bhoom!  There you are');">Add Test</a>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>TestID</th>
+                <th>Test Name</th>
+                <th>Test Description </th>
+                <th>Price</th>
+                <th>Unit</th>
+                <th>Min Range</th>
+                <th>Max Range</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <!-- | filter: filter | paginate: {itemsPerPage :2, currentPage: page} -->
+            <tr *ngFor="let lt of labtestService.tests | filter: filterOne | paginate: {itemsPerPage :2, currentPage: pageOne} ">
+                <td>{{lt.TestId}}</td>
+                <td>{{lt.TestName}}</td>
+                <td>{{lt.TestDescription}}</td>
+                <td>{{lt.TotalAmount}}</td>
+                <td>{{lt.Unit}}</td>
+                <td>{{lt.MinRange}}</td>
+                <td>{{lt.MaxRange}}</td>
+                <td>
+                    <!-- button -->
+                    <button class="btn btn-sm btn-info" (click)="updateTest(lt.TestId)">Edit</button>
+                        &nbsp;
+                    <button class="btn btn-sm btn-danger" (click)="deleteTest(lt.TestId)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <footer>
+         <!-- pagination -->
+         <pagination-controls (pageChange)="pageOne =($event)"></pagination-controls>
+
+    </footer>   
+</div>
+

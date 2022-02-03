@@ -1,0 +1,55 @@
+
+<div class="container">
+    <div class="header">
+        <div class="form-control mt-2" style="width: 300px;">
+            <input class="form-control" type="text" placeholder="search" [(ngModel)]="filterTwo" >
+            <!-- {{filterTwo}} -->
+            <!-- [(ngModel)]="filter"{{filter}} -->
+        </div>
+
+        <!-- [] square bracket is for property binding
+         () parenthesis is for event binding
+         ([]) event and property is for banana box  --([ngModel]) -->
+        <a [routerLink]="" class="btn btn-secondary btn-outline-warning text-success"
+            style="float: right; margin-top: 10px; margin-right: 0px; margin-bottom: 10px;" onclick="alert('Bhoom!  There you are');">Add TestAdvice</a>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>TestAdviceID</th>
+                <th>Patient Name</th>
+                <th>Patient Mobile </th>
+                <th>Doctor Name</th>
+                <th>Receptionist Name</th>
+                <th>Appointment Date</th>
+                <th>Test Names</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <!-- | filter: filter | paginate: {itemsPerPage :2, currentPage: page} -->
+            <tr *ngFor="let ta of testAdviceService.testadvices | filter: filterTwo | paginate: {itemsPerPage :2, currentPage: pageTwo} ">
+                <td>{{ta.TestAdviceId}}</td>
+                <td>{{ta.PatientName}}</td>
+                <td>{{ta.Mobile}}</td>
+                <td>{{ta.DoctorName}}</td>
+                <td>{{ta.ReceptionistName}}</td>
+                <td>{{ta.AppointmentDate | date: 'dd-MMM-yyyy'}}</td>
+                <td>{{ta.TestName}}</td>
+                <td>
+                    <!-- button -->
+                    <button class="btn btn-sm btn-info" (click)="updateTestAdvice(ta.TestAdviceId)">Edit</button>
+                        &nbsp;
+                    <button class="btn btn-sm btn-danger" (click)="deleteTestAdvice(ta.TestAdviceId)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <footer>
+         <!-- pagination -->
+         <pagination-controls (pageChange)="pageTwo =($event)"></pagination-controls>
+
+    </footer>   
+</div>
+
