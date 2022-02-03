@@ -1,0 +1,39 @@
+
+<div class="container">
+    <div class="header">
+        <div class="form-control">
+            <!-- Search -->
+            <input class="form-control" type="text" placeholder="Search Consultation using Name,Phone Number"[(ngModel)]="filter">
+            <br>
+            <!--<a [routerLink]=" " class="btn btn-outline-secondary" style="float: right; margin-bottom:19px;">Test Report</a>-->
+           <div class="col">
+               <div class="row"  *ngFor="let con of consultationbillservice.consultationbill|filter:filter|paginate:{itemsPerPage:1,currentPage:page}">
+                <span style="display:flex;justify-content: space-between;">
+                <h5>ConsultationBill Id: {{con.ConsultationBillId}}</h5><br>
+             <h5>Appointment Date: {{con.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</h5>
+             </span>
+             <span style="display:flex;justify-content: space-between;">
+                <h5>Patient Name : {{con.PatientName}}</h5>
+            <h5>Doctor:{{con.DoctorName}}</h5> 
+            </span>
+            <span style="display:flex;justify-content: space-between;">
+                <h5>Date of Birth:{{con.DateOfBirth| date:'dd-MMM-yyyy'}}</h5>
+                <h5>Receptionist: {{con.ReceptionistName}}</h5>
+               </span>
+               <span style="display:flex;justify-content: space-between;">
+             <h5>Phone No: {{con.Phone}}</h5>
+            <h5>Address :{{con.Address}}</h5>
+             </span>
+             <span style="display:flex;justify-content: space-between;">
+             <h5>Blood Group: {{con.BloodGroup}}</h5>
+             <h5>Date of Bill:{{con.DateOfBill|date:'dd-MMM-yyyy hh:mm aa'}}</h5>
+             </span>
+             <h5 style="text-align:center; font-family:Arial">Consultation Bill: Rs .{{con.ConsultationAmount}}</h5>
+               </div>
+           </div>
+        </div>
+            <br>
+            <footer>
+               <pagination-controls (pageChange)="page= $event"></pagination-controls>
+            </footer>
+

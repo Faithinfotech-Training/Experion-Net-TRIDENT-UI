@@ -1,0 +1,54 @@
+
+<div class="container">
+    <div class="header">
+        <div class="form-control">
+            <!-- Search -->
+            <input class="form-control" type="text" placeholder="Search TestReport using Name,Phone Number"[(ngModel)]="filter">
+            <br>
+            <!--<a [routerLink]=" " class="btn btn-outline-secondary" style="float: right; margin-bottom:19px;">Test Report</a>-->
+            <br>
+            
+                  <div class="row"  *ngFor="let rep of testreportservice.testreports|filter:filter|paginate:{itemsPerPage:2,currentPage:page}">
+                    <h5 style="text-align:right;"> <button class="btn btn-sm btn-warning">Edit</button> &nbsp;&nbsp;</h5><br>
+                        <span style="display: flex;justify-content: space-between;"><h5>Report Id:{{rep.LabBillId}}</h5>
+                        <h5>Appointment Date:{{rep.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</h5></span>
+                        <span style="display: flex;justify-content: space-between;">
+                        <h5>Patient Name: {{rep.PatientName}}</h5>
+                        <h5>Test Report Date:{{rep.DateOfReport | date:'dd-MMM-yyyy hh:mm aa'}}</h5></span>
+                        <span style="display: flex;justify-content: space-between;">
+                            <h5>Phone No:{{rep.Phone}}</h5>
+                        <h5>Doctor: {{rep.DoctorName}} </h5>
+                        </span>
+                        <span style="display: flex;justify-content: space-between;">
+                        <h5>Blood Group: {{rep.BloodGroup}}</h5>
+                        <h5>Lab Technician:{{rep.LabTechnician}}</h5>
+                         </span>
+                        <table class="table table-primary table-striped table-bordered">
+                            <thead>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Value</th>
+                                <th>Min-Range</th>
+                                <th>Max-Range</th>
+                                <th>Test Rate</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of rep.TestReport; index as i;" >
+                                    <td>{{rep.TestReport[i].TestName}}</td>
+                                    <td>{{rep.TestReport[i].TestDescription}}</td>
+                                    <td>{{rep.TestReport[i].TestValue}}</td>
+                                    <td>{{rep.TestReport[i].MinRange}}</td>
+                                    <td>{{rep.TestReport[i].MaxRange}}</td>
+                                    <td>{{rep.TestReport[i].TotalAmount}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5 style="text-align: center;">Total Amount: Rs.{{rep.TotalAmount}}</h5>
+                         <!--(click)="updateEmployee(emp.EmployeeID)"-->
+  
+            </div>
+            </div>
+            <br>
+            <footer>
+               <pagination-controls (pageChange)="page= $event"></pagination-controls>
+            </footer>

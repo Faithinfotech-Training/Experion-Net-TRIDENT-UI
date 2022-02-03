@@ -1,0 +1,63 @@
+
+<div class="container">
+    <div class="header">
+        <div class="form-control">
+            <!-- Search -->
+            <input class="form-control" type="text" placeholder="Search Appointment using Name,Phone Number"[(ngModel)]="filter">
+            <br>
+            <!--<a [routerLink]="" class="btn btn-outline-secondary" style="float: right; margin-bottom:19px;">Final Bill </a>-->
+            <div class="col">
+                <div class="row"  *ngFor="let bill of finalbillservice.bill|filter:filter|paginate:{itemsPerPage:1,currentPage:page}">
+                 <span style="display:flex;justify-content: space-between;">
+                 <h5>Bill Id: {{bill.BillId}}</h5><br>
+              <h5>Appointment Date: {{bill.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</h5>
+              </span>
+              <span style="display:flex;justify-content: space-between;">
+                 <h5>Patient Name : {{bill.PatientName}}</h5>
+             <h5>Doctor:{{bill.DoctorName}}</h5> 
+             </span>
+             <span style="display:flex;justify-content: space-between;">
+                 <h5>Date of Birth:{{bill.DateOfBirth| date:'dd-MMM-yyyy'}}</h5>
+                 <h5>Receptionist: {{bill.ReceptionistName}}</h5>
+                </span>
+                <span style="display:flex;justify-content: space-between;">
+              <h5>Phone No: {{bill.Phone}}</h5>
+             <h5>Address :{{bill.Address}}</h5>
+              </span>
+              <span style="display:flex;justify-content: space-between;">
+              <h5>Blood Group: {{bill.BloodGroup}}</h5>
+              <h5>Date of Bill:{{bill.BillDate|date:'dd-MMM-yyyy hh:mm aa'}}</h5>
+              </span>
+              <table class="table table-striped table-info">
+                  <thead>
+                      <th style="text-align: center;">SERVICES </th>
+                  </thead>
+
+                <tbody>
+                    <tr>
+                <th>ConsultationFee</th>
+              <td>{{bill.ConsultationFee}}</td>
+              </tr>
+              <tr>
+                <th>Medicine Bill</th>
+                <td>{{bill.MedicinesFee}}</td>
+            </tr>
+            <tr>
+                <th>Lab Test Fee</th>
+                 <td>{{bill.LabTestsFee}}</td>
+                </tr>
+                <tr>
+                    <th>Total Amount</th>
+                <th>{{bill.TotalAmount}}</th>
+            </tr>
+            </tbody>    
+             </table>
+                </div>
+            </div>
+         </div>
+          
+        </div>
+            <br>
+            <footer>
+               <pagination-controls (pageChange)="page= $event"></pagination-controls>
+            </footer>

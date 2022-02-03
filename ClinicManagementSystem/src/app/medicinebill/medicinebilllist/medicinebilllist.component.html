@@ -1,0 +1,71 @@
+
+<div class="container">
+    <div class="header">
+        <div class="form-control">
+            <!-- Search -->
+            <input class="form-control" type="text" placeholder="Search Appointment using Name,Phone Number"[(ngModel)]="filter">
+            <br>
+            {{filter}}
+            <div class="table-responsive-xl">
+           
+            <br>
+                  <!-- let timeDiff = Math.abs(Date.now() - this.birthdate.getTime());
+                        let age = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);-->
+                     <div class="col">
+                        
+                    <div  class="row"  *ngFor="let med of medicinebillsservice.medicinebills|filter:filter|paginate:{itemsPerPage:1,currentPage:page}">
+                        <span style="display:flex;justify-content: space-between;">
+                        <h5>Medicine Bill Id: {{med.MedicineBillId}}</h5><br>
+                     <h5>Appointment Date: {{med.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</h5>
+                     </span>
+                     <span style="display:flex;justify-content: space-between;">
+                        <h5>Patient Name : {{med.PatientName}}</h5>
+                    <h5>Doctor:{{med.DoctorName}}</h5> 
+                    </span>
+                    <span style="display:flex;justify-content: space-between;">
+                        <h5>Date of Birth:{{med.DateOfBirth| date:'dd-MMM-yyyy'}}</h5>
+                        <h5>Receptionist: {{med.ReceptionistName}}</h5>
+                       </span>
+                       <span style="display:flex;justify-content: space-between;">
+                     <h5>Phone No: {{med.Phone}}</h5>
+                    <h5>Pharmacist :{{med.PharmacistName}}</h5>
+                     </span>
+                     <span style="display:flex;justify-content: space-between;">
+                     <h5>Blood Group: {{med.BloodGroup}}</h5>
+                     <h5>Date of Bill:{{med.DateOfBill|date:'dd-MMM-yyyy hh:mm aa'}}</h5>
+                     </span>
+                     <table class="table table-info table-striped">
+                         <thead>
+                         <th>Medicine Name</th>
+                         <th> Medicine Description</th>
+                         <th>Medicine Rate</th>
+                         <th>Quantity</th>
+                         <th>Dose</th>
+                         <th>Price</th>
+                       
+                        </thead>
+                        <tbody>
+                        
+                                <tr *ngFor="let item of med.MedicinesList; index as i;" >
+                                                <td>{{med.MedicinesList[i].MedicineName}}</td>
+                                                <td>{{med.MedicinesList[i].MedicineDescription}}</td>
+                                                <td>{{med.MedicinesList[i].MedicinePrice}}</td>
+                                                <td>{{med.MedicinesList[i].Quantity}}</td>
+                                                <td>{{med.MedicinesList[i].Dose}} mg</td>
+                                                <td>{{med.MedicinesList[i].Rate}}</td>
+                                               
+                            </tr>
+                        </tbody>
+                     </table>
+                     <h6 style="text-align: center;">Total Price: Rs.{{med.TotalAmount}}</h6>
+                    </div>
+
+                </div>
+                        <!--(click)="updateEmployee(emp.EmployeeID)"-->
+  
+            <footer>
+               <pagination-controls (pageChange)="page= $event">
+
+               </pagination-controls>
+            </footer>
+

@@ -92,7 +92,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/scss/bootstrap.scss"
             ],
             "scripts": []
           }
@@ -123,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ClinicManagementSystem"
+    }
+  },
+  "defaultProject": "ClinicManagementSystem",
+  "cli": {
+    "analytics": "e4cf92af-4a83-4b22-afdc-71d003035316"
+  }
 }
