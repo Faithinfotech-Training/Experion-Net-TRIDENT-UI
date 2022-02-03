@@ -10,8 +10,8 @@
             
                   <div class="row"  *ngFor="let rep of testreportservice.testreports|filter:filter|paginate:{itemsPerPage:2,currentPage:page}">
                     <h5 style="text-align:right;"> <button class="btn btn-sm btn-warning">Edit</button> &nbsp;&nbsp;</h5><br>
-                        <span style="display: flex;justify-content: space-between;"><h5>Report Id:{{rep.LabBillId}}</h5>
-                        <h5>Appointment Date:{{rep.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</h5></span>
+                        <span style="display: flex;justify-content: space-between;"><h5>Report Id: {{rep.LabBillId}}</h5>
+                        <h5>Appointment Date : {{rep.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</h5></span>
                         <span style="display: flex;justify-content: space-between;">
                         <h5>Patient Name: {{rep.PatientName}}</h5>
                         <h5>Test Report Date:{{rep.DateOfReport | date:'dd-MMM-yyyy hh:mm aa'}}</h5></span>
@@ -36,9 +36,12 @@
                                 <tr *ngFor="let item of rep.TestReport; index as i;" >
                                     <td>{{rep.TestReport[i].TestName}}</td>
                                     <td>{{rep.TestReport[i].TestDescription}}</td>
-                                    <td>{{rep.TestReport[i].TestValue}}</td>
-                                    <td>{{rep.TestReport[i].MinRange}}</td>
-                                    <td>{{rep.TestReport[i].MaxRange}}</td>
+                                    <div *ngIf="rep.TestReport[i].TestValue>rep.TestReport[i].MaxRange || rep.TestReport[i].TestValue<rep.TestReport[i].MinRange ; else elseBlock">
+                                    <td id="current" style="color: red;">{{rep.TestReport[i].TestValue}}</td>
+                                    </div>
+                                    <ng-template #elseBlock> <td>{{rep.TestReport[i].TestValue}}</td> </ng-template>
+                                    <td id="min">{{rep.TestReport[i].MinRange}}</td>
+                                    <td id="max">{{rep.TestReport[i].MaxRange}}</td>
                                     <td>{{rep.TestReport[i].TotalAmount}}</td>
                                 </tr>
                             </tbody>

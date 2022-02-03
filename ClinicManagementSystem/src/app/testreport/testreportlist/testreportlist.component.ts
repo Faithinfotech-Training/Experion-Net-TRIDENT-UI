@@ -6,13 +6,18 @@ import {TestreportService} from 'src/app/shared/testreport.service';
   templateUrl: './testreportlist.component.html',
   styleUrls: ['./testreportlist.component.scss']
 })
+
+
 export class TestreportlistComponent implements OnInit {
   page:number=1;
   filter:string;
   constructor(public testreportservice:TestreportService) { }
-
   ngOnInit(): void {
    this.testreportservice.bindListTestReports();
+   
   }
-
+  
 }
+
+
+

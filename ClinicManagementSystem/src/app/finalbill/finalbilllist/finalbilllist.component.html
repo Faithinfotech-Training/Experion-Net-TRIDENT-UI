@@ -3,7 +3,7 @@
     <div class="header">
         <div class="form-control">
             <!-- Search -->
-            <input class="form-control" type="text" placeholder="Search Appointment using Name,Phone Number"[(ngModel)]="filter">
+            <input class="form-control" type="text" placeholder="Search Appointment using Name,Phone Number" [(ngModel)]="filter">
             <br>
             <!--<a [routerLink]="" class="btn btn-outline-secondary" style="float: right; margin-bottom:19px;">Final Bill </a>-->
             <div class="col">
@@ -59,5 +59,5 @@
         </div>
             <br>
             <footer>
-               <pagination-controls (pageChange)="page= $event"></pagination-controls>
+              <pagination-controls (pageChange)="page= $event"></pagination-controls>
             </footer>
