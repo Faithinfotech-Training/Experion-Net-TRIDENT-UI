@@ -1,0 +1,79 @@
+<div class="container m-2">
+  <!-- card for displaying patient details -->
+  <div class="card">
+    <div class="card-header">
+      <h6>Appointment No : {{ patient.id }}</h6>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h6>Patient Name : {{ patient.name }}</h6>
+        </div>
+        <div class="col-md-6">
+          <h6>Age : {{ patient.age }}</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h6>Contact : {{ patient.phone }}</h6>
+        </div>
+        <div class="col-md-6">
+          <h6>Address : {{ patient.address }}</h6>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <h6>Email : {{ patient.email }}</h6>
+        </div>
+        <div class="col-md-6">
+          <h6>Blood Group : {{ patient.bloodGroup }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end card for displaying patient details -->
+  <!-- card for prescribing lab tests -->
+  <div class="labtest m-3">
+    <h6>Lab Tests</h6>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <select class="form-control" id="labtest">
+            <option>Select Lab Test</option>
+            <option *ngFor="let i of labTests">{{ i }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <button class="btn-primary btn">Add</button>
+      </div>
+    </div>
+  </div>
+  <!-- card for prescribing lab tests -->
+  <!-- card for prescribing medicines -->
+  <div class="medicine m-3">
+    <h6>Medicines</h6>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <select class="form-control" id="medicine">
+            <option>Select Medicine</option>
+            <option *ngFor="let i of medicine">{{ i }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <input
+            type="number"
+            class="form-control"
+            id="quantity"
+            placeholder="Quantity"
+          />
+          <button class="btn-primary btn">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

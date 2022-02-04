@@ -1,0 +1,79 @@
+<!-- create atablee showing all appointments -->
+<div class="container my-2">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="m-3">Medicine Prescriptions</h1>
+      <!-- row showsing date filter and search -->
+      <div class="row" style="margin-top: 3rem">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="search"
+              placeholder="Search"
+              [(ngModel)]="filter"
+            />
+            {{ filter }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input
+              type="date"
+              class="form-control"
+              id="date"
+              placeholder="Search"
+            />
+          </div>
+        </div>
+
+        <!-- End row -->
+        <table class="table table-striped my-3 table-dark">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Date and Time</th>
+              <th>patient Name</th>
+              <th>Doctors Name</th>
+              <th>Medicine Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let i of prescriptions
+                  | filter: filter
+                  | paginate: { itemsPerPage: 5, currentPage: p }
+              "
+            >
+              <td>{{ i.id }}</td>
+              <td>{{ i.date }}</td>
+              <td>{{ i.patient }}</td>
+              <td>{{ i.doctor }}</td>
+              <td>
+                <table>
+                  <thead>
+                    <tr>
+                      <td>Medicine ID</td>
+                      <td>Medicine Name</td>
+                      <td>Medicine quanitity</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ i.medicine.medicineId }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="footer">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
