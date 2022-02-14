@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Staff } from '../class/staff';
+import { User } from '../class/user';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +12,11 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
   //loginverify
-  public loginVerify(staff: Staff) {
+  public loginVerify(user: User) {
     return this.httpClient.get(
-      environment.apiUrl + '/api/login/' + staff.UserName + '&' + staff.Password
-      ///api/Login/sreehari&password
+      environment.apiUrl + '/' + user.LoginId + '/' + user.Password
+
+      // https://localhost:44381/sreehari/password
     );
     console.log('loginverify');
   }
