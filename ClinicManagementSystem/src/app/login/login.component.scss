@@ -1,0 +1,16 @@
+#careimage {
+  width: 20rem;
+  height: 10rem;
+  background-image: url("../../assets/images/logo-big.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.conatiner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

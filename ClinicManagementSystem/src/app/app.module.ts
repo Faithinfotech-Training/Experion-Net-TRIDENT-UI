@@ -13,9 +13,18 @@ import { DoctorComponent } from './doctor/doctor.component';
 import { PharmacistComponent } from './pharmacist/pharmacist.component';
 import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
 import { AdminComponent } from './admin/admin.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ReceptionistComponent, DoctorComponent, PharmacistComponent, LabTechnicianComponent, AdminComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    ReceptionistComponent,
+    DoctorComponent,
+    PharmacistComponent,
+    LabTechnicianComponent,
+    AdminComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +32,7 @@ import { AdminComponent } from './admin/admin.component';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
