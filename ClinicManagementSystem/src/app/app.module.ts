@@ -3,48 +3,28 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppointmentComponent } from './appointment/appointment.component';
-import { AppointmentListComponent } from './appointment/appointmentlist/appointmentlist.component';
-import { SharedComponent } from './shared/shared.component';
-import {AppointmentService } from './shared/appointment.service';
 import { HttpClientModule } from '@angular/common/http';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
-import { TestreportComponent } from './testreport/testreport.component';
-import { TestreportlistComponent } from './testreport/testreportlist/testreportlist.component';
-import { ConsultationbillComponent } from './consultationbill/consultationbill.component';
-import { ConsultationbilllistComponent } from './consultationbill/consultationbilllist/consultationbilllist.component';
-import { MedicinebillComponent } from './medicinebill/medicinebill.component';
-import { MedicinebilllistComponent } from './medicinebill/medicinebilllist/medicinebilllist.component';
-import { FinalbillComponent } from './finalbill/finalbill.component';
-import { FinalbilllistComponent } from './finalbill/finalbilllist/finalbilllist.component';
+import { LoginComponent } from './login/login.component';
+import { ReceptionistComponent } from './receptionist/receptionist.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { PharmacistComponent } from './pharmacist/pharmacist.component';
+import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AppointmentComponent,
-    AppointmentListComponent,
-    SharedComponent,
-    TestreportComponent,
-    TestreportlistComponent,
-    ConsultationbillComponent,
-    ConsultationbilllistComponent,
-    MedicinebillComponent,
-    MedicinebilllistComponent,
-    FinalbillComponent,
-    FinalbilllistComponent,
-
-  ],
+  declarations: [AppComponent, LoginComponent, ReceptionistComponent, DoctorComponent, PharmacistComponent, LabTechnicianComponent, AdminComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
