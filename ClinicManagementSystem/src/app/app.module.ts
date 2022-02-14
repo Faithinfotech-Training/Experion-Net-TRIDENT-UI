@@ -14,6 +14,10 @@ import { PharmacistComponent } from './pharmacist/pharmacist.component';
 import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
 import { AdminComponent } from './admin/admin.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

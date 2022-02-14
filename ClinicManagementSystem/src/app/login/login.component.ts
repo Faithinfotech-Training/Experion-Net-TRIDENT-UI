@@ -5,6 +5,7 @@ import { Staff } from '../shared/class/staff';
 import { User } from '../shared/class/user';
 import { AuthService } from '../shared/services/auth.service';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +69,12 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
           sessionStorage.setItem('userName', this.loginUser.LoginId);
           this.router.navigateByUrl('/doctor');
+        } else {
+          this.error = 'Sorry not authorised to access this page';
+          this.toastr.error(
+            'Sorry not authorised to access this page',
+            'Error'
+          );
         }
       });
     }
