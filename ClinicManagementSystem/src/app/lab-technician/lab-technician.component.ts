@@ -32,7 +32,7 @@ export class LabTechnicianComponent implements OnInit {
   updateTest(tID:number){
     console.log(" going to update this " +tID);
     //navigate to edit form with selected test details
-    this.router.navigate(['test',tID]);
+    this.router.navigate(['update-test',tID]);
   }
 
   //logout

@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   { path:'lab-technician', component: LabTechnicianComponent,canActivate: [AuthGuard], data: { RoleId: '4' }},
   { path: 'add-test', component:TestComponent},
-  { path: 'test/:tID', component:TestComponent},
+  { path: 'update-test/:tID', component:TestComponent},
   { path: '', component: TestAdviceListComponent},
 
   { path: 'patient-list', component:PatientListComponent},

@@ -97,7 +97,6 @@ export class LoginComponent implements OnInit {
           console.log("Redirecting to Receptionist");
           this.router.navigateByUrl('/receptionist');
         }
-<<<<<<< HEAD
         else if (this.loginUser.RoleId === 2) {
           console.log('System Admin');
           localStorage.setItem('userName', this.loginUser.LoginId);
@@ -106,9 +105,6 @@ export class LoginComponent implements OnInit {
           console.log("Redirecting to Admin Panel");
           this.router.navigateByUrl('/admin');
         }
-        
-=======
->>>>>>> 11db87c2cb783af9a397f083b5df6f852e6dcde8
         else {
           this.error = 'Sorry not authorised to access this page';
           this.toastr.error(
