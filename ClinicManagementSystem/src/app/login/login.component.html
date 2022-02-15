@@ -73,7 +73,11 @@
         <div class="my-3 text-center">
           <button class="btn-primary btn">Login</button>
         </div>
-        <div *ngIf="error" style="color: red; text-align: left">
+        <div
+          class="text-center"
+          *ngIf="error"
+          style="color: red; text-align: left"
+        >
           {{ error }}
         </div>
       </form>
