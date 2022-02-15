@@ -33,7 +33,7 @@ export class PatientListComponent implements OnInit {
   //Edit patient
   updatePatient(pID:number){
     console.log(" going to update this " +pID);
-    //navigate to edit form with selected book details
+    //navigate to edit form with selected patient details
 
     this.router.navigate(['update-patient',pID]);
   }

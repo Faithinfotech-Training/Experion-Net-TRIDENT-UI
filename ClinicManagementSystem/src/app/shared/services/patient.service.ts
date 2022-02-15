@@ -14,10 +14,11 @@ export class PatientService {
   formData: Patient = new Patient();
   constructor(private httpClient: HttpClient) { }
 
+  //get all patients
   bindListPatients(){
     this.httpClient.get(environment.apiUrl + '/api/Patients/GetAllPatients').toPromise().then(
       response => {
-        console.log("from service");
+        console.log("from  patient service");
         console.log(response);
         this.patients = response as Patient[];
       }

@@ -29,6 +29,8 @@ import { AddconsultationComponent } from './receptionist/addconsultation/addcons
 import { AddinvoiceComponent } from './receptionist/addinvoice/addinvoice.component';
 import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.component';
 import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
+import { TestAdviceListComponent } from './lab-technician/test-advice-list/test-advice-list.component';
+import { TestComponent } from './lab-technician/test/test.component';
 
 
 
@@ -53,6 +55,8 @@ import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
     AddinvoiceComponent,
     ViewinvoiceComponent,
     MedicinesComponent,
+    TestAdviceListComponent,
+    TestComponent,
 
   ],
   imports: [

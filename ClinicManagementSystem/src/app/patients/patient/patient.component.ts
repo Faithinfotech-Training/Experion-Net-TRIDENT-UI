@@ -100,10 +100,7 @@ export class PatientComponent implements OnInit {
         this.toasterService.success('patient record has been updated','CMSApp v2022');
         this.router.navigateByUrl("/patient-list/dashboard");
         //call reset form for clear the content
-        this.patientService.resetForm();
-        
-        
-        
+        this.patientService.resetForm();      
       },
       (error)=>{
         console.log(error);

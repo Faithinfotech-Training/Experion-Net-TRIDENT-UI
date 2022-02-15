@@ -86,8 +86,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('accessRole',this.loginUser.RoleId.toString());
           sessionStorage.setItem('token', this.loginUser.token);
           sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
-          this.router.navigateByUrl('/patient-list');
-          //this.router.navigateByUrl('/lab-technician');
+          //this.router.navigateByUrl('/patient-list');
+          this.router.navigateByUrl('/lab-technician');
         }
         else if (this.loginUser.RoleId === 3) {
           console.log('Receptionist');
