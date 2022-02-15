@@ -1,1 +1,58 @@
-<p>lab-technician works!</p>
+<!-- navbar  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+        <a class="navbar-brand"><img src="../../assets/images/logo small.png" class="img-fluid img logo" alt="" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav mx-3">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-bold">Features</a>
+                </li>
+
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle active" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Tridents
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- navbar  -->
+<div class="colorbar" style="
+      height: 1rem;
+      background: linear-gradient(to right, #c9e265, #38b6ff);
+      border-radius: 1.5rem;"></div>
+
+
+
+
+<div class="container">
+    <div class="header">
+        <div class="form-control mt-2" style="width: 300px;">
+            <input class="form-control" type="text" placeholder="search" [(ngModel)]="filter">
+            <!-- {{filter}} -->
+            <!-- [(ngModel)]="filter"{{filter}} -->
+        </div>
+
+        <!-- [] square bracket is for property binding
+         () parenthesis is for event binding
+         ([]) event and property is for banana box  --([ngModel]) -->
+
+       
+    <footer>
+        <!-- pagination -->
+        <pagination-controls (pageChange)="page =($event)"></pagination-controls>
+
+    </footer>
+</div>

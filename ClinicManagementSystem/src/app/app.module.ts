@@ -15,6 +15,12 @@ import { AdminComponent } from './admin/admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+
+import { PatientListComponent } from './patients/patient-list/patient-list.component';
+import { PatientComponent } from './patients/patient/patient.component';
+import { AuthService } from './shared/services/auth.service';
+import { PatientService } from './shared/services/patient.service';
+
 import { ViewappointmentComponent } from './doctor/viewappointment/viewappointment.component';
 import { AddappointmentComponent } from './receptionist/addappointment/addappointment.component';
 import { ViewappointmentsComponent } from './receptionist/viewappointments/viewappointments.component';
@@ -22,6 +28,8 @@ import { ViewconsultationComponent } from './receptionist/viewconsultation/viewc
 import { AddconsultationComponent } from './receptionist/addconsultation/addconsultation.component';
 import { AddinvoiceComponent } from './receptionist/addinvoice/addinvoice.component';
 import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.component';
+import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
+
 
 
 @NgModule({
@@ -33,6 +41,10 @@ import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.com
     PharmacistComponent,
     LabTechnicianComponent,
     AdminComponent,
+
+    PatientListComponent,
+    PatientComponent,
+
     ViewappointmentComponent,
     AddappointmentComponent,
     ViewappointmentsComponent,
@@ -40,6 +52,8 @@ import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.com
     AddconsultationComponent,
     AddinvoiceComponent,
     ViewinvoiceComponent,
+    MedicinesComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -51,11 +65,11 @@ import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.com
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
-
+    ToastrModule.forRoot(),
+    CommonModule,
 
   ],
-  providers: [],
+  providers: [AuthService, PatientService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

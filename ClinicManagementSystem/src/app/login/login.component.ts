@@ -71,22 +71,33 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
           sessionStorage.setItem('userName', this.loginUser.LoginId);
           console.log("Redirecting to Doctor");
-          sessionStorage.setItem(
-            'accessRole',
-            this.loginUser.RoleId.toString()
-          );
+          sessionStorage.setItem('accessRole',this.loginUser.RoleId.toString());
           sessionStorage.setItem('token', this.loginUser.token);
           sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
           this.router.navigateByUrl('/doctor');
+
+        }        
+        else if (this.loginUser.RoleId === 4) {
+          console.log('Lab-Technician');
+          localStorage.setItem('userName', this.loginUser.LoginId);
+          localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
+          sessionStorage.setItem('userName', this.loginUser.LoginId);
+          console.log("Redirecting to Lab Technician");
+          sessionStorage.setItem('accessRole',this.loginUser.RoleId.toString());
+          sessionStorage.setItem('token', this.loginUser.token);
+          sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
+          this.router.navigateByUrl('/patient-list');
+          //this.router.navigateByUrl('/lab-technician');
         }
         else if (this.loginUser.RoleId === 3) {
-          console.log('Doctor');
+          console.log('Receptionist');
           localStorage.setItem('userName', this.loginUser.LoginId);
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
           sessionStorage.setItem('userName', this.loginUser.LoginId);
           console.log("Redirecting to Receptionist");
           this.router.navigateByUrl('/receptionist');
         }
+<<<<<<< HEAD
         else if (this.loginUser.RoleId === 2) {
           console.log('System Admin');
           localStorage.setItem('userName', this.loginUser.LoginId);
@@ -96,6 +107,8 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/admin');
         }
         
+=======
+>>>>>>> 11db87c2cb783af9a397f083b5df6f852e6dcde8
         else {
           this.error = 'Sorry not authorised to access this page';
           this.toastr.error(
