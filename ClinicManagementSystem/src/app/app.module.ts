@@ -28,6 +28,7 @@ import { ViewconsultationComponent } from './receptionist/viewconsultation/viewc
 import { AddconsultationComponent } from './receptionist/addconsultation/addconsultation.component';
 import { AddinvoiceComponent } from './receptionist/addinvoice/addinvoice.component';
 import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.component';
+import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
 
 
 
@@ -51,6 +52,7 @@ import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.com
     AddconsultationComponent,
     AddinvoiceComponent,
     ViewinvoiceComponent,
+    MedicinesComponent,
 
   ],
   imports: [

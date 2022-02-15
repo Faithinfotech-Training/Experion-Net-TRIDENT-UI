@@ -85,6 +85,20 @@
                 </div>
             </div>
         </div>
+        <!-- Patient Sex -->
+        <div class="form-group">
+            <label>Patient Sex : </label>
+            <input type="text" name="Sex" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex"
+                class="form-control" placeholder="Enter Sex" minlength="4" maxlength="6" required
+                [ngClass]="{'is-invalid': Sex.touched && Sex.invalid}">
+            <!-- validation -->
+            <div class="validation-errors" *ngIf="Sex.touched && Sex.invalid"
+                style="color: red; text-align: left;">
+                <div *ngIf="Sex.errors.required">
+                    Confirm Sex  is required!
+                </div>
+            </div>
+        </div>
         <!-- Patient Address -->
         <div class="form-group">
             <label>Patient Address : </label>

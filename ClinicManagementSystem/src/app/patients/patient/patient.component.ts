@@ -96,9 +96,14 @@ export class PatientComponent implements OnInit {
     this.patientService.updatePatient(form.value).subscribe(
       (result) => {
         console.log(result);
+
+        this.toasterService.success('patient record has been updated','CMSApp v2022');
+        this.router.navigateByUrl("/patient-list/dashboard");
         //call reset form for clear the content
         this.patientService.resetForm();
-        this.toasterService.success('patient record has been updated','CMSApp v2022');
+        
+        
+        
       },
       (error)=>{
         console.log(error);

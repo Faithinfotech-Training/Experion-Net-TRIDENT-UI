@@ -44,9 +44,9 @@ export class PatientService {
   }
 
   resetForm(form?: NgForm){
-    if(form != null ) {
+      this.formData = null;
       form.resetForm();
       console.log("reseting")
-    }
+   
   }
 }
