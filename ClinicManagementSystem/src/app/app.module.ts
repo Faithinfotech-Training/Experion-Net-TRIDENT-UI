@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { ViewappointmentComponent } from './doctor/viewappointment/viewappointment.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CommonModule } from '@angular/common';
     PharmacistComponent,
     LabTechnicianComponent,
     AdminComponent,
+    ViewappointmentComponent,
   ],
   imports: [
     BrowserModule,

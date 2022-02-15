@@ -12,6 +12,8 @@ export class DoctorComponent implements OnInit {
   //declare variables
   username = sessionStorage.getItem('userName');
   staffId = sessionStorage.getItem('staffId');
+  page: number = 1;
+  filter: string;
 
   constructor(
     private router: Router,
@@ -30,5 +32,11 @@ export class DoctorComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigateByUrl('/login');
+  }
+
+  //view patient details
+  updatePatient(id: number) {
+    this.router.navigate(['viewappointments', id]);
+    console.log(id);
   }
 }

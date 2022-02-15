@@ -69,6 +69,15 @@
     class="row p-2 justify-content-end shadow-sm"
     style="border: 1px solid #38b6ff"
   >
+    <div class="col-md-9">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Search from the list"
+        [(ngModel)]="filter"
+      />
+      {{ filter }}
+    </div>
     <input
       class="col-md-3 form-control shadow-sm"
       type="date"
@@ -87,9 +96,13 @@
 </div>
 <!-- contents  -->
 <div
-  class="row my-2 shadow-sm px-2 my-5"
+  class="row my-2 shadow-sm px-2 my-5 justify-content-around"
   style="border-bottom: 1px solid #38b6ff"
-  *ngFor="let item of doctorService.appointments"
+  *ngFor="
+    let item of doctorService.appointments
+      | filter: filter
+      | paginate: { itemsPerPage: 4, currentPage: page }
+  "
 >
   <div class="token col-md-2">
     <div class="px-5">
@@ -103,4 +116,20 @@
     <p>Patient Name : {{ item.PatientName }}</p>
     <p>Appointment ID : {{ item.AppointmentId }}</p>
   </div>
+  <div class="col-md-3">
+    <button
+      class="btn btn-primary mb-2"
+      (click)="updatePatient(item.AppointmentId)"
+    >
+      View Details
+    </button>
+    <br />
+    <button class="btn btn-danger">Mark As Done</button>
+  </div>
+</div>
+<div class="paginate justify-content-center">
+  <pagination-controls
+    (pageChange)="page = $event"
+    class="text-center"
+  ></pagination-controls>
 </div>

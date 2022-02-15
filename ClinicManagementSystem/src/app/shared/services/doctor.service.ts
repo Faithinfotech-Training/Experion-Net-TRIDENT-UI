@@ -25,4 +25,14 @@ export class DoctorService {
         console.log(response);
       });
   }
+
+  bindListAppointmentsByID(id: number) {
+    this.httpClient
+      .get(environment.apiUrl + '/api/Appointments/ViewAppointmentById/' + id)
+      .toPromise()
+      .then((response) => {
+        this.appointments = response as Appointments[];
+        console.log(response);
+      });
+  }
 }
