@@ -25,6 +25,13 @@ export class AuthService {
   public logout() {
     localStorage.removeItem('userName');
     localStorage.removeItem('password');
+    localStorage.removeItem('accessRole');
+    localStorage.removeItem('token');
+    localStorage.removeItem('staffId')
     sessionStorage.removeItem('userName');
+    sessionStorage.removeItem('password');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('accessRole');
+    sessionStorage.removeItem('staffId');
   }
 }

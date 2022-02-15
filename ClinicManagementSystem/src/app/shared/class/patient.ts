@@ -1,4 +1,5 @@
 export class Patient {
+
     PatientId:number = 0;
     PatientName:string = '';
     Phone: number;
@@ -6,4 +7,5 @@ export class Patient {
     DateOfBirth:Date;
     BloodGroup:string = '';
     IsAppointed:boolean= false;
+
 }
