@@ -29,7 +29,12 @@ import { AddconsultationComponent } from './receptionist/addconsultation/addcons
 import { AddinvoiceComponent } from './receptionist/addinvoice/addinvoice.component';
 import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.component';
 import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
+<<<<<<< HEAD
 import { DashboardComponent } from './receptionist/dashboard/dashboard.component';
+=======
+import { TestAdviceListComponent } from './lab-technician/test-advice-list/test-advice-list.component';
+import { TestComponent } from './lab-technician/test/test.component';
+>>>>>>> eaf4e4af34c79963593805bfe5df76a23e22ebb0
 
 
 
@@ -54,7 +59,12 @@ import { DashboardComponent } from './receptionist/dashboard/dashboard.component
     AddinvoiceComponent,
     ViewinvoiceComponent,
     MedicinesComponent,
+<<<<<<< HEAD
     DashboardComponent,
+=======
+    TestAdviceListComponent,
+    TestComponent,
+>>>>>>> eaf4e4af34c79963593805bfe5df76a23e22ebb0
 
   ],
   imports: [

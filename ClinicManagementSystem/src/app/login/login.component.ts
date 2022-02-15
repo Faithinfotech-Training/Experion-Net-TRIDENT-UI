@@ -86,8 +86,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('accessRole',this.loginUser.RoleId.toString());
           sessionStorage.setItem('token', this.loginUser.token);
           sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
-          this.router.navigateByUrl('/patient-list');
-          //this.router.navigateByUrl('/lab-technician');
+          //this.router.navigateByUrl('/patient-list');
+          this.router.navigateByUrl('/lab-technician');
         }
         else if (this.loginUser.RoleId === 3) {
           console.log('Receptionist');
@@ -105,7 +105,11 @@ export class LoginComponent implements OnInit {
           console.log("Redirecting to Admin Panel");
           this.router.navigateByUrl('/admin');
         }
+<<<<<<< HEAD
       else {
+=======
+        else {
+>>>>>>> eaf4e4af34c79963593805bfe5df76a23e22ebb0
           this.error = 'Sorry not authorised to access this page';
           this.toastr.error(
             'Sorry not authorised to access this page',

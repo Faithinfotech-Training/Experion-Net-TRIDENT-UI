@@ -33,6 +33,11 @@ export class PatientListComponent implements OnInit {
   //Edit patient
   updatePatient(pID:number){
     console.log(" going to update this " +pID);
+<<<<<<< HEAD
+=======
+    //navigate to edit form with selected patient details
+
+>>>>>>> eaf4e4af34c79963593805bfe5df76a23e22ebb0
     this.router.navigate(['update-patient',pID]);
   }
 
