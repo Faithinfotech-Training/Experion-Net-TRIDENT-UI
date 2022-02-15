@@ -12,6 +12,7 @@ import { PatientComponent } from './patients/patient/patient.component';
 import { AddappointmentComponent } from './receptionist/addappointment/addappointment.component';
 import { AddconsultationComponent } from './receptionist/addconsultation/addconsultation.component';
 import { AddinvoiceComponent } from './receptionist/addinvoice/addinvoice.component';
+import { DashboardComponent } from './receptionist/dashboard/dashboard.component';
 import {ReceptionistComponent} from './receptionist/receptionist.component'
 import { ViewappointmentsComponent } from './receptionist/viewappointments/viewappointments.component';
 import { ViewconsultationComponent } from './receptionist/viewconsultation/viewconsultation.component';
@@ -58,6 +59,12 @@ const routes: Routes = [
   {
     path: 'receptionist/addinvoice',
     component:AddinvoiceComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '3' },
+  },
+  {
+    path: 'receptionist/dashboard',
+    component:DashboardComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },

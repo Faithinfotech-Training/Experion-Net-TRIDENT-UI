@@ -23,7 +23,7 @@
     >
       <ul class="navbar-nav mx-3">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/receptionist">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active text-bold">Features</a>
@@ -69,8 +69,8 @@
         Patients
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Add Patients</a></li>
-          <li><a class="dropdown-item" href="#">View Patients</a></li>
+          <li><a class="dropdown-item" (click)="addPatients()">Add Patients</a></li>
+          <li><a class="dropdown-item" (click)="viewPatients()">View Patients</a></li>
         </ul>
       </div>
       <div class="dropdown">
@@ -105,7 +105,7 @@
   </div>
   <div class="row">
     <div class="container-lg ">
-        <iframe id="frame" src="receptionist/viewappointment" class="responsive-iframe" scrolling="no" style="border:none;">
+        <iframe id="frame" src="receptionist/dashboard" class="responsive-iframe" scrolling="no" style="border:none;">
         </iframe>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<!-- navbar  -->
+<!-- navbar  
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
       <a class="navbar-brand"
@@ -48,8 +48,7 @@
       </div>
     </div>
   </nav>
-  <!-- navbar  -->
-  <div
+    <div
     class="colorbar"
     style="
       height: 1rem;
@@ -58,20 +57,21 @@
     "
   ></div>
 
+-->
+  <!-- navbar  -->
+
+
 
 <div class="container">
     <div class="header">
-        <div class="form-control mt-2" style="width: 300px;">
-            <input class="form-control" type="text" placeholder="search" [(ngModel)]="filter" >
+            <input class="form-control" type="text" placeholder="Search Patients by ID, Name and Phone no" [(ngModel)]="filter" >
             <!-- {{filter}} -->
             <!-- [(ngModel)]="filter"{{filter}} -->
-        </div>
-
         <!-- [] square bracket is for property binding
          () parenthesis is for event binding
          ([]) event and property is for banana box  --([ngModel]) -->
          
-        <a [routerLink]="" class="btn btn-warning btn-outline-success text-dark"
+        <a [routerLink]="" class="btn btn-primary btn-outline-info text-dark"
             style="float: right; margin-top: 10px; margin-right: 0px; margin-bottom: 10px;"  (click)="addPatient()">Add Patient</a>
     </div>
     <table class="table table-bordered table-striped">
@@ -84,8 +84,7 @@
                 <th>Address</th>
                 <th>DateOfBirth</th>
                 <th>BloodGroup</th>
-                <th>Action</th>
-                
+                <th>Action</th>              
             </tr>
         </thead>
         <tbody>

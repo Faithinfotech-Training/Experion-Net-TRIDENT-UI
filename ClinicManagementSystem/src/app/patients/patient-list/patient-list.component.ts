@@ -21,7 +21,7 @@ export class PatientListComponent implements OnInit {
   ngOnInit(): void {
 
     this.loggedUser = localStorage.getItem("userName");
-    console.log("welcome to patient-list");
+    console.log("Welcome to patient-list");
     this.patientService.bindListPatients();
   }
 
@@ -33,8 +33,6 @@ export class PatientListComponent implements OnInit {
   //Edit patient
   updatePatient(pID:number){
     console.log(" going to update this " +pID);
-    //navigate to edit form with selected book details
-
     this.router.navigate(['update-patient',pID]);
   }
 

@@ -1,5 +1,5 @@
 <!-- navbar  -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
         <a class="navbar-brand"><img src="../../assets/images/logo small.png" class="img-fluid img logo" alt="" /></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -28,14 +28,13 @@
         </div>
     </div>
 </nav>
-<!-- navbar  -->
 <div class="colorbar" style="
       height: 1rem;
       background: linear-gradient(to right, #c9e265, #38b6ff);
       border-radius: 1.5rem;
     "></div>
-
-
+-->
+<!-- navbar  -->
 <div>
 
     <!-- template driven -->
@@ -88,14 +87,18 @@
         <!-- Patient Sex -->
         <div class="form-group">
             <label>Patient Sex : </label>
-            <input type="text" name="Sex" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex"
-                class="form-control" placeholder="Enter Sex" minlength="4" maxlength="6" required
-                [ngClass]="{'is-invalid': Sex.touched && Sex.invalid}">
+            
+            <select  name="Sex" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex"class="form-control"  [ngClass]="{'is-invalid': Sex.touched && Sex.invalid}" required>
+                <option >Male</option>
+                <option >Female</option>
+                <option >Other</option>
+            </select>
+                
             <!-- validation -->
             <div class="validation-errors" *ngIf="Sex.touched && Sex.invalid"
                 style="color: red; text-align: left;">
                 <div *ngIf="Sex.errors.required">
-                    Confirm Sex  is required!
+                    Sex  is required!
                 </div>
             </div>
         </div>
@@ -131,10 +134,17 @@
 
         <!-- Patient BloodGroup -->
         <div class="form-group">
-            <label>Patient BloodGroup : </label>
-            <input type="text" name="BloodGroup" #BloodGroup="ngModel" [(ngModel)]="patientService.formData.BloodGroup"
-                class="form-control" placeholder="Enter BloodGroup" minlength="1" maxlength="4" required
+            <label>Patient Blood Group : </label>
+            <select name="BloodGroup" #BloodGroup="ngModel" [(ngModel)]="patientService.formData.BloodGroup"
+                class="form-control" required
                 [ngClass]="{'is-invalid': BloodGroup.touched && BloodGroup.invalid}">
+                <option selected>A+ve</option>
+                <option>B+ve</option>
+                <option>O+ve</option>
+                <option>A-ve</option>
+                <option>B-ve</option>
+                <option>O-ve</option>
+                </select>
             <!-- validation -->
             <div class="validation-errors" *ngIf="BloodGroup.touched && BloodGroup.invalid"
                 style="color: red; text-align: left;">
@@ -143,22 +153,15 @@
                 </div>
             </div>
         </div>
-
-        
-        
-
-        
-
-        
         <!-- IsActive -->
-        <div class="form-group">
+        <!--<div class="form-group">
             <div class="form-check">
                 <label class="form-check-label">In Service</label>
                 <input type="checkbox" name="IsAppointed" id="IsAppointed" #IsAppointed="ngModel"
                     [(ngModel)]="patientService.formData.IsAppointed" class="form-check-input">
 
             </div>
-        </div>
+        </div>-->
         <!-- submit -->
         <br>
         <div class="form-group">

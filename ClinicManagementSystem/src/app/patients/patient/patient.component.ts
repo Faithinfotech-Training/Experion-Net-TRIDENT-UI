@@ -40,8 +40,6 @@ export class PatientComponent implements OnInit {
           var datePipe = new DatePipe("en-UK");
           let formatedDate:any = datePipe.transform(response.DateOfBirth,'yyyy-MM-dd');
           response.DateOfBirth = formatedDate;
-
-
           this.patientService.formData = Object.assign({},response);
         },
         error =>{
@@ -70,7 +68,7 @@ export class PatientComponent implements OnInit {
     else{
       //UPDATE     
       this.updatePatientRecord(form);
-      this.patientService.resetForm();  
+     // this.patientService.resetForm();  
     }
   }
 
@@ -93,10 +91,10 @@ export class PatientComponent implements OnInit {
   //update Method
   updatePatientRecord(form?: NgForm){
     console.log("updating a record...");
+    console.log(form.value);
     this.patientService.updatePatient(form.value).subscribe(
       (result) => {
         console.log(result);
-
         this.toasterService.success('patient record has been updated','CMSApp v2022');
         this.router.navigateByUrl("/patient-list/dashboard");
         //call reset form for clear the content

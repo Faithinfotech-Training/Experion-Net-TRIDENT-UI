@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { PatientService } from 'src/app/shared/services/patient.service';
 import { ReceptionistService } from 'src/app/shared/services/receptionist.service';
 
 @Component({
@@ -12,12 +13,13 @@ export class AddappointmentComponent implements OnInit {
   dates =<HTMLInputElement> document.getElementById('date');
   dmin;
   tokenlen;
-  constructor(public receptionservice:ReceptionistService,private toaster:ToastrService) { }
+  constructor(public receptionservice:ReceptionistService,public patientservice:PatientService,private toaster:ToastrService) { }
 
   ngOnInit(): void {
     this.dmin=new Date().toISOString().slice(0, 10)+ "T00:00";
   this.receptionservice.bindDoctorList();
 this.tokenlen=Math.floor(Math.random()*(30-1+1)+1);
+this.patientservice.bindListPatients();
   }
  
 OnSubmit(form:NgForm)

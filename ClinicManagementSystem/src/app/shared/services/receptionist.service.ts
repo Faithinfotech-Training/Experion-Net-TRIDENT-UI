@@ -27,6 +27,20 @@ export class ReceptionistService {
       this.appointments=response as Appointments[];
     })
   }
+  bindListActiveAppointments(){
+    this.httpClient.get('https://localhost:44381/api/Appointments/Status/1').toPromise().then(response=>{
+      console.log("From Receptionist Service\n Fetching Active Appointments");
+      console.log(response);
+      this.appointments=response as Appointments[];
+    })
+  }
+  bindListConsultation(){
+    this.httpClient.get('https://localhost:44381/api/Appointments/Status/3').toPromise().then(response=>{
+      console.log("From Receptionist Service\n Fetching Consultation Bill Ready  Patients ");
+      console.log(response);
+      this.appointments=response as Appointments[];
+    })
+  }
   bindListConsultancyBill(){
     this.httpClient.get('https://localhost:44381/api/ConsultationBill/ViewAllBills').toPromise().then(response=>{
       console.log("From Receptionist Service\n Fetching Consultation Bills");
@@ -48,12 +62,15 @@ this.httpClient.get('https://localhost:44381/api/Role/Staff/1').toPromise().then
   this.roles=response;
 })
 }
-
+//------------------------ POST---------------------------------------------------------
 AddAppointment(form:NgForm):Observable<any>
 {
   return this.httpClient.post('https://localhost:44381/api/Appointments',form);
 }
-
+AddConsultationBill(form:NgForm):Observable<any>
+{
+  return this.httpClient.post('https://localhost:44381/api/ConsultationBill',form);
+}
 
 }
 

@@ -1,3 +1,4 @@
+
 <div class="container-lg">
     <div class="header">
         <div class="form-control">
@@ -6,12 +7,12 @@
             <br>
             <pagination-controls (pageChange)="page= $event"></pagination-controls>
             <div style="display: flex;justify-content: flex-end;">
-           <!--- <select>
+            <select>
                 <option value="1">All</option>
                 <option value="2">Today</option>
                 <option value="3">Tommorow</option>
                 <option value="4">Select Date</option>
-            </select>-->
+            </select>
             </div>
             <br><table class="table table-bordered table-stripped">
                 <thead style="background-color: #0183ce; color:azure;">
@@ -29,7 +30,7 @@
                 </thead>
                 <tbody>
                     
-                   <tr  *ngFor="let app of receptionservice.appointments|filter:filter|paginate:{itemsPerPage:2,currentPage:page}">
+                   <tr  *ngFor="let app of receptionservice.appointments |filter:filter|paginate:{itemsPerPage:2,currentPage:page}let i as index">
                         <td>{{app.AppointmentId}}</td>
                         <td>{{app.TokenNo}}</td>
                         <td>{{app.PatientId}}</td>
@@ -38,12 +39,9 @@
                         <td>{{app.DoctorName}}</td>
                         <td>{{app.Receptionistname}}</td>
                         <td>{{app.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</td> 
-                       <td> <button class="btn btn-sm btn-primary">Edit</button> &nbsp;&nbsp;  <!--(click)="updateEmployee(emp.EmployeeID)"-->
+                       <td class="buton" > <button class="btn btn-sm btn-primary" style="display: none;" >{{index}} Send</button> &nbsp;&nbsp;  <!--(click)="updateEmployee(emp.EmployeeID)"-->
                         </td>
                     </tr>
                 </tbody>
             </table>
             <br>
-
-              
-

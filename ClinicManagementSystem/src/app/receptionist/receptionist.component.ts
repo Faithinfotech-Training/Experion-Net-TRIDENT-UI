@@ -19,6 +19,14 @@ export class ReceptionistComponent implements OnInit {
     this.authService.logout();
     this.router.navigateByUrl('/login');
   }
+  addPatients()
+  {
+    this.frame.src="/add-patient";
+  }
+  viewPatients()
+  {
+    this.frame.src="/patient-list/dashboard";
+  }
   viewAppoint()
   {
     this.frame.src="receptionist/viewappointment";

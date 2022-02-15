@@ -1,23 +1,25 @@
 <h3 style="text-align: center;">Book Appointment </h3><br>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-4">
+    <div class="row" >
+  
                     
-                   <h3>New Appointment</h3><br>
+                  <!-- <h3 style="text-align: center;">New Appointment</h3>--><br>
                    <form class="form-group" id="bookappoint" #form="ngForm" autocomplete="off" (ngSubmit)="OnSubmit(form)">
                       <!--<input type="hidden" name="AppointmentId" #AppointmentId="ngModel" [(ngModel)]="receptionservice.appFormData.AppointmentId">-->
                     <label>Token No:</label> <br>
                     <input type="text" id="token" name="TokenNo" readonly style="width:15%;"   #TokenNo="ngModel" [(ngModel)]="tokenlen"><br><br>
                        <label>Patient :</label><br>
-                        <input list="patient" name="PatientId" #PatientId [(ngModel)]="receptionservice.appFormData.PatientId"required/>
+                        <input list="patient" name="PatientId"  minlength="1" maxlength="5" #PatientId [(ngModel)]="receptionservice.appFormData.PatientId"required
+                        [ngClass]="{'is-invalid': PatientId.touched && PatientId.invalid}"/>
                         <datalist id="patient">
-                          <option value="1">Anjana |96783454636</option>
-                          <option value="3">Dhanya |7865823568</option>
-                          <option value="4">Bharath|87590867453</option>
-                          <option value="5">Jeevan |967834565</option>
-                        </datalist><br>
+                          <option  *ngFor="let patient of patientservice.patients"   value="{{patient.PatientId}}">{{patient.PatientName}} | {{patient.Phone}}</option>
+                        </datalist>
+                        <div class="validation-errors" *ngIf="PatientId.touched && PatientId.invalid" style="color: rgb(255, 0, 0); text-align: left;">
+                            <div *ngIf="PatientId.errors.required">
+                                PatientId is required!
+                            </div>
+                            </div>
+                        <br>
                        <label>Available Doctor:</label> <br>
                        <select required id="doc" name="DoctorId" [(ngModel)]="receptionservice.appFormData.DoctorId" #DoctorId>
                            <option *ngFor="let staff of receptionservice.roles" value="{{staff.StaffId}}">Dr.{{staff.Name}}</option> >
