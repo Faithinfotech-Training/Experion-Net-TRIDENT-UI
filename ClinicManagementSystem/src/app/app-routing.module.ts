@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DoctorComponent } from './doctor/doctor.component';
 import { LoginComponent } from './login/login.component';
+import {ReceptionistComponent} from './receptionist/receptionist.component'
 import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
@@ -12,6 +13,12 @@ const routes: Routes = [
     component: DoctorComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '1' },
+  },
+  {
+    path: 'receptionist',
+    component:ReceptionistComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '3' },
   },
 ];
 
