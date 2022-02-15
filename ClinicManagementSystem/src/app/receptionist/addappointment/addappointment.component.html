@@ -1,1 +1,33 @@
-<p>addappointment works!</p>
+<h3 style="text-align: center;">Book Appointment </h3><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    
+                   <h3>New Appointment</h3><br>
+                   <form class="form-group" id="bookappoint" #form="ngForm" autocomplete="off" (ngSubmit)="OnSubmit(form)">
+                      <!--<input type="hidden" name="AppointmentId" #AppointmentId="ngModel" [(ngModel)]="receptionservice.appFormData.AppointmentId">-->
+                    <label>Token No:</label> <br>
+                    <input type="text" id="token" name="TokenNo" readonly style="width:15%;"   #TokenNo="ngModel" [(ngModel)]="tokenlen"><br><br>
+                       <label>Patient :</label><br>
+                        <input list="patient" name="PatientId" #PatientId [(ngModel)]="receptionservice.appFormData.PatientId"required/>
+                        <datalist id="patient">
+                          <option value="1">Anjana |96783454636</option>
+                          <option value="3">Dhanya |7865823568</option>
+                          <option value="4">Bharath|87590867453</option>
+                          <option value="5">Jeevan |967834565</option>
+                        </datalist><br>
+                       <label>Available Doctor:</label> <br>
+                       <select required id="doc" name="DoctorId" [(ngModel)]="receptionservice.appFormData.DoctorId" #DoctorId>
+                           <option *ngFor="let staff of receptionservice.roles" value="{{staff.StaffId}}">Dr.{{staff.Name}}</option> >
+                       </select>
+                       <input type="hidden" name="ReceptionistId" [(ngModel)]="receptionservice.appFormData.ReceptionistId" #ReceptionistId>
+                       <br><br>
+                       <label>Appointment Date/Time :</label><br>
+                       <input type="datetime-local" required id="date" [min]="dmin" (blur)="isDateBeforeToday()" #AppointmentDate name="AppointmentDate" [(ngModel)]="receptionservice.appFormData.AppointmentDate"> <br><br>
+                        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!(form.valid && form.dirty)">Book Appointment</button>
+                   </form>
+               
+                </div>
+

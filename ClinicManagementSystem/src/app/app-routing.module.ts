@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { ViewappointmentComponent } from './doctor/viewappointment/viewappointment.component';
 import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
@@ -78,7 +79,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
-  
+  {
+    path: 'admin',
+    component:AdminComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '2' },
+  },
   // { path: 'employees/:userId', component: EmployeesComponent },
 
 
