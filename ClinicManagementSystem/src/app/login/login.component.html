@@ -1,0 +1,83 @@
+<div class="container">
+  <!-- center a div  -->
+
+  <div class="row d-flex justify-content-center my-5">
+    <img class="img img-fluid" src="../../assets/images/logo-big.png" alt="" />
+  </div>
+  <div class="row my-2">
+    <h1 class="text-center display-6">Login</h1>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="form-content login-form">
+      <!-- login part  -->
+      <!-- form  -->
+      <form [formGroup]="loginForm" (ngSubmit)="loginCredentials()">
+        <!-- user name control  -->
+        <div class="my-3 form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Username"
+            name="LoginId"
+            formControlName="LoginId"
+            class="form-control"
+            minlength="3"
+            required
+            [ngClass]="{
+              'is-invalid':
+                formControls.LoginId.invalid && formControls.LoginId.touched
+            }"
+          />
+        </div>
+        <div class="validation"></div>
+        <!-- username validations -->
+        <div *ngIf="isSubmitted && formControls.LoginId.errors">
+          <div
+            *ngIf="formControls.LoginId.errors"
+            style="color: red; text-align: left"
+          >
+            User Name is required !
+          </div>
+        </div>
+        <!-- password  -->
+        <div class="my-3 form-group">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Enter Password"
+            name="Password"
+            formControlName="Password"
+            class="form-control"
+            minlength="3"
+            required
+            [ngClass]="{
+              'is-invalid':
+                formControls.Password.invalid && formControls.Password.touched
+            }"
+          />
+        </div>
+        <div class="validation"></div>
+        <!-- password validations -->
+        <div *ngIf="isSubmitted && formControls.Password.errors">
+          <div
+            *ngIf="formControls.Password.errors"
+            style="color: red; text-align: left"
+          >
+            Password is required !
+          </div>
+        </div>
+
+        <!-- button  -->
+        <!-- center a button  -->
+
+        <div class="my-3 text-center">
+          <button class="btn-primary btn">Login</button>
+        </div>
+        <div *ngIf="error" style="color: red; text-align: left">
+          {{ error }}
+        </div>
+      </form>
+      <!-- end form  -->
+    </div>
+  </div>
+</div>
