@@ -18,6 +18,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { PatientListComponent } from './patients/patient-list/patient-list.component';
+import { PatientComponent } from './patients/patient/patient.component';
+import { AuthService } from './shared/services/auth.service';
+import { PatientService } from './shared/services/patient.service';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +33,9 @@ import { CommonModule } from '@angular/common';
     PharmacistComponent,
     LabTechnicianComponent,
     AdminComponent,
+    PatientListComponent,
+    PatientComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -40,8 +48,9 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     CommonModule,
+    
   ],
-  providers: [],
+  providers: [AuthService, PatientService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

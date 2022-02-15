@@ -63,13 +63,21 @@ export class LoginComponent implements OnInit {
         console.log(sessionStorage.getItem('token'));
 
         //check the role based on roleid
-        if (this.loginUser.RoleId === 2) {
+        if (this.loginUser.RoleId === 1) {
           console.log('Doctor');
           localStorage.setItem('userName', this.loginUser.LoginId);
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
           sessionStorage.setItem('userName', this.loginUser.LoginId);
           this.router.navigateByUrl('/doctor');
-        } else {
+        }        
+        else if (this.loginUser.RoleId === 4) {
+          console.log('Lab-Technician');
+          localStorage.setItem('userName', this.loginUser.LoginId);
+          localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
+          sessionStorage.setItem('userName', this.loginUser.LoginId);
+          this.router.navigateByUrl('/patient-list');
+        }
+        else {
           this.error = 'Sorry not authorised to access this page';
           this.toastr.error(
             'Sorry not authorised to access this page',
