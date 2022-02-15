@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { PharmacistComponent } from './pharmacist/pharmacist.component';
 import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
 import { AdminComponent } from './admin/admin.component';
-import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
