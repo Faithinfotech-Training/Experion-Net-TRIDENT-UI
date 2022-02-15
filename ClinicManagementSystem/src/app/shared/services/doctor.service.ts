@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Appointments } from '../class/appointments';
 import { Patient } from '../class/patient';
 
 @Injectable({
@@ -9,14 +10,19 @@ import { Patient } from '../class/patient';
 })
 export class DoctorService {
   patients: Patient[];
+  appointments: Appointments[];
 
   constructor(private httpClient: HttpClient) {}
 
-  bindListAppointments(doctorId: number): Observable<Patient[]> {
-    return this.httpClient.get<Patient[]>(
-      environment.apiUrl +
-        '/api/Appointments/ViewAppointmentByDoctorId/' +
-        doctorId
-    );
+  bindListAppointments(id: number) {
+    this.httpClient
+      .get(
+        environment.apiUrl + '/api/Appointments/ViewAppointmentByDoctorId/' + id
+      )
+      .toPromise()
+      .then((response) => {
+        this.appointments = response as Appointments[];
+        console.log(response);
+      });
   }
 }

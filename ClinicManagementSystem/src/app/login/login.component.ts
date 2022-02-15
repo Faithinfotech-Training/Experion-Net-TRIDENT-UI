@@ -58,9 +58,11 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('userName', this.loginUser.LoginId);
         sessionStorage.setItem('accessRole', this.loginUser.RoleId);
         sessionStorage.setItem('token', this.loginUser.token);
+        sessionStorage.setItem('staffId', this.loginUser.StaffId);
         console.log(sessionStorage.getItem('userName'));
         console.log(sessionStorage.getItem('accessRole'));
         console.log(sessionStorage.getItem('token'));
+        console.log(sessionStorage.getItem('staffId'));
 
         //check the role based on roleid
         if (this.loginUser.RoleId === 1) {
@@ -68,6 +70,12 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('userName', this.loginUser.LoginId);
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
           sessionStorage.setItem('userName', this.loginUser.LoginId);
+          sessionStorage.setItem(
+            'accessRole',
+            this.loginUser.RoleId.toString()
+          );
+          sessionStorage.setItem('token', this.loginUser.token);
+          sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
           this.router.navigateByUrl('/doctor');
         } else {
           this.error = 'Sorry not authorised to access this page';
