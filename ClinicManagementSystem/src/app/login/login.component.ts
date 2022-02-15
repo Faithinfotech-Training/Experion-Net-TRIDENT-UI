@@ -87,6 +87,14 @@ export class LoginComponent implements OnInit {
           console.log("Redirecting to Receptionist");
           this.router.navigateByUrl('/receptionist');
         }
+        else if (this.loginUser.RoleId === 2) {
+          console.log('System Admin');
+          localStorage.setItem('userName', this.loginUser.LoginId);
+          localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
+          sessionStorage.setItem('userName', this.loginUser.LoginId);
+          console.log("Redirecting to Admin Panel");
+          this.router.navigateByUrl('/admin');
+        }
         
         else {
           this.error = 'Sorry not authorised to access this page';
