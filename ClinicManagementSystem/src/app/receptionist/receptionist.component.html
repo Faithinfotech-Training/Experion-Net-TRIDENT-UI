@@ -62,17 +62,51 @@
 <div class="container-fluid">
   <div class="row">
     <h2 class="display-6 my-1">Dashboard</h2>
-  </div>
-  <div class="row" style="background-color: #38b6ff;display:list-item; justify-content:space-around; width:100%;">
-  <a href="" class="links" >View Patients</a>
-  <a href=""  class="links">Edit Patients</a>
-  <a href=""  class="links">View Appointments</a>
-  <a href=""   class="links">Book Appointments</a>
-  <a href=""  class="links">Generate Consultation Bill</a>
-  <a href=""  class="links">Generate Final Bill</a>
+  </div><br>
+  <div class="parent" style="background-color: #0183ce;">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Patients
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Add Patients</a></li>
+          <li><a class="dropdown-item" href="#">View Patients</a></li>
+        </ul>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+     Appointments
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" (click)="viewAppoint()">View Appointments</a></li>
+
+          <li><a class="dropdown-item" (click)="addAppoint()">Book Appointments</a></li>
+        </ul>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Consultation
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" (click)="addConsult()">Add Consultation Bill </a></li>
+
+          <li><a class="dropdown-item" (click)="viewConsult()">View Consultation Bill</a></li>
+        </ul>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Invoice
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" (click)="addInvoice()">Add Invoice Bill </a></li>
+          <li><a class="dropdown-item" (click)="viewInvoice()">View Invoice Bill</a></li>
+        </ul>
+      </div>
   </div>
   <div class="row">
-    
-    <div class="col-3"></div>
+    <div class="container-lg ">
+        <iframe id="frame" src="receptionist/viewappointment" class="responsive-iframe" scrolling="no" style="border:none;">
+        </iframe>
+    </div>
   </div>
 </div>

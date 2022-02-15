@@ -15,6 +15,13 @@ import { AdminComponent } from './admin/admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { ViewappointmentComponent } from './doctor/viewappointment/viewappointment.component';
+import { AddappointmentComponent } from './receptionist/addappointment/addappointment.component';
+import { ViewappointmentsComponent } from './receptionist/viewappointments/viewappointments.component';
+import { ViewconsultationComponent } from './receptionist/viewconsultation/viewconsultation.component';
+import { AddconsultationComponent } from './receptionist/addconsultation/addconsultation.component';
+import { AddinvoiceComponent } from './receptionist/addinvoice/addinvoice.component';
+import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.component';
 
 
 @NgModule({
@@ -26,6 +33,13 @@ import { CommonModule } from '@angular/common';
     PharmacistComponent,
     LabTechnicianComponent,
     AdminComponent,
+    ViewappointmentComponent,
+    AddappointmentComponent,
+    ViewappointmentsComponent,
+    ViewconsultationComponent,
+    AddconsultationComponent,
+    AddinvoiceComponent,
+    ViewinvoiceComponent,
   ],
   imports: [
     BrowserModule,
