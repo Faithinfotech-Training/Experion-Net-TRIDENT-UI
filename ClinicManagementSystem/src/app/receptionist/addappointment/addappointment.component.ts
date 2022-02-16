@@ -26,6 +26,7 @@ OnSubmit(form:NgForm)
 {
   form.value.DoctorId=+form.value.DoctorId;
   form.value.PatientId=+form.value.PatientId;
+  form.value.Status=+1;
   form.value.ReceptionistId=+sessionStorage.getItem("staffId");
   this.addAppointment(form);
 

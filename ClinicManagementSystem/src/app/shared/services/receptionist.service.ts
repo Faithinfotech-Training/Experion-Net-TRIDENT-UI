@@ -20,6 +20,10 @@ export class ReceptionistService {
   billFormData:Invoice=new Invoice();
   roles:any;
   constructor(private httpClient:HttpClient) { }
+
+
+
+  //-----------------------------GET------------------------------------------------------------------------
   bindListAppointments(){
     this.httpClient.get('https://localhost:44381/api/Appointments/ViewAppointments').toPromise().then(response=>{
       console.log("From Receptionist Service\n Fetching View Appointments");
@@ -71,6 +75,10 @@ AddConsultationBill(form:NgForm):Observable<any>
 {
   return this.httpClient.post('https://localhost:44381/api/ConsultationBill',form);
 }
-
+//-------------------------Patch-------------------------------------------------
+PatchAppointment(form:any):Observable<any>
+{
+  return this.httpClient.patch('https://localhost:44381/api/Appointments',form);
+}
 }
 
