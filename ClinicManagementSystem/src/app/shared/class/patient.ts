@@ -1,8 +1,12 @@
 export class Patient {
-  PatientId: number = 0;
-  PatientName: string = '';
-  Phone: number = 0;
-  Address: string = '';
-  DateOfBirth: Date = new Date();
-  BloodGroup: string = '';
+
+    PatientId:number = 0;
+    PatientName:string = '';
+    Phone: number;
+    Sex:string='';
+    Address:string = '';
+    DateOfBirth:Date;
+    BloodGroup:string = '';
+    IsAppointed:boolean= false;
+
 }

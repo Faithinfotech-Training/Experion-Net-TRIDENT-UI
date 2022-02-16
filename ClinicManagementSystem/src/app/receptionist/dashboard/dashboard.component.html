@@ -1,0 +1,47 @@
+
+<div class="container-lg">
+    <div class="header">
+        <div class="form-control">
+            <!-- Search -->
+            <input class="form-control" type="text" placeholder="Search Appointment using Name,Phone Number"[(ngModel)]="filter">
+            <br>
+            <pagination-controls (pageChange)="page= $event"></pagination-controls>
+            <div style="display: flex;justify-content: flex-end;">
+            <select>
+                <option value="1">All</option>
+                <option value="2">Today</option>
+                <option value="3">Tommorow</option>
+                <option value="4">Select Date</option>
+            </select>
+            </div>
+            <br><table class="table table-bordered table-stripped">
+                <thead style="background-color: #0183ce; color:azure;">
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Token no</th>
+                        <th>Patient ID</th>
+                        <th>Patient Name</th>
+                        <th>Phone no</th>
+                        <th>Doctor</th>
+                        <th>Receptionist</th>                  
+                        <th>Appointment Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                   <tr  *ngFor="let app of receptionservice.appointments |filter:filter|paginate:{itemsPerPage:2,currentPage:page}let i as index">
+                        <td>{{app.AppointmentId}}</td>
+                        <td>{{app.TokenNo}}</td>
+                        <td>{{app.PatientId}}</td>
+                        <td>{{app.PatientName}}</td>
+                        <td>{{app.PhoneNumber}} </td>
+                        <td>{{app.DoctorName}}</td>
+                        <td>{{app.Receptionistname}}</td>
+                        <td>{{app.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</td> 
+                       <td class="buton" > <button class="btn btn-sm btn-primary" style="display: none;" >{{index}} Send</button> &nbsp;&nbsp;  <!--(click)="updateEmployee(emp.EmployeeID)"-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
