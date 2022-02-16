@@ -26,6 +26,8 @@ import { ViewconsultationComponent } from './receptionist/viewconsultation/viewc
 import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.component';
 
 import { AuthGuard } from './shared/auth.guard';
+import { ViewreportComponent } from './lab-technician/viewreport/viewreport.component';
+import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmedicinebill.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -55,6 +57,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '4' },
   },
+  {
+    path: 'viewreport',
+    component:ViewreportComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '4' },
+  },
   { path: 'add-test', component: TestComponent },
   { path: 'update-test/:tID', component: TestComponent },
   { path: '', component: TestAdviceListComponent },
@@ -63,7 +71,7 @@ const routes: Routes = [
   { path: 'patient-list/dashboard', component: PatientListComponent },
   { path: 'add-patient', component: PatientComponent },
   { path: 'update-patient/:pID', component: PatientComponent },
-
+//===================Receptionist=============================
   {
     path: 'receptionist',
     component: ReceptionistComponent,
@@ -112,15 +120,23 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
+  //================================Admin=================================
   {
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '2' },
   },
+  //=============================Pharmacist================================
   {
     path: 'pharmacist',
     component: PharmacistComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '5' },
+  },
+  {
+    path:'medicinesbill',
+    component:ViewmedicinebillComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '5' },
   },

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ReceptionistService } from 'src/app/shared/services/receptionist.service';
 
 @Component({
@@ -9,14 +10,56 @@ import { ReceptionistService } from 'src/app/shared/services/receptionist.servic
 export class DashboardComponent implements OnInit {
   page:number=1;
   filter:string;
-  constructor(public receptionservice:ReceptionistService) { }
+  appointment:any;
+  constructor(public receptionservice:ReceptionistService,private toaster:ToastrService) { }
 
   ngOnInit(): void {
    // this.receptionservice.bindListActiveAppointments();
    this.receptionservice.bindListTodayAppointments();
 
-  
+  }
 
+  DeleteAppointment(id:number)
+  {
+    if(confirm("Do you want to Delete ?  Appointment no:"+id))
+    {
+      this.DeleteApp(id);
+      this.toaster.error("Cancelled Appointment No:"+id,"Appointment Cancel");
+      this.receptionservice.bindListTodayAppointments();
+     }
+    
+}
+
+DeleteApp(aid:number)
+{
+  this.receptionservice.DeleteAppointment(aid).subscribe(
+    response=>{console.log(response);this.receptionservice.bindListTodayAppointments();},
+    error=>{console.log(error);
+  } );
+}
+
+  SendToDoctor(id:number,patientName:string,doctorName:string)
+  {
+    if(confirm("Do you want to Send  "+patientName+" To  Dr."+doctorName))
+      {
+        this.appointment=[{'value':2,'path':'status','op':'replace'}];
+       this.UpdateAppoint(id,this.appointment);
+      this.toaster.info("Sent "+patientName+" To Dr."+doctorName,"Appointment");
+      this.receptionservice.bindListTodayAppointments();
+     }
+  }
+  UpdateAppoint(id:number,appoint:any)
+  {
+    this.receptionservice.UpdateAppointment(id,appoint).subscribe(
+      (result)=>{
+        console.log(result);this.receptionservice.bindListTodayAppointments();
+        this.toaster.info("Sucessfully Updated","Appointment Status");
+        //this.router.navigateByUrl('/receptionist');
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 
 }

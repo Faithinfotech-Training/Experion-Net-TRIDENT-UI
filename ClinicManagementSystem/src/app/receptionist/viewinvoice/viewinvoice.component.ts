@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ReceptionistService } from 'src/app/shared/services/receptionist.service';
+import{NgxPrintModule} from 'ngx-print';
 
 @Component({
   selector: 'app-viewinvoice',
@@ -14,5 +15,6 @@ filter:string;
   ngOnInit(): void {
     this.receptionservice.bindListFinalBill();
   }
+ 
 
 }

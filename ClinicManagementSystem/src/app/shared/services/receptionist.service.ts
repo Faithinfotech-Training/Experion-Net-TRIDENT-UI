@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class ReceptionistService {
   appointments:Appointments[];
+  myappoint:Appoint;
   appFormData:Appoint=new Appoint();
   conFormData:Consultationbill=new Consultationbill();
   consultationbills:Consultationbill[];
@@ -73,6 +74,11 @@ this.httpClient.get('https://localhost:44381/api/Role/Staff/1').toPromise().then
   this.roles=response;
 })
 }
+
+getAppoint(id:number):Observable<any>
+{
+  return this.httpClient.get('https://localhost:44381/api/Appointments/ViewAppointmentById/'+id);
+}
 //------------------------ POST---------------------------------------------------------
 AddAppointment(form:NgForm):Observable<any>
 {
@@ -83,9 +89,17 @@ AddConsultationBill(form:NgForm):Observable<any>
   return this.httpClient.post('https://localhost:44381/api/ConsultationBill',form);
 }
 //-------------------------Patch-------------------------------------------------
-PatchAppointment(form:any):Observable<any>
+UpdateAppointment(id:number,form:any):Observable<any>
 {
-  return this.httpClient.patch('https://localhost:44381/api/Appointments',form);
-}
+  return this.httpClient.patch('https://localhost:44381/api/Appointments/'+id,form);
 }
 
+//---------------------Delete--------------------------------
+DeleteAppointment(aid:number):Observable<any>
+{
+  return this.httpClient.delete('https://localhost:44381/api/Appointments/'+aid);
+}
+
+
+
+}

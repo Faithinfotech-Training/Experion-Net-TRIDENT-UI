@@ -23,9 +23,8 @@ TotalAmounts:number;
   OnSubmit(id:number,amt:number)
   {
     this.consultbill= {};
-    this.appointment={};
-    this.appointment.AppointmentId=id;
-    this.appointment.Status=+4;
+  
+
    this.consultbill.AppointmentId=id;
    var datepipe=new DatePipe("en-UK");
    let formattedDate:any=datepipe.transform(Date.now(),'yyyy-MM-dd');
@@ -34,9 +33,11 @@ TotalAmounts:number;
   //
   console.log("Adding Bill and Updating Appointment");
   console.log(this.consultbill);
+  this.appointment=[{'value':5,'path':'status','op':'replace'}];
+ //this.appointment=JSON.parse(this.appointment);
   console.log(this.appointment);
   this.addConsultationBill(this.consultbill);
-  //this.updateAppointment(this.appointment);
+  this.updateAppointment(id,this.appointment);
 
   }
   addConsultationBill(cBill:any)
@@ -55,10 +56,10 @@ TotalAmounts:number;
     );
    
   }
-  updateAppointment(appoint:any)
+  updateAppointment(id,appoint:any)
   {
     console.log('Updating Appointment')
-    this.receptionservice.PatchAppointment(appoint).subscribe(
+    this.receptionservice.UpdateAppointment(id,appoint).subscribe(
       (result)=>{
         console.log(appoint);
         console.log(result);

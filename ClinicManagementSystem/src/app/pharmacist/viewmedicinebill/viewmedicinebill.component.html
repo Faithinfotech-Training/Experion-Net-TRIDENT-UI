@@ -1,0 +1,70 @@
+
+<div class="container">
+    <div class="header">
+        <div class="form-control">
+            <!-- Search -->
+            <input class="form-control" type="text" placeholder="Search Appointment using Name,Phone Number"[(ngModel)]="filter">
+            <br>
+            <button printTitle="Clinic Management System" printSectionId="tablePdf" class="btn btn-primary" ngxPrint>
+                Print
+              </button>
+              <span style="display: flex; justify-content: end;"><a  href="/pharmacist" class="btn btn-outline-secondary" >
+                Go Back
+              </a></span>
+            <div class="table-responsive-xl" id="tablePdf" style="display: flex; justify-content: center;"> 
+            <br>
+                     <div class="col">
+                        <h3 style="text-align: center;">Medicine Bill</h3>
+                    <div  class="row"  *ngFor="let med of medicineservice.medicinebills|filter:filter|paginate:{itemsPerPage:1,currentPage:page}">
+                        <span style="display:flex;justify-content: space-between;">
+                        <h6>Medicine Bill Id: {{med.MedicineBillId}}</h6><br>
+                     <h6>Appointment Date: {{med.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</h6>
+                     </span>
+                     <span style="display:flex;justify-content: space-between;">
+                        <h6>Patient Name : {{med.PatientName}}</h6>
+                    <h6>Doctor:{{med.DoctorName}}</h6> 
+                    </span>
+                    <span style="display:flex;justify-content: space-between;">
+                        <h6>Date of Birth:{{med.DateOfBirth| date:'dd-MMM-yyyy'}}</h6>
+                        <h6>Receptionist: {{med.ReceptionistName}}</h6>
+                       </span>
+                       <span style="display:flex;justify-content: space-between;">
+                     <h6>Phone No: {{med.Phone}}</h6>
+                    <h6>Pharmacist :{{med.PharmacistName}}</h6>
+                     </span>
+                     <span style="display:flex;justify-content: space-between;">
+                     <h6>Blood Group: {{med.BloodGroup}}</h6>
+                     <h6>Date of Bill:{{med.DateOfBill|date:'dd-MMM-yyyy hh:mm aa'}}</h6>
+                     </span>
+                     <table class="table table-info table-striped">
+                         <thead>
+                         <th>Medicine Name</th> 
+                         <th> Medicine Description</th>
+                         <th>Medicine Rate</th>
+                         <th>Quantity</th>
+                         <th>Dose</th>
+                         <th>Price</th>    
+                        </thead>
+                        <tbody>                       
+                                <tr *ngFor="let item of med.MedicinesList; index as i;" >
+                                                <td>{{med.MedicinesList[i].MedicineName}}</td>
+                                                <td>{{med.MedicinesList[i].MedicineDescription}}</td>
+                                                <td>{{med.MedicinesList[i].MedicinePrice}}</td>
+                                                <td>{{med.MedicinesList[i].Quantity}}</td>
+                                                <td>{{med.MedicinesList[i].Dose}} mg</td>
+                                                <td> Rs. {{med.MedicinesList[i].Rate}}</td>                   
+                            </tr>
+                        </tbody>
+                     </table>
+                     <h4 style="text-align: center;">Total Price: Rs.{{med.TotalAmount}}</h4>
+                    </div>
+
+                </div> 
+                </div>
+            <footer>
+               <pagination-controls (pageChange)="page= $event">
+
+               </pagination-controls>
+            </footer>
+
+

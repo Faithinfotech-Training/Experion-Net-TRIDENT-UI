@@ -1,5 +1,5 @@
 
-<div class="container-lg">
+<div class="container-xl">
     <div class="header">
         <div class="form-control">
             <!-- Search -->
@@ -17,9 +17,8 @@
             <br><table class="table table-bordered table-stripped">
                 <thead style="background-color: #0183ce; color:azure;">
                     <tr>
-                        <th>Appointment ID</th>
-                        <th>Token no</th>
-                        <th>Patient ID</th>
+                        <th>ID</th>
+                        <th>Token</th>
                         <th>Patient Name</th>
                         <th>Phone no</th>
                         <th>Doctor</th>
@@ -33,13 +32,12 @@
                    <tr  *ngFor="let app of receptionservice.appointments|paginate:{itemsPerPage:2,currentPage:page}">
                         <td>{{app.AppointmentId}}</td>
                         <td>{{app.TokenNo}}</td>
-                        <td>{{app.PatientId}}</td>
                         <td>{{app.PatientName}}</td>
                         <td>{{app.PhoneNumber}} </td>
                         <td>{{app.DoctorName}}</td>
                         <td>{{app.Receptionistname}}</td>
                         <td>{{app.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</td> 
-                       <td class="buton" > <button class="btn btn-sm btn-primary" style="display: block;" disabled >{{index}} Send</button> &nbsp;&nbsp;  <!--(click)="updateEmployee(emp.EmployeeID)"-->
+                       <td  ><button class="btn btn-sm btn-primary" (click)="SendToDoctor(app.AppointmentId,app.PatientName,app.DoctorName)"> Send</button> &nbsp;&nbsp; <button class="btn btn-sm btn-outline-danger" (click)="DeleteAppointment(app.AppointmentId)">X</button>  <!--(click)="updateEmployee(emp.EmployeeID)"-->
                         </td>
                     </tr>
                 </tbody>
