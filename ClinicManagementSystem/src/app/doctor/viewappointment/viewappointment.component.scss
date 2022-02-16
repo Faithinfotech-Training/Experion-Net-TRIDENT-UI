@@ -4,3 +4,48 @@
 li {
   padding: 0.9rem;
 }
+.notes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-basis: 1;
+}
+.addnote {
+  // width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.container-fluid {
+  // border-top: 3px solid black;
+}
+#testId,
+#qtyId,
+#medicineId {
+  border-bottom: 3px solid #38b6ff;
+}
+#testId,
+#testId::after,
+#testId::before {
+  box-sizing: border-box;
+}
+select,
+input {
+  // A reset of styles, including removing the default dropdown arrow
+  appearance: none;
+  // Additional resets for further consistency
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+  border-bottom: 2px solid #38b6ff;
+}
+p {
+  font-size: 1.5rem;
+}

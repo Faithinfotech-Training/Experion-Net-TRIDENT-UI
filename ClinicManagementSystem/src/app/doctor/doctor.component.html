@@ -118,12 +118,13 @@
   </div>
   <div class="col-md-3">
     <button
-      class="btn btn-primary mb-2"
-      (click)="updatePatient(item.AppointmentId)"
+      class="btn btn-primary mx-2"
+      (click)="
+        updatePatient(item.PatientId); updateAppointment(item.AppointmentId)
+      "
     >
       View Details
     </button>
-    <br />
     <button class="btn btn-danger">Mark As Done</button>
   </div>
 </div>

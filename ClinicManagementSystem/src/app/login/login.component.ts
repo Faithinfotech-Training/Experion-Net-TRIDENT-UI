@@ -77,6 +77,18 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('token', this.loginUser.token);
           sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
           this.router.navigateByUrl('/doctor');
+        } else if (this.loginUser.RoleId === 5) {
+          console.log('Pharmacist');
+          localStorage.setItem('userName', this.loginUser.LoginId);
+          localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
+          sessionStorage.setItem('userName', this.loginUser.LoginId);
+          sessionStorage.setItem(
+            'accessRole',
+            this.loginUser.RoleId.toString()
+          );
+          sessionStorage.setItem('token', this.loginUser.token);
+          sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
+          this.router.navigateByUrl('/pharmacist');
         } else {
           this.error = 'Sorry not authorised to access this page';
           this.toastr.error(

@@ -19,6 +19,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { ViewappointmentComponent } from './doctor/viewappointment/viewappointment.component';
+import { PrescriptionComponent } from './pharmacist/prescription/prescription.component';
+import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
+import { AddmedicineComponent } from './pharmacist/addmedicine/addmedicine.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { ViewappointmentComponent } from './doctor/viewappointment/viewappointme
     LabTechnicianComponent,
     AdminComponent,
     ViewappointmentComponent,
+    PrescriptionComponent,
+    MedicinesComponent,
+    AddmedicineComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +48,7 @@ import { ViewappointmentComponent } from './doctor/viewappointment/viewappointme
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     CommonModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
