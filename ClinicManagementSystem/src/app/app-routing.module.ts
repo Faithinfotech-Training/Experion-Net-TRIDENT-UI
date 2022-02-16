@@ -37,6 +37,19 @@ const routes: Routes = [
     data: { RoleId: '1' },
   },
   {
+    path: 'viewappointments',
+    component: ViewappointmentComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '1' },
+  },
+  {
+    path: 'viewappointments/:id',
+    component: ViewappointmentComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '1' },
+  },
+
+  {
     path: 'lab-technician',
     component: LabTechnicianComponent,
     canActivate: [AuthGuard],
