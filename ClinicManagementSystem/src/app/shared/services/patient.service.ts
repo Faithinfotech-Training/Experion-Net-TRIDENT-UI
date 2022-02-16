@@ -18,11 +18,7 @@ export class PatientService {
   bindListPatients(){
     this.httpClient.get(environment.apiUrl + '/api/Patients/GetAllPatients').toPromise().then(
       response => {
-<<<<<<< HEAD
-        console.log("From Patient service");
-=======
         console.log("from  patient service");
->>>>>>> eaf4e4af34c79963593805bfe5df76a23e22ebb0
         console.log(response);
         this.patients = response as Patient[];
       }
