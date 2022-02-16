@@ -27,7 +27,7 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active text-bold"  routerLink="/medicines">Medicines</a>
+          <a class="nav-link active text-bold">Features</a>
         </li>
 
         <li class="nav-item dropdown active">
@@ -59,43 +59,3 @@
     border-radius: 1.5rem;
   "
 ></div>
-
-<!-- contents  -->
-<div class="container">
-  <h2 class="display-6 my-2">Prescriptions</h2>
-  <div
-    class="row my-2 shadow-sm px-2 my-5 justify-content-around"
-    style="border-bottom: 1px solid #38b6ff"
-    *ngFor="
-      let item of pharmService.advice
-        | filter: filter
-        | paginate: { itemsPerPage: 4, currentPage: page }
-    "
-  >
-    <div class="token col-md-2">
-      <div class="px-3">
-        <h5 class="text-center">Appointment ID : {{ item.AppointmentId }}</h5>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <p>Patient ID : {{ item.PatientId }}</p>
-      <p>Patient Name : {{ item.Patient }}</p>
-    </div>
-    <div class="col-md-3">
-      <button
-        class="btn btn-primary mx-2"
-        (click)="updatePrescription(item.PatientId)"
-      >
-        View Details
-      </button>
-
-      <button class="btn btn-danger">Mark As Done</button>
-    </div>
-  </div>
-  <div class="paginate justify-content-center">
-    <pagination-controls
-      (pageChange)="page = $event"
-      class="text-center"
-    ></pagination-controls>
-  </div>
-</div>

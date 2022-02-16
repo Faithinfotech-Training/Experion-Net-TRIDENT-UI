@@ -22,14 +22,19 @@ import { AuthService } from './shared/services/auth.service';
 import { PatientService } from './shared/services/patient.service';
 
 import { ViewappointmentComponent } from './doctor/viewappointment/viewappointment.component';
+import { PrescriptionComponent } from './pharmacist/prescription/prescription.component';
+import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
+import { AddmedicineComponent } from './pharmacist/addmedicine/addmedicine.component';
 import { AddappointmentComponent } from './receptionist/addappointment/addappointment.component';
 import { ViewappointmentsComponent } from './receptionist/viewappointments/viewappointments.component';
 import { ViewconsultationComponent } from './receptionist/viewconsultation/viewconsultation.component';
 import { AddconsultationComponent } from './receptionist/addconsultation/addconsultation.component';
 import { AddinvoiceComponent } from './receptionist/addinvoice/addinvoice.component';
 import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.component';
-import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
+// import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
+
 import { DashboardComponent } from './receptionist/dashboard/dashboard.component';
+
 import { TestAdviceListComponent } from './lab-technician/test-advice-list/test-advice-list.component';
 import { TestComponent } from './lab-technician/test/test.component';
 
@@ -50,6 +55,10 @@ import { TestComponent } from './lab-technician/test/test.component';
     PatientComponent,
 
     ViewappointmentComponent,
+
+    PrescriptionComponent,
+    MedicinesComponent,
+    AddmedicineComponent,
     AddappointmentComponent,
     ViewappointmentsComponent,
     ViewconsultationComponent,
@@ -57,6 +66,7 @@ import { TestComponent } from './lab-technician/test/test.component';
     AddinvoiceComponent,
     ViewinvoiceComponent,
     MedicinesComponent,
+    DashboardComponent,
     TestAdviceListComponent,
     TestComponent,
 
@@ -73,6 +83,7 @@ import { TestComponent } from './lab-technician/test/test.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     CommonModule,
+    
 
   ],
   providers: [AuthService, PatientService],

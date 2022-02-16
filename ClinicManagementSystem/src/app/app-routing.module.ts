@@ -7,6 +7,10 @@ import { LabTechnicianComponent } from './lab-technician/lab-technician.componen
 import { TestAdviceListComponent } from './lab-technician/test-advice-list/test-advice-list.component';
 import { TestComponent } from './lab-technician/test/test.component';
 import { LoginComponent } from './login/login.component';
+import { AddmedicineComponent } from './pharmacist/addmedicine/addmedicine.component';
+import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
+import { PharmacistComponent } from './pharmacist/pharmacist.component';
+import { PrescriptionComponent } from './pharmacist/prescription/prescription.component';
 
 import { PatientListComponent } from './patients/patient-list/patient-list.component';
 import { PatientComponent } from './patients/patient/patient.component';
@@ -15,7 +19,7 @@ import { AddappointmentComponent } from './receptionist/addappointment/addappoin
 import { AddconsultationComponent } from './receptionist/addconsultation/addconsultation.component';
 import { AddinvoiceComponent } from './receptionist/addinvoice/addinvoice.component';
 import { DashboardComponent } from './receptionist/dashboard/dashboard.component';
-import {ReceptionistComponent} from './receptionist/receptionist.component'
+import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { ViewappointmentsComponent } from './receptionist/viewappointments/viewappointments.component';
 import { ViewconsultationComponent } from './receptionist/viewconsultation/viewconsultation.component';
 import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.component';
@@ -26,75 +30,111 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   {
-    path: 'doctor', component: DoctorComponent, canActivate: [AuthGuard], data: { RoleId: '1' },
+    path: 'doctor',
+    component: DoctorComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '1' },
   },
-  { path:'lab-technician', component: LabTechnicianComponent,canActivate: [AuthGuard], data: { RoleId: '4' }},
-  { path: 'add-test', component:TestComponent},
-  { path: 'update-test/:tID', component:TestComponent},
-  { path: '', component: TestAdviceListComponent},
+  {
+    path: 'lab-technician',
+    component: LabTechnicianComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '4' },
+  },
+  { path: 'add-test', component: TestComponent },
+  { path: 'update-test/:tID', component: TestComponent },
+  { path: '', component: TestAdviceListComponent },
 
-  { path: 'patient-list', component:PatientListComponent},
-  { path: 'patient-list/dashboard', component:PatientListComponent},
-  { path: 'add-patient', component: PatientComponent},
-  { path: 'update-patient/:pID', component: PatientComponent},
+  { path: 'patient-list', component: PatientListComponent },
+  { path: 'patient-list/dashboard', component: PatientListComponent },
+  { path: 'add-patient', component: PatientComponent },
+  { path: 'update-patient/:pID', component: PatientComponent },
 
   {
     path: 'receptionist',
-    component:ReceptionistComponent,
+    component: ReceptionistComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
   {
     path: 'receptionist/viewappointment',
-    component:ViewappointmentsComponent,
+    component: ViewappointmentsComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
   {
     path: 'receptionist/addappointment',
-    component:AddappointmentComponent,
+    component: AddappointmentComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
   {
     path: 'receptionist/addconsultation',
-    component:AddconsultationComponent,
+    component: AddconsultationComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
   {
     path: 'receptionist/addinvoice',
-    component:AddinvoiceComponent,
+    component: AddinvoiceComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
   {
     path: 'receptionist/dashboard',
-    component:DashboardComponent,
+    component: DashboardComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
   {
     path: 'receptionist/viewconsultation',
-    component:ViewconsultationComponent,
+    component: ViewconsultationComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
   {
     path: 'receptionist/viewinvoice',
-    component:ViewinvoiceComponent,
+    component: ViewinvoiceComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
   {
     path: 'admin',
-    component:AdminComponent,
+    component: AdminComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '2' },
   },
+  {
+    path: 'pharmacist',
+    component: PharmacistComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '5' },
+  },
+  {
+    path: 'prescription/:id',
+    component: PrescriptionComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '5' },
+  },
+  {
+    path: 'prescription',
+    component: PrescriptionComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '5' },
+  },
+  {
+    path: 'medicines',
+    component: MedicinesComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '5' },
+  },
+  {
+    path: 'addmedicines',
+    component: AddmedicineComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '5' },
+  },
   // { path: 'employees/:userId', component: EmployeesComponent },
-
-
 ];
 
 @NgModule({

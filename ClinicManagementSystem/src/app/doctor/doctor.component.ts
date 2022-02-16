@@ -12,6 +12,7 @@ export class DoctorComponent implements OnInit {
   //declare variables
   username = sessionStorage.getItem('userName');
   staffId = sessionStorage.getItem('staffId');
+  appointmentId: number;
   page: number = 1;
   filter: string;
 
@@ -24,7 +25,6 @@ export class DoctorComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.username);
     console.log('hello doctor ' + this.staffId);
-    console.log(+this.staffId);
 
     this.doctorService.bindListAppointments(+this.staffId);
   }
@@ -38,5 +38,10 @@ export class DoctorComponent implements OnInit {
   updatePatient(id: number) {
     this.router.navigate(['viewappointments', id]);
     console.log(id);
+  }
+
+  //get appointment number
+  updateAppointment(appointmentId: number) {
+    this.doctorService.appointmentId = appointmentId;
   }
 }

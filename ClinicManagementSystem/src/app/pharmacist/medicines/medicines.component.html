@@ -1,1 +1,123 @@
-<p>medicines works!</p>
+<!-- navbar  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand"
+      ><img
+        src="../../assets/images/logo small.png"
+        class="img-fluid img logo"
+        alt=""
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarNavDropdown"
+    >
+      <ul class="navbar-nav mx-3">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-bold">Features</a>
+        </li>
+
+        <li class="nav-item dropdown active">
+          <a
+            class="nav-link dropdown-toggle active"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ this.username }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <a class="dropdown-item text-danger" (click)="logout()">Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- navbar  -->
+<div
+  class="colorbar"
+  style="
+    height: 1rem;
+    background: linear-gradient(to right, #c9e265, #38b6ff);
+    border-radius: 1.5rem;
+  "
+></div>
+<!-- contents  -->
+<div class="container">
+  <div
+    class="my-2"
+    style="display: flex; flex-direction: row; justify-content: space-between"
+  >
+    <h2 class="display-6">Medicines</h2>
+    <button class="btn btn-primary" routerLink="/addmedicines">
+      Add Medicine
+    </button>
+  </div>
+  <div class="search">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Search from the list"
+      [(ngModel)]="filter"
+    />
+    {{ filter }}
+  </div>
+  <div class="table my-3">
+    <table class="table table-striped table-dark">
+      <thead>
+        <td>Medicine ID</td>
+        <td>Medicine Name</td>
+        <td>Medicine Description</td>
+        <td>Medicine Dose</td>
+        <td>Medicine Price</td>
+        <td>Stock</td>
+        <td>Actions</td>
+      </thead>
+      <tbody
+        *ngFor="
+          let i of pharmService.med
+            | filter: filter
+            | paginate: { itemsPerPage: 4, currentPage: page }
+        "
+      >
+        <td>{{ i.MedicineId }}</td>
+        <td>{{ i.MedicineName }}</td>
+        <td>{{ i.MedicineDescription }}</td>
+        <td>{{ i.Dose }}</td>
+        <td>{{ i.MedicinePrice }}</td>
+        <td>{{ i.Stock }}</td>
+        <td>
+          <div class="btn btn-primary" style="background-color: #38b6ff">
+            Edit
+          </div>
+          &nbsp;
+          <button
+            class="btn btn-danger"
+            style="background-color: rgba(223, 50, 79, 0.904)"
+          >
+            Delete
+          </button>
+        </td>
+      </tbody>
+    </table>
+  </div>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
+
