@@ -20,6 +20,7 @@ import { AddconsultationComponent } from './receptionist/addconsultation/addcons
 import { AddinvoiceComponent } from './receptionist/addinvoice/addinvoice.component';
 import { DashboardComponent } from './receptionist/dashboard/dashboard.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
+//import {ViewappointmentComponent} from './doctor/viewappointment/viewappointment.component'
 import { ViewappointmentsComponent } from './receptionist/viewappointments/viewappointments.component';
 import { ViewconsultationComponent } from './receptionist/viewconsultation/viewconsultation.component';
 import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.component';

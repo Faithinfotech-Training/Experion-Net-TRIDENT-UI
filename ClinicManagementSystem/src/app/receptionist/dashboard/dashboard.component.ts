@@ -12,7 +12,8 @@ export class DashboardComponent implements OnInit {
   constructor(public receptionservice:ReceptionistService) { }
 
   ngOnInit(): void {
-    this.receptionservice.bindListActiveAppointments();
+   // this.receptionservice.bindListActiveAppointments();
+   this.receptionservice.bindListTodayAppointments();
 
   
 

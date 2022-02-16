@@ -38,6 +38,13 @@ export class ReceptionistService {
       this.appointments=response as Appointments[];
     })
   }
+  bindListTodayAppointments(){
+    this.httpClient.get('https://localhost:44381/api/Appointments/Today').toPromise().then(response=>{
+      console.log("From Receptionist Service\n Fetching Todays Appointments");
+      console.log(response);
+      this.appointments=response as Appointments[];
+    })
+  }
   bindListConsultation(){
     this.httpClient.get('https://localhost:44381/api/Appointments/Status/3').toPromise().then(response=>{
       console.log("From Receptionist Service\n Fetching Consultation Bill Ready  Patients ");
