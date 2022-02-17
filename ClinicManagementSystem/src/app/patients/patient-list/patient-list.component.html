@@ -49,36 +49,35 @@
             style="float: right; margin-top: 20px; margin-right: 0px; margin-bottom: 10px; "  (click)="addPatient()">Add Patient</a>
     </div>
     <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>PatientID</th>
-          <th>Patient Name</th>
-          <th>Phone </th>
-          <th>Sex</th>
-          <th>Address</th>
-          <th>DateOfBirth</th>
-          <th>BloodGroup</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        <tr
-          *ngFor="let p of patientService.patients | filter: filter | paginate: {itemsPerPage :2, currentPage: page} ">
-          <td>{{p.PatientId}}</td>
-          <td>{{p.PatientName}}</td>
-          <td>{{p.Phone}}</td>
-          <td>{{p.Sex}}</td>
-          <td>{{p.Address}}</td>
-          <td>{{p.DateOfBirth | date: 'dd-MMM-yyyy'}}</td>
-          <td>{{p.BloodGroup}}</td>
-          <td>
-            <!-- button -->
-            <button class="btn btn-sm btn-info" (click)="updatePatient(p.PatientId)">Edit</button>
-
-          </td>
-        </tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>PatientID</th>
+                <th>Patient Name</th>
+                <th>Phone </th>
+                <th>Sex</th>
+                <th>Address</th>
+                <th>DateOfBirth</th>
+                <th>BloodGroup</th>
+                <th>Action</th>              
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr *ngFor="let p of patientService.patients | filter: filter | paginate: {itemsPerPage :6, currentPage: page} ">
+                <td>{{p.PatientId}}</td>
+                <td>{{p.PatientName}}</td>
+                <td>{{p.Phone}}</td>
+                <td>{{p.Sex}}</td>
+                <td>{{p.Address}}</td>
+                <td>{{p.DateOfBirth | date: 'dd-MMM-yyyy'}}</td>
+                <td>{{p.BloodGroup}}</td>
+                <td>
+                    <!-- button -->
+                    <button class="btn btn-sm btn-info" (click)="updatePatient(p.PatientId)">Edit</button>
+                    
+                </td>
+            </tr>
+        </tbody>
     </table>
     <footer>
       <!-- pagination -->

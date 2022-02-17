@@ -14,6 +14,7 @@ export class ReceptionistComponent implements OnInit {
 
   ngOnInit(): void {
     this.frame=<HTMLIFrameElement> document.getElementById("frame");
+    this.frame.src="receptionist/dashboard";
   }
   logout() {
     this.authService.logout();

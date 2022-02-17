@@ -10,7 +10,7 @@
                     <input type="text" id="token" name="TokenNo" readonly style="width:15%;"   #TokenNo="ngModel" [(ngModel)]="tokenlen"><br><br>
                        <label>Patient :</label><br>
                         <input list="patient" name="PatientId"  minlength="1" maxlength="5" #PatientId [(ngModel)]="receptionservice.appFormData.PatientId"required
-                        [ngClass]="{'is-invalid': PatientId.touched && PatientId.invalid}"/>
+                        [ngClass]="{'is-invalid': PatientId.touched && PatientId.invalid}"/> &nbsp;&nbsp;&nbsp;  <a (click)="addPatients()" class="link">Go to Add Patients</a>
                         <datalist id="patient">
                           <option  *ngFor="let patient of patientservice.patients"   value="{{patient.PatientId}}">{{patient.PatientName}} | {{patient.Phone}}</option>
                         </datalist>

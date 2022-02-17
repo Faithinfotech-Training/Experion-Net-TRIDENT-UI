@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Test } from 'src/app/shared/class/test';
+import {Medicinedetails} from 'src/app/shared/class/medicinedetails';
+import {Testdetails} from 'src/app/shared/class/testdetails';
 
 @Component({
   selector: 'app-viewappointment',
@@ -21,7 +23,22 @@ export class ViewappointmentComponent implements OnInit {
   username = sessionStorage.getItem('userName');
   staffId = sessionStorage.getItem('staffId');
   patientId: number;
-  appointmentId = this.doctorService.appointmentId;
+  patch:any; // Updating Status
+  //----Medicine Group-----------
+  medicineAdvice:any;
+  medicineDetails:any;
+  MedDetails:Array<Medicinedetails>=[];
+  MedQty:number=0;
+  MedId:number=0;
+  MedAdId:number=0; // to show response of Medicine Advice
+  //----------------------------
+  testAdvice:any;
+  testDetails:any;
+  TestDetails:Array<Testdetails>=[];
+  TestId:number=0;
+  TestAdId:number=0; //to show response of Test Advice
+  //------------------------------
+  appointmentId:number=0;
   public patientDetails: Observable<any>;
   // form controls
   addPostForm!: FormGroup;
@@ -29,10 +46,15 @@ export class ViewappointmentComponent implements OnInit {
   error = '';
   addedNote: any = new Notes();
   myNote: string = '';
+  PharmID:number=0;
+  TechID:number=0;
+
 
   //selected lab tests
-  labTests: Test[] = [];
+  labTests:Array<Test>= [];
   prescriptions: any[] = [];
+  //test
+  TestName:string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,8 +68,10 @@ export class ViewappointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.patientId = this.route.snapshot.params['id'];
+    console.log("Binding Appointments");
     this.doctorService.bindListAppointmentsByID(+this.patientId);
-
+    this.appointmentId = this.doctorService.appointmentId;
+    
     this.addPostForm = this.formBuilder.group({
       //FormControlname Fields
       AppointmentId: this.doctorService.appointmentId,
@@ -58,9 +82,11 @@ export class ViewappointmentComponent implements OnInit {
 
     console.log('patient details');
     this.doctorService.bindlistPatientNotes(+this.patientId);
-
+    this.doctorService.BindPharmList();
+    this.doctorService.BindTechnicianList();
     this.doctorService.bindListTests();
     this.doctorService.bindListMedicines();
+ 
   }
   //get form controls
   get formControls() {
@@ -142,6 +168,7 @@ export class ViewappointmentComponent implements OnInit {
   //push labtest to labtest array
   addLabTest(test) {
     this.labTests.push(test);
+    console.log(test.value);
     console.log('labtest added');
   }
 
@@ -149,5 +176,141 @@ export class ViewappointmentComponent implements OnInit {
   addPrescription(prescription) {
     this.prescriptions.push(prescription);
   }
- 
+  //============================Medicine Advice=========================
+  addMedicineadvice(pharmId:number)
+  {
+    this.medicineAdvice={};
+    this.appointmentId = this.doctorService.appointmentId;
+    this.medicineAdvice.AppointmentId=this.appointmentId;
+    this.medicineAdvice.DoctorId=+this.staffId;
+    this.medicineAdvice.PharmacistId=+pharmId;
+    console.log(this.medicineAdvice);
+    this.AddMedAdv(this.medicineAdvice);
+    //----------Adding Medicine Advice---------------
+    //this.MedAdId=1;
+  //alert('Appointment Id:'+this.appointmentId+' Doctor ID:'+this.staffId +' PharmId:'+pharmId);
+
+  }
+  AddMedAdv(medadv:any)
+  {
+      console.log('Inserting  Medicine Advice record');
+      this.doctorService.insertMedicineAdvice(medadv).subscribe(
+        (res) => {
+          console.log(res);
+          this.MedAdId=+res;
+          console.log("Inserted Medicine Advice");
+        },
+        (error) => {
+          console.log(error);
+        }
+      ); 
+  }
+  //============================Medicine Details=========================
+  addMedPrescription(Mid:number,Mqty:number)
+  {
+ alert('Added Medicine Id: '+Mid+'and Quantity : '+Mqty);
+ this.medicineDetails={};
+ this.medicineDetails.MedicineAdviceId=+this.MedAdId;
+this.medicineDetails.MedicineId=+Mid;
+this.medicineDetails.Quantity=+Mqty;
+console.log(this.medicineDetails);
+this.MedDetails.push(this.medicineDetails);
+  }
+  MedSubmit()
+  {
+    for(let i=0;i<this.MedDetails.length;i++)
+     { 
+       console.log(this.MedDetails[i]);
+      this.doctorService.insertMedicineDetails(this.MedDetails[i]).subscribe(
+        (res) => {
+          console.log(res);
+          console.log("Inserted Medicine Detail"+i);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+   }
+  }
+ //=====================Test Advice / Report======================= 
+  addLabTestAdvice(techId:number)
+  {
+    //alert('Appointment Id:'+this.appointmentId+' Doctor ID:'+this.staffId +' LabTechId:'+techId);
+    this.testAdvice={};
+    this.testAdvice.AppointmentId=+this.doctorService.appointmentId;
+    this.testAdvice.DoctorId=+this.staffId;
+    this.testAdvice.LabTechnicianId=+techId;
+    this.testAdvice.TestAmount=0;
+    console.log(this.testAdvice);
+    this.AddTestAdv(this.testAdvice);   //uncomment
+  }
+  AddTestAdv(testadv:any)
+  {
+    console.log('Inserting  Test Advice record');
+      this.doctorService.insertMedicineAdvice(testadv).subscribe(
+        (res) => {
+          console.log(res);
+          this.TestAdId=+res;
+          console.log("Inserted Test Advice");
+        },
+        (error) => {
+          console.log(error);
+        }
+      ); 
+  }
+//-------------------Test Details---------------
+addTestPrescription(TId:number)
+{
+  alert('Added Test Id: '+TId);
+  this.testDetails={};
+  this.testDetails.TestId=+TId;
+  this.testDetails.TestReportId=+this.TestAdId;
+  this.testDetails.TestValue=0;
+  this.TestDetails.push(this.testDetails);
+
+}
+TestSubmit()
+{
+  for(let i=0;i<this.TestDetails.length;i++)
+   { 
+     console.log(this.TestDetails[i]);
+    this.doctorService.insertTestDetails(this.TestDetails[i]).subscribe(
+      (res) => {
+        console.log(res);
+        console.log("Inserted Test Details"+i);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+ }
+}
+//-----------------------------Mark as Done---------------------------------
+markAsDone()
+{
+  if(confirm("Do you want to  Mark as Done ?"))
+      {
+        this.patch=[{'value':3,'path':'status','op':'replace'}];
+       this.UpdatePath(this.doctorService.appointmentId,this.patch);
+      console.log(this.patch);
+      console.log("Appointment :"+this.doctorService.appointmentId+"is Marked Done");
+     // this.toaster.info("Patient is Serviced ","Doctor ");
+      // Navigate Back
+     }
+}
+UpdatePath(aid:number,pah:any)
+{
+  this.doctorService.UpdateAppointment(aid,pah).subscribe(
+    (result)=>{
+      console.log(result);
+      alert('Patient Got Served');
+      this.toastr.info("Sucessfully Updated","Serviced Patient");
+      //this.router.navigateByUrl('/doctor');
+    },
+    (error)=>{
+      console.log(error);
+    }
+  );
+}
+
 }

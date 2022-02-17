@@ -7,7 +7,11 @@
             <br>
             <!--<a [routerLink]=" " class="btn btn-outline-secondary" style="float: right; margin-bottom:19px;">Test Report</a>-->
            <div class="col">
-               <div class="row"  *ngFor="let con of receptionservice.consultationbills|filter:filter|paginate:{itemsPerPage:1,currentPage:page}">
+            <button printTitle="Clinic Management System" printSectionId="pdfprint" class="btn btn-primary" ngxPrint>
+                Print
+              </button>
+               <div class="row"  *ngFor="let con of receptionservice.consultationbills|filter:filter|paginate:{itemsPerPage:1,currentPage:page}" id="pdfprint">
+                <h3 style="text-align: center;">Consultation Bill</h3>
                 <span style="display:flex;justify-content: space-between;">
                 <h6>ConsultationBill Id: {{con.ConsultationBillId}}</h6><br>
              <h6>Date of Bill:{{con.DateOfBill|date:'dd-MMM-yyyy hh:mm aa'}}</h6>
@@ -28,7 +32,7 @@
              <h6>Blood Group: {{con.BloodGroup}}</h6>
              <h6>Appointment Date: {{con.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</h6>
              </span>
-             <h6 style="text-align:center; font-family:Arial">Consultation Bill: Rs .{{con.ConsultationAmount}}</h6>
+             <h5 style="text-align:center; font-family:Arial">Consultation Bill: Rs .{{con.ConsultationAmount}}</h5>
                </div>
            </div>
         </div>

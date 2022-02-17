@@ -22,6 +22,12 @@ TotalAmounts:number;
   }
   OnSubmit(id:number,amt:number)
   {
+    if(amt<=0 || amt==null)
+    {
+    alert("Please Enter Valid Amount For Bill Id:"+id);
+    }
+    else
+    {
     this.consultbill= {};
   
 
@@ -38,6 +44,7 @@ TotalAmounts:number;
   console.log(this.appointment);
   this.addConsultationBill(this.consultbill);
   this.updateAppointment(id,this.appointment);
+    }
 
   }
   addConsultationBill(cBill:any)
