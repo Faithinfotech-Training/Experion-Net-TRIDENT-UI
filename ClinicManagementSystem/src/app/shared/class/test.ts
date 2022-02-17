@@ -6,5 +6,4 @@ export class Test {
   Unit: string = '';
   MinRange: number = 0;
   MaxRange: number = 0;
-  TestDetails: string[] = [];
 }

@@ -171,6 +171,7 @@
             Add Post
           </button> -->
         </form>
+
       </div>
 
       <!-- end left div  -->
@@ -192,11 +193,26 @@
       <!-- end right div  -->
     </div>
   </div>
-
   <!-- end doctors notes  -->
+
+  <!-- Buttons to Add Medicine Advice and  Test Advice -->
+  <div style="display: flex; flex-direction:column;justify-content: space-evenly; " >
+    <select required id="doc" name="PharmID" #PharmId="ngModel" [(ngModel)]="PharmID">
+      <option *ngFor="let pharm of doctorService.pharms"  value="{{pharm.StaffId}}">{{pharm.Name}}</option> >
+  </select>
+  <button class="btn btn-primary" (click)="addMedicineadvice(PharmID)">Add Medicine Advice </button> &nbsp; &nbsp;
+  <select required id="doc" name="TechID" #TechId="ngModel" [(ngModel)]="TechID">
+    <option *ngFor="let tech of doctorService.techs" value="{{tech.StaffId}}">{{tech.Name}}</option> >
+</select>
+  <button class="btn btn-primary" (click)="addLabTestAdvice(TechID)">Add Test Advice </button>
+</div>
   <!-- labtest  -->
-  <div class="card p-5 my-3" style="border-bottom: 2px solid #38b6ff">
+  <div id="labTestDiv" class="card p-5 my-3" style="border-bottom: 2px solid #38b6ff;">
     <div>
+      <div style="display:flex; justify-content:space-evenly;">
+      Test Advice ID : {{TestAdId}} 
+      <button class="btn btn-info" (click)="TestSubmit()">Add Test List</button>
+    </div>
       <h4 class="display-6 my-4 text-center">Add Lab Test</h4>
     </div>
     <div
@@ -218,14 +234,14 @@
           <select
             class="form-control"
             id="testId"
-            name="LabTestId"
-            #TestId="ngModel"
-            [(ngModel)]="doctorService.formDataLab.TestId"
+            name="TestId"
+            #TestID="ngModel"
+            [(ngModel)]="TestId"
             class="form-control"
             placeholder="select LabTest"
             required
             [ngClass]="{
-              'is-invalid': TestId.invalid && TestId.touched
+              'is-invalid': TestID.invalid && TestID.touched
             }"
           >
             <option value="" disabled selected>Select Labtests</option>
@@ -241,7 +257,7 @@
         </div>
         <!-- submit  -->
         <div class="form-group">
-          <button type="submit" class="btn btn-primary form-control">
+          <button type="button" class="btn btn-primary form-control" (click)="addTestPrescription(TestId)" >
             Add Test
           </button>
         </div>
@@ -251,19 +267,26 @@
       <p class="lead text-center">Added Prescriptions</p>
       <div
         class="prescription d-flex justify-content-center"
-        *ngFor="let i of labTests"
-      >
-        <p>{{ labTests.indexOf(i) + 1 }} : {{ i }}</p>
+        *ngFor="let item of TestDetails">
+        <p>{{ item.TestId }}</p>
       </div>
     </div>
   </div>
 
   <!-- end lab test  -->
+
+
+
+
   <!-- prescription  -->
-  <div class="card p-5 my-3" style="border-bottom: 2px solid #38b6ff">
-    <div>
-      <h2 class="display-6 my-4 text-center">Add Prescriptions</h2>
-    </div>
+  
+  <div id="prescriptionDiv" class="card p-5 my-3" style="border-bottom: 2px solid #38b6ff; display: none;">
+    <div style="display:flex; justify-content:space-evenly;">
+       Medicine Advice ID : {{MedAdId}} 
+       <button class="btn btn-info" (click)="MedSubmit()">Add Medicine List</button>
+      </div>
+      <h2 class="display-6 my-4 text-center">Add Medicine Prescriptions</h2>
+   
     <div class="container" style="display: flex; flex-direction: column">
       <form
         name="empForm"
@@ -271,8 +294,11 @@
         autocomplete="off"
         (ngSubmit)="onSubmit(form)"
       >
-        <div class="container" style="display: flex; flex-direction: row">
-          <select
+        <div class="container" style="display: flex; flex-direction: row" >
+          <select  
+            name="MedId"
+            #medId="ngModel" 
+            [(ngModel)]="MedId"
             class="form-control"
             id="medicineId"
             name="DepartmentId"
@@ -287,24 +313,30 @@
               {{ med.MedicineName }}
             </option>
           </select>
-          <input
+          <input  name="MedQty" 
+           #medQty="ngModel" 
+           [(ngModel)]="MedQty"
             class="mx-1"
             type="number"
             placeholder="Quantity"
             style="border: 0px; border-bottom: 3px solid #38b6ff"
             id="qtyId"
+
           />
-          <button class="btn btn-primary mx-2" style="width: 13rem">
+          <button class="btn btn-primary mx-2" style="width: 13rem" (click)=" addMedPrescription(MedId,MedQty)">
             Add Medicine
           </button>
         </div>
       </form>
       <div class="medList my-4">
         <p class="lead text-center">Added Medicines</p>
+        <div *ngFor="let med of MedDetails"> 
+          <p>{{med.MedicineId}} {{med.Quantity}}</p>
+        </div>
       </div>
     </div>
   </div>
   <div class="row my-3">
-    <div class="btn btn-primary text-center">MARK AS DONE</div>
+    <div class="btn btn-primary text-center" (click)="markAsDone()">MARK AS DONE</div>
   </div>
 </div>
