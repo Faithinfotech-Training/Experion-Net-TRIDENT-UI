@@ -11,6 +11,8 @@ import { LabtTestService } from 'src/app/shared/services/labt-test.service';
 export class TestAdviceListComponent implements OnInit {
 
   loggedUser:string;
+  page:number=1;
+  filter:string;
   constructor(private authService: AuthService,public labtestService:LabtTestService,private router: Router) { }
 
   ngOnInit(): void {

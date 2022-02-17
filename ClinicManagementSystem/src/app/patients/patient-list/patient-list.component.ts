@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { PatientService } from 'src/app/shared/services/patient.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-patient-list',
@@ -29,13 +30,17 @@ export class PatientListComponent implements OnInit {
 
   addPatient() {
     this.router.navigateByUrl('add-patient');
-    this.patientService.resetForm();
+    this.resetForm();
   }
 
   //Edit patient
   updatePatient(pID:number){
     console.log(" going to update this " +pID);
     this.router.navigate(['update-patient',pID]);
+  }
+
+  resetForm(form?: NgForm){   
+    form.resetForm();  
   }
 
   //logout

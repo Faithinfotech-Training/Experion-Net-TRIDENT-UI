@@ -29,6 +29,9 @@ import { AuthGuard } from './shared/auth.guard';
 import { ViewreportComponent } from './lab-technician/viewreport/viewreport.component';
 import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmedicinebill.component';
 import { EditmedicineComponent } from './pharmacist/editmedicine/editmedicine.component';
+import { StaffListComponent } from './admin/staff-list/staff-list.component';
+import { StaffComponent } from './admin/staff/staff.component';
+import { QualificationComponent } from './admin/qualification/qualification.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -66,8 +69,9 @@ const routes: Routes = [
   },
   { path: 'add-test', component: TestComponent },
   { path: 'update-test/:tID', component: TestComponent },
-  { path: '', component: TestAdviceListComponent },
+  { path: 'test-advice-list', component: TestAdviceListComponent },
 
+  //===================patient=============================
   { path: 'patient-list', component: PatientListComponent },
   { path: 'patient-list/dashboard', component: PatientListComponent },
   { path: 'add-patient', component: PatientComponent },
@@ -128,6 +132,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '2' },
   },
+  { path: 'staff-list', component:StaffListComponent},
+  { path: 'add-staff', component:StaffComponent},
+  { path: 'update-staff/:sID', component:StaffComponent},
+  { path: 'add-qualification', component: QualificationComponent},
   //=============================Pharmacist================================
   {
     path: 'pharmacist',
