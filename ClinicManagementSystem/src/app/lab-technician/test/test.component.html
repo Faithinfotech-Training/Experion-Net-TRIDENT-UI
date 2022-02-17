@@ -39,7 +39,7 @@
 <div>
 
     <!-- template driven -->
-
+    <a href="/lab-technician" class="btn btn-dark">Go Back</a>
     <!-- (ngSubmit)="onSubmit(form)" -->
     <form name="patientform" #form="ngForm" autocomplete="off" style="padding: 30px;" (ngSubmit)="onSubmit(form)">
         <!-- employee ID  making this as hidden-->
@@ -75,7 +75,7 @@
         <div class="form-group">
             <label>Test Description : </label>
             <input type="text" name="TestDescription" #TestDescription="ngModel" [(ngModel)]="labtestService.formDataOne.TestDescription"
-                class="form-control" placeholder="Enter description" minlength="10" maxlength="10" required
+                class="form-control" placeholder="Enter description" minlength="5" maxlength="30" required
                 [ngClass]="{'is-invalid': TestDescription.touched && TestDescription.invalid}">
             <!-- validation -->
             <div class="validation-errors" *ngIf="TestDescription.touched && TestDescription.invalid"
@@ -102,7 +102,7 @@
         <!-- Minimum Range -->
         <div class="form-group">
             <label>Minimum Range : </label>
-            <input type="text" name="MinRange" #MinRange="ngModel" [(ngModel)]="labtestService.formDataOne.MinRange"
+            <input type="number" name="MinRange" #MinRange="ngModel" [(ngModel)]="labtestService.formDataOne.MinRange"
                 class="form-control" placeholder="Enter min range" minlength="1" maxlength="5" required
                 [ngClass]="{'is-invalid': MinRange.touched && MinRange.invalid}">
             <!-- validation -->
@@ -117,7 +117,7 @@
         <!-- Maximum Range -->
         <div class="form-group">
             <label>Maximum Range : </label>
-            <input type="text" name="MaxRange" #MaxRange="ngModel" [(ngModel)]="labtestService.formDataOne.MaxRange"
+            <input type="number" name="MaxRange" #MaxRange="ngModel" [(ngModel)]="labtestService.formDataOne.MaxRange"
                 class="form-control" placeholder="Enter max range" minlength="1" maxlength="5" required
                 [ngClass]="{'is-invalid': MaxRange.touched && MaxRange.invalid}">
             <!-- validation -->
@@ -132,7 +132,7 @@
         <!-- Total Amount -->
         <div class="form-group">
             <label>Price Of Test : </label>
-            <input type="text" name="TotalAmount" #TotalAmount="ngModel" [(ngModel)]="labtestService.formDataOne.TotalAmount"
+            <input type="number" name="TotalAmount" #TotalAmount="ngModel" [(ngModel)]="labtestService.formDataOne.TotalAmount"
                 class="form-control" placeholder="Enter amount" minlength="1" maxlength="4" required
                 [ngClass]="{'is-invalid': TotalAmount.touched && TotalAmount.invalid}">
             <!-- validation -->
@@ -144,16 +144,8 @@
             </div>
         </div>  
 
-        
-        <!-- IsActive -->
-        <div class="form-group">
-            <div class="form-check">
-                <label class="form-check-label">In Service</label>
-                <input type="checkbox" name="IsActive" id="IsActive" #IsActive="ngModel"
-                    [(ngModel)]="labtestService.formDataOne.IsActive" class="form-check-input">
 
-            </div>
-        </div>
+    
         <!-- submit -->
         <br>
         <div class="form-group">

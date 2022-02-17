@@ -41,8 +41,8 @@ import { ViewreportComponent } from './lab-technician/viewreport/viewreport.comp
 import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmedicinebill.component';
 import { EditmedicineComponent } from './pharmacist/editmedicine/editmedicine.component';
 
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ViewTestComponent } from './lab-technician/view-test/view-test.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +74,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ViewreportComponent,
     ViewmedicinebillComponent,
     EditmedicineComponent,
+    ViewTestComponent,
   ],
   imports: [
     BrowserModule,

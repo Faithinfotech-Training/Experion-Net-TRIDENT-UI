@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { LabtTest } from '../class/labt-test';
 import { TestAdvice } from '../class/test-advice';
 import {Testreport} from '../class/testreport';
+import {Testrep} from '../class/testrep';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,12 @@ import {Testreport} from '../class/testreport';
 export class LabtTestService {
 
   tests:LabtTest[];
+  testview:Testrep[];
+  testreps:any;
   formDataOne: LabtTest = new LabtTest();
   testreports:any;
   testadvices:TestAdvice[];
+  appointId:number;
   constructor(private httpClient: HttpClient) { }
 
   //get all tests
@@ -29,7 +33,27 @@ export class LabtTestService {
     )
   }
 
+  bindListReports(){
+    this.httpClient.get('https://localhost:44381/api/TestReport').toPromise().then(
+      response => {
+        console.log("From Lab test service fetching Test Reports");
+        console.log(response);
+        this.testview = response as Testrep[];
+      }
+    )
+  }
 
+  bindListReportsById(id:number){
+    this.httpClient.get('https://localhost:44381/api/TestReport/'+id).toPromise().then(
+      response => {
+        console.log("From Lab test service fetching Test Report");
+        console.log(response);
+        this.testreps = response;
+        this.testreps=Array.of(this.testreps);
+        this.appointId=this.testreps[0].AppointmentId;
+      }
+    )
+  }
   //get Test by id
   getTest(id:number): Observable<any>{
     console.log(" for this id we are going to search"+id);
@@ -69,6 +93,15 @@ export class LabtTestService {
       console.log(this.testreports);
     })
   }
+  //--------------POST-------------------
+  insertLabBill(labbill:any): Observable<any>{
+    return this.httpClient.post('https://localhost:44381/api/LabBill',labbill);
+  }
+  //----------------PATCH------------------
+  updateLabReportTests(id:number,patch:any):Observable<any>
+  {
+    return this.httpClient.patch('https://localhost:44381/api/TestAdvice/'+id,patch);
+  }
 
   resetForm(form?: NgForm){
       this.formDataOne = null;
@@ -76,4 +109,5 @@ export class LabtTestService {
       console.log("reseting")
    
   }
+
 }

@@ -29,6 +29,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { ViewreportComponent } from './lab-technician/viewreport/viewreport.component';
 import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmedicinebill.component';
 import { EditmedicineComponent } from './pharmacist/editmedicine/editmedicine.component';
+import { ViewTestComponent } from './lab-technician/view-test/view-test.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -51,7 +52,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '1' },
   },
-
+//==========Lab Technician=======================
   {
     path: 'lab-technician',
     component: LabTechnicianComponent,
@@ -66,12 +67,14 @@ const routes: Routes = [
   },
   { path: 'add-test', component: TestComponent },
   { path: 'update-test/:tID', component: TestComponent },
-  { path: '', component: TestAdviceListComponent },
+  { path: 'update-testreport/:tID', component:TestAdviceListComponent },
+  {
+    path: 'viewtest',
+    component:ViewTestComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '4' },
+  },
 
-  { path: 'patient-list', component: PatientListComponent },
-  { path: 'patient-list/dashboard', component: PatientListComponent },
-  { path: 'add-patient', component: PatientComponent },
-  { path: 'update-patient/:pID', component: PatientComponent },
   //===================Receptionist=============================
   {
     path: 'receptionist',
@@ -79,6 +82,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
+  { path: 'patient-list', component: PatientListComponent },
+  { path: 'patient-list/dashboard', component: PatientListComponent },
+  { path: 'add-patient', component: PatientComponent },
+  { path: 'update-patient/:pID', component: PatientComponent },
   {
     path: 'receptionist/viewappointment',
     component: ViewappointmentsComponent,
