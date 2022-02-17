@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Advice } from '../class/advice';
 import { Medicine } from '../class/medicine';
+import { Medicinebill } from '../class/medicinebill';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class PharmacistService {
   advice: Advice[];
   medAdvice: Advice[];
   med: Medicine[];
+  medicinebills:Medicinebill[];
 
   // form controls
   //retrieve all data from getAll employees -- http -- HttpClient
@@ -39,6 +41,13 @@ export class PharmacistService {
         this.medAdvice = response as Advice[];
         console.log(response);
       });
+  }
+  bindMedicineBill(){
+    this.httpClient.get(environment.apiUrl+'/api/MedicineBill/ViewMedicineBills').toPromise().then(response=>{
+      console.log("From  Pharmacist Service: Got MedicineBills");
+      console.log(response);
+      this.medicinebills=response as Medicinebill[];
+    })
   }
   bindListMedicines() {
     this.httpClient

@@ -5,4 +5,5 @@ export class Appoint {
    ReceptionistId:number 
     AppointmentDate:number
  TokenNo:number
+ Status:number=1
 }

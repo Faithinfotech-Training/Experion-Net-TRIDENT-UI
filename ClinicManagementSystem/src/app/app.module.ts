@@ -15,12 +15,11 @@ import { AdminComponent } from './admin/admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
-
 import { PatientListComponent } from './patients/patient-list/patient-list.component';
 import { PatientComponent } from './patients/patient/patient.component';
 import { AuthService } from './shared/services/auth.service';
 import { PatientService } from './shared/services/patient.service';
-
+import {NgxPrintModule} from 'ngx-print'
 import { ViewappointmentComponent } from './doctor/viewappointment/viewappointment.component';
 import { PrescriptionComponent } from './pharmacist/prescription/prescription.component';
 import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
@@ -38,6 +37,8 @@ import { DashboardComponent } from './receptionist/dashboard/dashboard.component
 import { TestAdviceListComponent } from './lab-technician/test-advice-list/test-advice-list.component';
 import { TestComponent } from './lab-technician/test/test.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ViewreportComponent } from './lab-technician/viewreport/viewreport.component';
+import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmedicinebill.component';
 
 @NgModule({
   declarations: [
@@ -48,10 +49,9 @@ import { TestComponent } from './lab-technician/test/test.component';
     PharmacistComponent,
     LabTechnicianComponent,
     AdminComponent,
-
+    DashboardComponent,
     PatientListComponent,
     PatientComponent,
-
     ViewappointmentComponent,
 
     PrescriptionComponent,
@@ -67,6 +67,8 @@ import { TestComponent } from './lab-technician/test/test.component';
     DashboardComponent,
     TestAdviceListComponent,
     TestComponent,
+    ViewreportComponent,
+    ViewmedicinebillComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,7 @@ import { TestComponent } from './lab-technician/test/test.component';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     FormsModule,
+    NgxPrintModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),

@@ -24,12 +24,11 @@
                         <th>Doctor</th>
                         <th>Receptionist</th>                  
                         <th>Appointment Date</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     
-                   <tr  *ngFor="let app of receptionservice.appointments|filter:filter|paginate:{itemsPerPage:2,currentPage:page}">
+                   <tr  *ngFor="let app of receptionservice.appointments|filter:filter|paginate:{itemsPerPage:5,currentPage:page}">
                         <td>{{app.AppointmentId}}</td>
                         <td>{{app.TokenNo}}</td>
                         <td>{{app.PatientId}}</td>
@@ -38,8 +37,8 @@
                         <td>{{app.DoctorName}}</td>
                         <td>{{app.Receptionistname}}</td>
                         <td>{{app.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</td> 
-                       <td> <button class="btn btn-sm btn-primary">Edit</button> &nbsp;&nbsp;  <!--(click)="updateEmployee(emp.EmployeeID)"-->
-                        </td>
+                       <!--<td> <button class="btn btn-sm btn-primary">Edit</button> &nbsp;&nbsp;-->  <!--(click)="updateEmployee(emp.EmployeeID)"
+                        </td>-->
                     </tr>
                 </tbody>
             </table>

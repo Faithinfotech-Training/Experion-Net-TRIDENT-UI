@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LabtTest } from '../class/labt-test';
 import { TestAdvice } from '../class/test-advice';
+import {Testreport} from '../class/testreport';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class LabtTestService {
 
   tests:LabtTest[];
   formDataOne: LabtTest = new LabtTest();
+  testreports:any;
   testadvices:TestAdvice[];
   constructor(private httpClient: HttpClient) { }
 
@@ -26,6 +28,7 @@ export class LabtTestService {
       }
     )
   }
+
 
   //get Test by id
   getTest(id:number): Observable<any>{
@@ -57,7 +60,15 @@ export class LabtTestService {
       }
     )
   }
-
+ bindListTestReports(){
+    this.httpClient.get('https://localhost:44381/api/LabBill').toPromise().then(response=>{
+      console.log("From Service");
+      console.log(response);
+      this.testreports=response as Testreport[];
+      this.testreports=Array.of(this.testreports);
+      console.log(this.testreports);
+    })
+  }
 
   resetForm(form?: NgForm){
       this.formDataOne = null;

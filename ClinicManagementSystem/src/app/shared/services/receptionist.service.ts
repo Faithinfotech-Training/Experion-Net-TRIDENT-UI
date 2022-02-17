@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class ReceptionistService {
   appointments:Appointments[];
+  myappoint:Appoint;
   appFormData:Appoint=new Appoint();
   conFormData:Consultationbill=new Consultationbill();
   consultationbills:Consultationbill[];
@@ -20,6 +21,10 @@ export class ReceptionistService {
   billFormData:Invoice=new Invoice();
   roles:any;
   constructor(private httpClient:HttpClient) { }
+
+
+
+  //-----------------------------GET------------------------------------------------------------------------
   bindListAppointments(){
     this.httpClient.get('https://localhost:44381/api/Appointments/ViewAppointments').toPromise().then(response=>{
       console.log("From Receptionist Service\n Fetching View Appointments");
@@ -30,6 +35,13 @@ export class ReceptionistService {
   bindListActiveAppointments(){
     this.httpClient.get('https://localhost:44381/api/Appointments/Status/1').toPromise().then(response=>{
       console.log("From Receptionist Service\n Fetching Active Appointments");
+      console.log(response);
+      this.appointments=response as Appointments[];
+    })
+  }
+  bindListTodayAppointments(){
+    this.httpClient.get('https://localhost:44381/api/Appointments/Today').toPromise().then(response=>{
+      console.log("From Receptionist Service\n Fetching Todays Appointments");
       console.log(response);
       this.appointments=response as Appointments[];
     })
@@ -62,6 +74,11 @@ this.httpClient.get('https://localhost:44381/api/Role/Staff/1').toPromise().then
   this.roles=response;
 })
 }
+
+getAppoint(id:number):Observable<any>
+{
+  return this.httpClient.get('https://localhost:44381/api/Appointments/ViewAppointmentById/'+id);
+}
 //------------------------ POST---------------------------------------------------------
 AddAppointment(form:NgForm):Observable<any>
 {
@@ -71,6 +88,18 @@ AddConsultationBill(form:NgForm):Observable<any>
 {
   return this.httpClient.post('https://localhost:44381/api/ConsultationBill',form);
 }
-
+//-------------------------Patch-------------------------------------------------
+UpdateAppointment(id:number,form:any):Observable<any>
+{
+  return this.httpClient.patch('https://localhost:44381/api/Appointments/'+id,form);
 }
 
+//---------------------Delete--------------------------------
+DeleteAppointment(aid:number):Observable<any>
+{
+  return this.httpClient.delete('https://localhost:44381/api/Appointments/'+aid);
+}
+
+
+
+}

@@ -6,6 +6,13 @@
             <br>
             <!--<a [routerLink]="" class="btn btn-outline-secondary" style="float: right; margin-bottom:19px;">Final Bill </a>-->
             <div class="col">
+                <div style="display: flex; justify-items:end">
+                    <button printTitle="Clinic Management System" printSectionId="pdfTable" class="btn btn-primary" ngxPrint>
+                        Print
+                      </button>
+                </div>
+                <div id="pdfTable" #pdfTable>
+                    <h3 style="text-align: center;">Final Invoice </h3>
                 <div class="row"  *ngFor="let bill of receptionservice.bills|filter:filter|paginate:{itemsPerPage:1,currentPage:page}">
                  <span style="display:flex;justify-content: space-between;">
                  <h6>Bill Id: {{bill.BillId}}</h6><br>
@@ -55,6 +62,7 @@
             </div>
          </div>
           
+        </div>
         </div>
             <br>
             <footer>

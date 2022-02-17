@@ -13,6 +13,7 @@ import { ReceptionistService } from 'src/app/shared/services/receptionist.servic
 export class AddconsultationComponent implements OnInit {
 page:number=1;
 consultbill:any;
+appointment:any;
 TotalAmounts:number;
   constructor(public receptionservice:ReceptionistService,private toaster:ToastrService,private router:Router) { }
 
@@ -22,14 +23,22 @@ TotalAmounts:number;
   OnSubmit(id:number,amt:number)
   {
     this.consultbill= {};
+  
+
    this.consultbill.AppointmentId=id;
    var datepipe=new DatePipe("en-UK");
    let formattedDate:any=datepipe.transform(Date.now(),'yyyy-MM-dd');
    this.consultbill.DateOfBill=formattedDate;
    this.consultbill.TotalAmount=amt;
   //
+  console.log("Adding Bill and Updating Appointment");
   console.log(this.consultbill);
+  this.appointment=[{'value':5,'path':'status','op':'replace'}];
+ //this.appointment=JSON.parse(this.appointment);
+  console.log(this.appointment);
   this.addConsultationBill(this.consultbill);
+  this.updateAppointment(id,this.appointment);
+
   }
   addConsultationBill(cBill:any)
   {
@@ -39,6 +48,22 @@ TotalAmounts:number;
         console.log(cBill);
         console.log(result);
         this.toaster.success("Sucessfully Added","Consultation Bill");
+        this.router.navigateByUrl('/receptionist');
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+   
+  }
+  updateAppointment(id,appoint:any)
+  {
+    console.log('Updating Appointment')
+    this.receptionservice.UpdateAppointment(id,appoint).subscribe(
+      (result)=>{
+        console.log(appoint);
+        console.log(result);
+        this.toaster.info("Sucessfully Updated","Appointment Status");
         this.router.navigateByUrl('/receptionist');
       },
       (error)=>{

@@ -28,6 +28,7 @@
                        <br><br>
                        <label>Appointment Date/Time :</label><br>
                        <input type="datetime-local" required id="date" [min]="dmin" (blur)="isDateBeforeToday()" #AppointmentDate name="AppointmentDate" [(ngModel)]="receptionservice.appFormData.AppointmentDate"> <br><br>
+                       <input type="hidden" name="Status" [(ngModel)]="receptionservice.appFormData.Status" #Status>
                         <button type="submit" class="btn btn-primary btn-lg" [disabled]="!(form.valid && form.dirty)">Book Appointment</button>
                    </form>
                
