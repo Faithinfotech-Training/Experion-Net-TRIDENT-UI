@@ -18,7 +18,7 @@
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle active" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Tridents
+                        {{ loggedUser |uppercase }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" (click)="logOut()">Logout</a></li>
@@ -145,15 +145,7 @@
         </div>  
 
         
-        <!-- IsActive -->
-        <div class="form-group">
-            <div class="form-check">
-                <label class="form-check-label">In Service</label>
-                <input type="checkbox" name="IsActive" id="IsActive" #IsActive="ngModel"
-                    [(ngModel)]="labtestService.formDataOne.IsActive" class="form-check-input">
-
-            </div>
-        </div>
+        
         <!-- submit -->
         <br>
         <div class="form-group">

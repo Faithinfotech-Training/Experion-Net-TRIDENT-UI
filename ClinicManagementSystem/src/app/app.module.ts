@@ -39,6 +39,9 @@ import { TestComponent } from './lab-technician/test/test.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ViewreportComponent } from './lab-technician/viewreport/viewreport.component';
 import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmedicinebill.component';
+import { StaffListComponent } from './admin/staff-list/staff-list.component';
+import { StaffComponent } from './admin/staff/staff.component';
+import { QualificationComponent } from './admin/qualification/qualification.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,9 @@ import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmed
     TestComponent,
     ViewreportComponent,
     ViewmedicinebillComponent,
+    StaffListComponent,
+    StaffComponent,
+    QualificationComponent,
   ],
   imports: [
     BrowserModule,

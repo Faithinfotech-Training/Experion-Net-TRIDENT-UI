@@ -23,6 +23,8 @@ export class PatientComponent implements OnInit {
   ngOnInit(): void {
 
     this.loggedUser = localStorage.getItem("userName");
+    
+  
 
     //get bID from ActivateRoute
     this.pID = this.route.snapshot.params['pID'];
