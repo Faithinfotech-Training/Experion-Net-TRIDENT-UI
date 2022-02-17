@@ -59,3 +59,83 @@
     border-radius: 1.5rem;
   "
 ></div>
+
+<!-- content  -->
+<div class="container">
+  <div class="heading my-2">
+    <h2 class="display-6">Medicine Advice</h2>
+  </div>
+
+  <div class="row py-2" *ngFor="let app of pharmService.medAdvice">
+    <br />
+    <p>Patient ID : {{ app.PatientId }}</p>
+    <p>Patient Name : {{ app.Patient }}</p>
+    <br />
+    <div class="medicinesList">
+      <h3 class="lead my-4">Prescribed Medicines</h3>
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <td>Medicine Name</td>
+            <td>Medicine Description</td>
+            <td>Medicine Dose</td>
+            <td>Medicne Quantity</td>
+            <td>Medicne Price</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let med of app['medicineList']">
+            <td>{{ med.Medicine }}</td>
+            <td>{{ med.MedicineDescription }}</td>
+            <td>{{ med.Dose }}</td>
+            <td>{{ med.Quantity }}</td>
+            <td>{{ med.MedicinePrice }}</td>
+
+            <td>
+              <button
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Check Stock
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="footer my-3">
+        <button class="btn btn-primary">Generate Bill</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Medicine Stock</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Stock Available : 200</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

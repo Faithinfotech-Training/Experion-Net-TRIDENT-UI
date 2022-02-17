@@ -12,9 +12,9 @@ import { Medicinebill } from '../class/medicinebill';
 export class PharmacistService {
   //declare variables
   advice: Advice[];
-  medAdvice: Advice[];
+  medAdvice: any[];
   med: Medicine[];
-  medicinebills:Medicinebill[];
+  medicinebills: Medicinebill[];
 
   // form controls
   //retrieve all data from getAll employees -- http -- HttpClient
@@ -38,16 +38,20 @@ export class PharmacistService {
       .get(environment.apiUrl + '/api/MedicineAdvice/patient/' + id)
       .toPromise()
       .then((response) => {
-        this.medAdvice = response as Advice[];
+        this.medAdvice = response as any[];
+        this.medAdvice = Array.of(this.medAdvice);
         console.log(response);
       });
   }
-  bindMedicineBill(){
-    this.httpClient.get(environment.apiUrl+'/api/MedicineBill/ViewMedicineBills').toPromise().then(response=>{
-      console.log("From  Pharmacist Service: Got MedicineBills");
-      console.log(response);
-      this.medicinebills=response as Medicinebill[];
-    })
+  bindMedicineBill() {
+    this.httpClient
+      .get(environment.apiUrl + '/api/MedicineBill/ViewMedicineBills')
+      .toPromise()
+      .then((response) => {
+        console.log('From  Pharmacist Service: Got MedicineBills');
+        console.log(response);
+        this.medicinebills = response as Medicinebill[];
+      });
   }
   bindListMedicines() {
     this.httpClient
