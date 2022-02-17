@@ -78,8 +78,9 @@ export class PatientComponent implements OnInit {
     this.patientService.insertPatient(form.value).subscribe(
       (result) => {
         console.log(result);
-        this.patientService.resetForm();
         this.toasterService.success('patient record has been inserted','CMSApp v2022');
+        this.patientService.resetForm();
+        
       },
       (error)=>{
         console.log(error);

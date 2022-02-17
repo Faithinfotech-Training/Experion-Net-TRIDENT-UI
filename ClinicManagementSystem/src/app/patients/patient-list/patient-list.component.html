@@ -89,7 +89,7 @@
         </thead>
         <tbody>
             
-            <tr *ngFor="let p of patientService.patients | filter: filter | paginate: {itemsPerPage :2, currentPage: page} ">
+            <tr *ngFor="let p of patientService.patients | filter: filter | paginate: {itemsPerPage :6, currentPage: page} ">
                 <td>{{p.PatientId}}</td>
                 <td>{{p.PatientName}}</td>
                 <td>{{p.Phone}}</td>
