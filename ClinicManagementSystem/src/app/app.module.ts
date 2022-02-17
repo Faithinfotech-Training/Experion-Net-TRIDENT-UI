@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
-import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { DoctorComponent } from './doctor/doctor.component';
@@ -37,9 +37,7 @@ import { DashboardComponent } from './receptionist/dashboard/dashboard.component
 
 import { TestAdviceListComponent } from './lab-technician/test-advice-list/test-advice-list.component';
 import { TestComponent } from './lab-technician/test/test.component';
-
-
-
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -69,7 +67,6 @@ import { TestComponent } from './lab-technician/test/test.component';
     DashboardComponent,
     TestAdviceListComponent,
     TestComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -83,8 +80,6 @@ import { TestComponent } from './lab-technician/test/test.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     CommonModule,
-    
-
   ],
   providers: [AuthService, PatientService],
   bootstrap: [AppComponent],

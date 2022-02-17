@@ -14,6 +14,12 @@ export class PharmacistService {
   medAdvice: Advice[];
   med: Medicine[];
 
+  // form controls
+  //retrieve all data from getAll employees -- http -- HttpClient
+  medicines: Medicine[]; // all employee data
+  medicinesData: Medicine[];
+  formData: Medicine = new Medicine(); // stores one employee details
+
   constructor(private httpClient: HttpClient) {}
 
   bindListMedicineAdvices() {
@@ -42,5 +48,48 @@ export class PharmacistService {
         this.med = response as Medicine[];
         console.log(response);
       });
+  }
+
+  //crud for medicines
+  //insert medicines
+  insertMedicine(medicines: Medicine): Observable<any> {
+    return this.httpClient.post(
+      environment.apiUrl + '/api/Medicines',
+      medicines
+    );
+  }
+
+  //update medicines
+  updateMedicine(medicines: Medicine): Observable<any> {
+    return this.httpClient.put(
+      environment.apiUrl + '/api/Medicines',
+      medicines
+    );
+  }
+
+  //delete medicines
+  deleteMedicine(id: number) {
+    this.httpClient
+      .delete(environment.apiUrl + '/api/Medicines/' + id)
+      .toPromise()
+      .then((response) => {
+        console.log(response);
+      });
+  }
+
+  //bind list medicines by id
+  bindListMedicinesById(id: number) {
+    this.httpClient
+      .get(environment.apiUrl + '/api/Medicines/' + id)
+      .toPromise()
+      .then((response) => {
+        this.medicinesData = response as Medicine[];
+        console.log(response);
+      });
+  }
+
+  // get medicines by id
+  getMedicineById(id: number): Observable<any> {
+    return this.httpClient.get(environment.apiUrl + '/api/Medicines/' + id);
   }
 }

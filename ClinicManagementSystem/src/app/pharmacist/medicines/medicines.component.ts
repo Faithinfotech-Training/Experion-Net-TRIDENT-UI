@@ -28,4 +28,12 @@ export class MedicinesComponent implements OnInit {
     this.authService.logout();
     this.router.navigateByUrl('/login');
   }
+  updateMedicine(medicineId: number) {
+    console.log(medicineId);
+    this.router.navigate(['addmedicines', medicineId]);
+  }
+  deleteMedicine(medicineId: number) {
+    console.log(medicineId);
+    this.pharmService.deleteMedicine(medicineId);
+  }
 }

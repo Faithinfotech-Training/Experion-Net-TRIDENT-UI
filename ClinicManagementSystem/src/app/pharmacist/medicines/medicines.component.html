@@ -66,7 +66,11 @@
     style="display: flex; flex-direction: row; justify-content: space-between"
   >
     <h2 class="display-6">Medicines</h2>
-    <button class="btn btn-primary" routerLink="/addmedicines">
+    <button
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
       Add Medicine
     </button>
   </div>
@@ -104,13 +108,19 @@
         <td>{{ i.MedicinePrice }}</td>
         <td>{{ i.Stock }}</td>
         <td>
-          <div class="btn btn-primary" style="background-color: #38b6ff">
+          <div
+            class="btn btn-primary"
+            style="background-color: #38b6ff"
+            (click)="updateMedicine(i.MedicineId)"
+          >
             Edit
           </div>
           &nbsp;
           <button
             class="btn btn-danger"
             style="background-color: rgba(223, 50, 79, 0.904)"
+            
+            (click)="deleteMedicine(i.MedicineId)"
           >
             Delete
           </button>
@@ -120,4 +130,29 @@
   </div>
   <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>
+<!-- modal add medicine -->
 
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-addmedicine></app-addmedicine>
+      </div>
+    </div>
+  </div>
+</div>

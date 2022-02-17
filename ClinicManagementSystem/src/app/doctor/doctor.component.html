@@ -82,10 +82,12 @@
       class="col-md-3 form-control shadow-sm"
       type="date"
       style="width: 12rem; border-radius: 0.3rem; border: 1px solid #38b6ff"
+      #date
     />
     <button
       class="btn btn-light col-md-4 mx-2 text-white shadow-sm"
       style="max-width: 10rem; background-color: #38b6ff"
+      (click)="loadApppointments(date.value)"
     >
       Get Appointments
     </button>
