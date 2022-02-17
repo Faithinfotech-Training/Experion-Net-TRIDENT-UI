@@ -30,7 +30,7 @@ export class MedicinesComponent implements OnInit {
   }
   updateMedicine(medicineId: number) {
     console.log(medicineId);
-    this.router.navigate(['addmedicines', medicineId]);
+    this.router.navigate(['editmedicines', medicineId]);
   }
   deleteMedicine(medicineId: number) {
     console.log(medicineId);

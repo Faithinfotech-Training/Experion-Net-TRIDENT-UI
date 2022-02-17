@@ -13,6 +13,7 @@ export class PrescriptionComponent implements OnInit {
   //declare variables
   username = sessionStorage.getItem('userName');
   staffId = sessionStorage.getItem('staffId');
+  medicineName: string;
 
   constructor(
     private router: Router,
@@ -32,5 +33,9 @@ export class PrescriptionComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigateByUrl('/login');
+  }
+  getStock(name) {
+    this.medicineName = name;
+    this.pharmService.bindListStock(this.medicineName);
   }
 }

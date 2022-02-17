@@ -28,6 +28,7 @@ import { ViewinvoiceComponent } from './receptionist/viewinvoice/viewinvoice.com
 import { AuthGuard } from './shared/auth.guard';
 import { ViewreportComponent } from './lab-technician/viewreport/viewreport.component';
 import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmedicinebill.component';
+import { EditmedicineComponent } from './pharmacist/editmedicine/editmedicine.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -59,7 +60,7 @@ const routes: Routes = [
   },
   {
     path: 'viewreport',
-    component:ViewreportComponent,
+    component: ViewreportComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '4' },
   },
@@ -71,7 +72,7 @@ const routes: Routes = [
   { path: 'patient-list/dashboard', component: PatientListComponent },
   { path: 'add-patient', component: PatientComponent },
   { path: 'update-patient/:pID', component: PatientComponent },
-//===================Receptionist=============================
+  //===================Receptionist=============================
   {
     path: 'receptionist',
     component: ReceptionistComponent,
@@ -135,8 +136,8 @@ const routes: Routes = [
     data: { RoleId: '5' },
   },
   {
-    path:'medicinesbill',
-    component:ViewmedicinebillComponent,
+    path: 'medicinesbill',
+    component: ViewmedicinebillComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '5' },
   },
@@ -167,6 +168,12 @@ const routes: Routes = [
   {
     path: 'addmedicines/:id',
     component: AddmedicineComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '5' },
+  },
+  {
+    path: 'editmedicines/:id',
+    component: EditmedicineComponent,
     canActivate: [AuthGuard],
     data: { RoleId: '5' },
   },

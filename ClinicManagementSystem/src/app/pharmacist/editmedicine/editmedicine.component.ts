@@ -6,11 +6,11 @@ import { AuthService } from '../../shared/services/auth.service';
 import { PharmacistService } from '../../shared/services/pharmacist.service';
 
 @Component({
-  selector: 'app-addmedicine',
-  templateUrl: './addmedicine.component.html',
-  styleUrls: ['./addmedicine.component.scss'],
+  selector: 'app-editmedicine',
+  templateUrl: './editmedicine.component.html',
+  styleUrls: ['./editmedicine.component.scss'],
 })
-export class AddmedicineComponent implements OnInit {
+export class EditmedicineComponent implements OnInit {
   //declare variables
   username = sessionStorage.getItem('userName');
   staffId = sessionStorage.getItem('staffId');
@@ -27,19 +27,17 @@ export class AddmedicineComponent implements OnInit {
   ngOnInit(): void {
     //get employee id from activateRoute
     this.medicineId = this.route.snapshot.params['id'];
-    console.log('medicine id: ' + this.medicineId);
+    console.log('medicine id is: ' + this.medicineId);
 
-    //get employee by id
+    //get medicine by id
     if (this.medicineId != 0 || this.medicineId != null) {
       //get employee
       this.pharmService.getMedicineById(this.medicineId).subscribe((res) => {
         console.log(res);
         this.pharmService.formData = Object.assign({}, res);
       });
-      // this.pharmService.bindListMedicinesById(this.medicineId);
     }
   }
-
   //submit form
   onSubmit(form: NgForm) {
     console.log(form.value);
@@ -80,7 +78,7 @@ export class AddmedicineComponent implements OnInit {
         console.log(res);
         console.log('success put');
         this.showSuccess();
-        this.router.navigateByUrl('/pharmacist');
+        this.router.navigateByUrl('/medicines');
       },
       (error) => {
         console.log(error);
@@ -101,12 +99,5 @@ export class AddmedicineComponent implements OnInit {
   }
   showFailure() {
     this.toastr.error('Medicine Updated Failed', 'Failure!');
-  }
-
-  navigate() {
-    this.pharmService.bindListMedicines();
-  }
-  reload() {
-    window.location.reload();
   }
 }

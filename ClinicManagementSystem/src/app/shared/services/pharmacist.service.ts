@@ -15,6 +15,7 @@ export class PharmacistService {
   medAdvice: any[];
   med: Medicine[];
   medicinebills: Medicinebill[];
+  stock: any[];
 
   // form controls
   //retrieve all data from getAll employees -- http -- HttpClient
@@ -104,5 +105,17 @@ export class PharmacistService {
   // get medicines by id
   getMedicineById(id: number): Observable<any> {
     return this.httpClient.get(environment.apiUrl + '/api/Medicines/' + id);
+  }
+
+  //bind list medicine stock
+  bindListStock(id) {
+    this.httpClient
+      .get(environment.apiUrl + '/api/Medicines/stock?id=' + id)
+      .toPromise()
+      .then((response) => {
+        this.stock = response as any[];
+        this.stock = Array.of(this.stock);
+        console.log(response);
+      });
   }
 }
