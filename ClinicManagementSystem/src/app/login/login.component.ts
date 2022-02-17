@@ -6,6 +6,7 @@ import { User } from '../shared/class/user';
 import { AuthService } from '../shared/services/auth.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,9 @@ export class LoginComponent implements OnInit {
   isSubmitted = false;
   error = '';
   loginUser: any = new User();
+
+  //icons
+  faCoffee = faCoffee;
 
   constructor(
     private formBuilder: FormBuilder,

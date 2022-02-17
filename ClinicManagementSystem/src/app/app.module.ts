@@ -39,6 +39,10 @@ import { TestComponent } from './lab-technician/test/test.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ViewreportComponent } from './lab-technician/viewreport/viewreport.component';
 import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmedicinebill.component';
+import { EditmedicineComponent } from './pharmacist/editmedicine/editmedicine.component';
+
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -69,6 +73,7 @@ import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmed
     TestComponent,
     ViewreportComponent,
     ViewmedicinebillComponent,
+    EditmedicineComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +88,7 @@ import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmed
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     CommonModule,
+    FontAwesomeModule,
   ],
   providers: [AuthService, PatientService],
   bootstrap: [AppComponent],
