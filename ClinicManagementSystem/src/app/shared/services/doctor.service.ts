@@ -22,12 +22,43 @@ export class DoctorService {
   patientNotes: Notes[] = [];
   appointmentId: number;
 
+  formData: Notes = new Notes(); //add medicine
+
+  formDataLab : Test = new Test();
+
   constructor(private httpClient: HttpClient) {}
 
   bindListAppointments(id: number) {
     this.httpClient
       .get(
         environment.apiUrl + '/api/Appointments/ViewAppointmentByDoctorId/' + id
+      )
+      .toPromise()
+      .then((response) => {
+        this.appointments = response as Appointments[];
+        console.log(response);
+      });
+  }
+  //get appointments for today for doctor
+  bindListAppointmentsForToday(id: number) {
+    this.httpClient
+      .get(environment.apiUrl + '/api/Appointments/ViewAppointmentsToday/' + id)
+      .toPromise()
+      .then((response) => {
+        this.appointments = response as Appointments[];
+        console.log(response);
+      });
+  }
+
+  //bind list of appointments for a particular for the doctor
+  bindListAppointmentsForDate(id: number, date: Date) {
+    this.httpClient
+      .get(
+        environment.apiUrl +
+          '/api/Appointments/ViewAppointmentsondate/' +
+          id +
+          '/' +
+          date
       )
       .toPromise()
       .then((response) => {
@@ -42,7 +73,7 @@ export class DoctorService {
       .toPromise()
       .then((response) => {
         this.appointment = response as any[];
-        this.appointment=Array.of(this.appointment);
+        this.appointment = Array.of(this.appointment);
         console.log(response);
       });
   }
@@ -104,5 +135,16 @@ export class DoctorService {
     //     console.log(response);
     //   });
     console.log(note);
+  }
+
+  //add doctors notes
+  //insert employee
+  insertNotes(note: Notes): Observable<any> {
+    return this.httpClient.post(environment.apiUrl + '/api/DoctorsNotes', note);
+  }
+
+  //update employee
+  updateNotes(note: Notes): Observable<any> {
+    return this.httpClient.put(environment.apiUrl + '/api/DoctorsNotes', note);
   }
 }

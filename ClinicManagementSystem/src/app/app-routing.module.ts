@@ -164,6 +164,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '5' },
   },
+  {
+    path: 'addmedicines/:id',
+    component: AddmedicineComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '5' },
+  },
   // { path: 'employees/:userId', component: EmployeesComponent },
 ];
 

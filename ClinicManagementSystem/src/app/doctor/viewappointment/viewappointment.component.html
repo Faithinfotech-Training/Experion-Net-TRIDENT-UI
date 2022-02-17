@@ -82,46 +82,94 @@
     </div>
 
     <!-- main doctors notes -->
-    <div class="notes row p-3">
+    <div class="notes row p-3" *ngFor="let app of doctorService.appointment">
       <!-- left div  -->
 
       <div class="addnote col-md-6">
         <form
-          class="form-group"
-          [formGroup]="addPostForm"
-          (ngSubmit)="addPost()"
+          name="empForm"
+          #form="ngForm"
+          autocomplete="off"
+          (ngSubmit)="onSubmit(form)"
         >
-          <input
+          <!-- input filed appointmentID  -->
+
+          <div class="form-group">
+            <input
+              type="hidden"
+              name="AppointmentId"
+              value="{{ app.AppointmentId }}"
+              [(ngModel)]="doctorService.formData.AppointmentId"
+              class="form-control"
+            />
+          </div>
+          <!-- input field for patient id  -->
+          <div class="form-group">
+            <input
+              type="hidden"
+              name="PatientId"
+              value=" {{ patientId }}"
+              [(ngModel)]="doctorService.formData.PatientId"
+              class="form-control"
+            />
+          </div>
+          <!-- input field for doctor id -->
+          <div class="form-group">
+            <input
+              type="hidden"
+              name="DoctorId"
+              value="{{ app.DoctorId }}"
+              [(ngModel)]="doctorService.formData.DoctorId"
+              class="form-control"
+            />
+          </div>
+          <!-- input for doctors notes  -->
+          <div class="form-group">
+            <textarea
+              type="text"
+              name="DoctorsNotes"
+              [(ngModel)]="doctorService.formData.DoctorsNotes"
+              class="form-control"
+              placeholder="Enter Doctors Notes"
+              required
+              style="
+                border: 1px solid #38b6ff;
+                border-radius: 0.3rem;
+                height: 10rem;
+              "
+            ></textarea>
+          </div>
+
+          <!-- <input
             type="text"
             class="form-control"
-            name="Post"
-            formControlName="Post"
+            name="Note"
             class="form-control"
             minlength="3"
             required
+            #Note
             style="
               border: 1px solid #38b6ff;
               border-radius: 0.3rem;
               height: 10rem;
             "
-          />
-          <div *ngIf="isSubmitted && formControls.Post.errors">
-            <div
-              *ngIf="formControls.Post.errors"
-              style="color: red; text-align: left"
-            >
-              post content is required !
-            </div>
-          </div>
+          /> -->
+
           <br />
-          <button class="btn btn-primary my-2 text-center">Add Post</button>
-          <div
-            class="text-center"
-            *ngIf="error"
-            style="color: red; text-align: left"
-          >
-            {{ error }}
+          <!-- submit  -->
+          <div class="form-group">
+            <button
+              type="submit"
+              class="btn btn-primary form-control"
+              [disabled]="!(form.valid && form.dirty)"
+            >
+              Submit
+            </button>
           </div>
+          <!-- <button class="btn btn-primary my-2 text-center (click)="DoPost(Note.value)"">
+            
+            Add Post
+          </button> -->
         </form>
       </div>
 
@@ -151,25 +199,62 @@
     <div>
       <h4 class="display-6 my-4 text-center">Add Lab Test</h4>
     </div>
-    <div class="container" style="display: flex; flex-direction: row">
-      <select
-        class="form-control"
-        id="testId"
-        name="DepartmentId"
-        class="form-control"
-        placeholder="select LabTests"
+    <div
+      class="container"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      "
+    >
+      <form
+        name="labForm"
+        #labform="ngForm"
+        autocomplete="off"
+        (ngSubmit)="addLabTest(form)"
+        style="display: flex; flex-direction: row"
       >
-        <option value="" selected disabled>Select Test</option>
-        <option
-          *ngFor="let test of doctorService.tests"
-          value="{{ test.TestId }}"
-        >
-          {{ test.TestName }}
-        </option>
-      </select>
-      <button class="btn btn-primary mx-2" style="width: 9rem">
-        Add LabTest
-      </button>
+        <div class="form-group" style="display: flex; flex-direction: row">
+          <select
+            class="form-control"
+            id="testId"
+            name="LabTestId"
+            #TestId="ngModel"
+            [(ngModel)]="doctorService.formDataLab.TestId"
+            class="form-control"
+            placeholder="select LabTest"
+            required
+            [ngClass]="{
+              'is-invalid': TestId.invalid && TestId.touched
+            }"
+          >
+            <option value="" disabled selected>Select Labtests</option>
+            <!-- <option value="" selected disabled>Select Medicine</option> -->
+            <option
+              *ngFor="let test of doctorService.tests"
+              value="{{ test.TestId }}"
+            >
+              >
+              {{ test.TestName }}
+            </option>
+          </select>
+        </div>
+        <!-- submit  -->
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary form-control">
+            Add Test
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="medList my-4">
+      <p class="lead text-center">Added Prescriptions</p>
+      <div
+        class="prescription d-flex justify-content-center"
+        *ngFor="let i of labTests"
+      >
+        <p>{{ labTests.indexOf(i) + 1 }} : {{ i }}</p>
+      </div>
     </div>
   </div>
 
@@ -179,32 +264,44 @@
     <div>
       <h2 class="display-6 my-4 text-center">Add Prescriptions</h2>
     </div>
-    <div class="container" style="display: flex; flex-direction: row">
-      <select
-        class="form-control"
-        id="medicineId"
-        name="DepartmentId"
-        class="form-control"
-        placeholder="select LabTests"
+    <div class="container" style="display: flex; flex-direction: column">
+      <form
+        name="empForm"
+        #form="ngForm"
+        autocomplete="off"
+        (ngSubmit)="onSubmit(form)"
       >
-        <option value="" selected disabled>Select Medicine</option>
-        <option
-          *ngFor="let med of doctorService.medicines"
-          value="{{ med.MedicineId }}"
-        >
-          {{ med.MedicineName }}
-        </option>
-      </select>
-      <input
-        class="mx-1"
-        type="number"
-        placeholder="Quantity"
-        style="border: 0px; border-bottom: 3px solid #38b6ff"
-        id="qtyId"
-      />
-      <button class="btn btn-primary mx-2" style="width: 13rem">
-        Add Medicine
-      </button>
+        <div class="container" style="display: flex; flex-direction: row">
+          <select
+            class="form-control"
+            id="medicineId"
+            name="DepartmentId"
+            class="form-control"
+            placeholder="select LabTests"
+          >
+            <option value="" selected disabled>Select Medicine</option>
+            <option
+              *ngFor="let med of doctorService.medicines"
+              value="{{ med.MedicineId }}"
+            >
+              {{ med.MedicineName }}
+            </option>
+          </select>
+          <input
+            class="mx-1"
+            type="number"
+            placeholder="Quantity"
+            style="border: 0px; border-bottom: 3px solid #38b6ff"
+            id="qtyId"
+          />
+          <button class="btn btn-primary mx-2" style="width: 13rem">
+            Add Medicine
+          </button>
+        </div>
+      </form>
+      <div class="medList my-4">
+        <p class="lead text-center">Added Medicines</p>
+      </div>
     </div>
   </div>
   <div class="row my-3">

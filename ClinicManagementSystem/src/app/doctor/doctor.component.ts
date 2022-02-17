@@ -26,7 +26,7 @@ export class DoctorComponent implements OnInit {
     console.log(this.username);
     console.log('hello doctor ' + this.staffId);
 
-    this.doctorService.bindListAppointments(+this.staffId);
+    this.doctorService.bindListAppointmentsForToday(+this.staffId);
   }
   //logout function
   logout() {
@@ -42,6 +42,12 @@ export class DoctorComponent implements OnInit {
 
   //get appointment number
   updateAppointment(appointmentId: number) {
-    this.doctorService.appointmentId = appointmentId;
+    console.log('the appointment id is ' + appointmentId);
+
+    this.appointmentId = appointmentId;
+  }
+
+  loadApppointments(date) {
+    this.doctorService.bindListAppointmentsForDate(+this.staffId, date);
   }
 }

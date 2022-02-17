@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
-import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { DoctorComponent } from './doctor/doctor.component';
@@ -36,11 +36,9 @@ import { DashboardComponent } from './receptionist/dashboard/dashboard.component
 
 import { TestAdviceListComponent } from './lab-technician/test-advice-list/test-advice-list.component';
 import { TestComponent } from './lab-technician/test/test.component';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ViewreportComponent } from './lab-technician/viewreport/viewreport.component';
 import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmedicinebill.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -51,7 +49,7 @@ import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmed
     PharmacistComponent,
     LabTechnicianComponent,
     AdminComponent,
-   DashboardComponent,
+    DashboardComponent,
     PatientListComponent,
     PatientComponent,
     ViewappointmentComponent,
@@ -71,7 +69,6 @@ import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmed
     TestComponent,
     ViewreportComponent,
     ViewmedicinebillComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -86,8 +83,6 @@ import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmed
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     CommonModule,
-    
-
   ],
   providers: [AuthService, PatientService],
   bootstrap: [AppComponent],

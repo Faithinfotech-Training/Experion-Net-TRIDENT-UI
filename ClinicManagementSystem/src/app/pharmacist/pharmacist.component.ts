@@ -23,7 +23,7 @@ export class PharmacistComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.username);
-    console.log('hello doctor ' + this.staffId);
+    console.log('hello pharmacist ' + this.staffId);
     this.pharmService.bindListMedicineAdvices();
   }
   //logout function
