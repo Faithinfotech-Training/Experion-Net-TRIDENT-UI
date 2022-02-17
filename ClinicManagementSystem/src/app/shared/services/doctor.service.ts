@@ -20,15 +20,16 @@ export class DoctorService {
   note: Notes[];
   tests: Test[] = [];
   medicines: Medicine[];
-  techs:any;
-  pharms:any;
+  techs: any;
+  pharms: any;
 
   patientNotes: Notes[] = [];
   appointmentId: number;
+  patientId: number;
 
   formData: Notes = new Notes(); //add medicine
 
-  formDataLab : Test = new Test();
+  formDataLab: Test = new Test();
 
   constructor(private httpClient: HttpClient) {}
 
@@ -77,29 +78,35 @@ export class DoctorService {
       .toPromise()
       .then((response) => {
         this.appointment = response as any[];
-        this.appointmentId=id;
-        console.log('Appointment ID'+id);
+        this.appointmentId = id;
+        console.log('Appointment ID' + id);
         this.appointment = Array.of(this.appointment);
-      
+
         console.log(response);
       });
   }
   //--------- Binding Lab Technicians------------
-  BindTechnicianList(){
-    this.httpClient.get('https://localhost:44381/api/Role/Staff/5').toPromise().then(response=>{
-      console.log("From Doctor Service \n Fetching Lab Technician Lists");
-      console.log(response);
-      this.techs=response;
-    })
-    }
-    //--------- Binding Pharmacist------------
-    BindPharmList(){
-      this.httpClient.get('https://localhost:44381/api/Role/Staff/4').toPromise().then(response=>{
-        console.log("From Doctor Service \n Fetching Pharmacist Lists");
+  BindTechnicianList() {
+    this.httpClient
+      .get('https://localhost:44381/api/Role/Staff/5')
+      .toPromise()
+      .then((response) => {
+        console.log('From Doctor Service \n Fetching Lab Technician Lists');
         console.log(response);
-        this.pharms=response;
-      })
-      }
+        this.techs = response;
+      });
+  }
+  //--------- Binding Pharmacist------------
+  BindPharmList() {
+    this.httpClient
+      .get('https://localhost:44381/api/Role/Staff/4')
+      .toPromise()
+      .then((response) => {
+        console.log('From Doctor Service \n Fetching Pharmacist Lists');
+        console.log(response);
+        this.pharms = response;
+      });
+  }
   bindListPatientsNotes(id: number) {
     this.httpClient
       .get(environment.apiUrl + '/api/DoctorsNotes/patient/' + id)
@@ -144,20 +151,7 @@ export class DoctorService {
       });
   }
 
-  //add doctors notes
-  addDoctorsNotes(
-    id: number,
-    appointmentId: number,
-    doctorId: number,
-    note: Notes
-  ) {
-    // this.httpClient
-    //   .post(environment.apiUrl + '/api/DoctorsNotes/', note)
-    //   .subscribe((response) => {
-    //     console.log(response);
-    //   });
-    console.log(note);
-  }
+
 
   //add doctors notes
   //insert employee
@@ -169,30 +163,39 @@ export class DoctorService {
   updateNotes(note: Notes): Observable<any> {
     return this.httpClient.put(environment.apiUrl + '/api/DoctorsNotes', note);
   }
-// Adding Medicine Advice
-  insertMedicineAdvice(medadv:any):Observable<any>
-  {
-    return this.httpClient.post('https://localhost:44381/api/MedicineAdvice',medadv);
+  // Adding Medicine Advice
+  insertMedicineAdvice(medadv: any): Observable<any> {
+    return this.httpClient.post(
+      'https://localhost:44381/api/MedicineAdvice',
+      medadv
+    );
   }
 
-  // Adding Test Advice 
-  insertTestAdvice(testadv:any):Observable<any>
-  {
-    return this.httpClient.post('https://localhost:44381/api/TestReport',testadv);
+  // Adding Test Advice
+  insertTestAdvice(testadv: any): Observable<any> {
+    return this.httpClient.post(
+      'https://localhost:44381/api/TestReport',
+      testadv
+    );
   }
 
-  insertMedicineDetails(med:Medicinedetails):Observable<any>
-  {
-    return this.httpClient.post(' https://localhost:44381/api/MedicineDetails',med);
+  insertMedicineDetails(med: Medicinedetails): Observable<any> {
+    return this.httpClient.post(
+      ' https://localhost:44381/api/MedicineDetails',
+      med
+    );
   }
-  insertTestDetails(test:Testdetails):Observable<any>
-  {
-    return this.httpClient.post(' https://localhost:44381/api/TestAdvice',test);
+  insertTestDetails(test: Testdetails): Observable<any> {
+    return this.httpClient.post(
+      ' https://localhost:44381/api/TestAdvice',
+      test
+    );
   }
-//======================Patch=================================
-  UpdateAppointment(id:number,form:any):Observable<any>
-{
-  return this.httpClient.patch('https://localhost:44381/api/Appointments/'+id,form);
-}
-
+  //======================Patch=================================
+  UpdateAppointment(id: number, form: any): Observable<any> {
+    return this.httpClient.patch(
+      'https://localhost:44381/api/Appointments/' + id,
+      form
+    );
+  }
 }

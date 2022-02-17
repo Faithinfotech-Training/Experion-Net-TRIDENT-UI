@@ -43,6 +43,13 @@ import { EditmedicineComponent } from './pharmacist/editmedicine/editmedicine.co
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ViewTestComponent } from './lab-technician/view-test/view-test.component';
+import { StaffComponent } from './admin/staff/staff.component';
+import { StaffListComponent } from './admin/staff-list/staff-list.component';
+import { QualificationComponent } from './admin/qualification/qualification.component';
+
+import { LabtTestService } from './shared/services/labt-test.service';
+import { StaffService } from './shared/services/staff.service';
+
 
 @NgModule({
   declarations: [
@@ -75,6 +82,9 @@ import { ViewTestComponent } from './lab-technician/view-test/view-test.componen
     ViewmedicinebillComponent,
     EditmedicineComponent,
     ViewTestComponent,
+    StaffComponent,
+    QualificationComponent,
+    StaffListComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +101,7 @@ import { ViewTestComponent } from './lab-technician/view-test/view-test.componen
     CommonModule,
     FontAwesomeModule,
   ],
-  providers: [AuthService, PatientService],
+  providers: [AuthService, PatientService,LabtTestService,StaffService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

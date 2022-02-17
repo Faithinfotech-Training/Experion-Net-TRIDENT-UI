@@ -77,143 +77,86 @@
 
 <div class="container-fluid">
   <div class="card p-5 my-3" style="border-bottom: 2px solid #38b6ff">
-    <div>
-      <h2 class="display-6 my-2 text-center">Add Doctors Notes</h2>
+    <div style="display: flex; justify-content: space-evenly">
+      <div></div>
+      <div></div>
+      <h2 class="display-6 my-2 text-center">Doctors Notes</h2>
+      <button
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Add Note
+      </button>
+      <div></div>
     </div>
 
     <!-- main doctors notes -->
-    <div class="notes row p-3" *ngFor="let app of doctorService.appointment">
-      <!-- left div  -->
-
-      <div class="addnote col-md-6">
-        <form
-          name="empForm"
-          #form="ngForm"
-          autocomplete="off"
-          (ngSubmit)="onSubmit(form)"
-        >
-          <!-- input filed appointmentID  -->
-
-          <div class="form-group">
-            <input
-              type="hidden"
-              name="AppointmentId"
-              value="{{ app.AppointmentId }}"
-              [(ngModel)]="doctorService.formData.AppointmentId"
-              class="form-control"
-            />
-          </div>
-          <!-- input field for patient id  -->
-          <div class="form-group">
-            <input
-              type="hidden"
-              name="PatientId"
-              value=" {{ patientId }}"
-              [(ngModel)]="doctorService.formData.PatientId"
-              class="form-control"
-            />
-          </div>
-          <!-- input field for doctor id -->
-          <div class="form-group">
-            <input
-              type="hidden"
-              name="DoctorId"
-              value="{{ app.DoctorId }}"
-              [(ngModel)]="doctorService.formData.DoctorId"
-              class="form-control"
-            />
-          </div>
-          <!-- input for doctors notes  -->
-          <div class="form-group">
-            <textarea
-              type="text"
-              name="DoctorsNotes"
-              [(ngModel)]="doctorService.formData.DoctorsNotes"
-              class="form-control"
-              placeholder="Enter Doctors Notes"
-              required
-              style="
-                border: 1px solid #38b6ff;
-                border-radius: 0.3rem;
-                height: 10rem;
-              "
-            ></textarea>
-          </div>
-
-          <!-- <input
-            type="text"
-            class="form-control"
-            name="Note"
-            class="form-control"
-            minlength="3"
-            required
-            #Note
-            style="
-              border: 1px solid #38b6ff;
-              border-radius: 0.3rem;
-              height: 10rem;
-            "
-          /> -->
-
-          <br />
-          <!-- submit  -->
-          <div class="form-group">
-            <button
-              type="submit"
-              class="btn btn-primary form-control"
-              [disabled]="!(form.valid && form.dirty)"
-            >
-              Submit
-            </button>
-          </div>
-          <!-- <button class="btn btn-primary my-2 text-center (click)="DoPost(Note.value)"">
-            
-            Add Post
-          </button> -->
-        </form>
-
-      </div>
-
-      <!-- end left div  -->
+    <div
+      class="notes row p-3"
+      style="display: flex; justify-content: center"
+      *ngFor="let app of doctorService.appointment"
+    >
       <!-- right div  -->
+
       <div
-        class="notes-list card col-md-6 p-3"
-        style="border: 1px solid #38b6ff"
+        class="preNote p-2 px-5 m-1"
+        *ngFor="let noteItem of this.doctorService.patientNotes; let i = index"
       >
-        <h2 class="lead my-4 text-center">Doctors Notes</h2>
-        <div
-          class="preNote p-2 m-1"
-          *ngFor="let noteItem of this.doctorService.patientNotes"
-        >
-          <p class="m-1">
-            {{ noteItem.Note }}
-          </p>
-        </div>
+        <p class="px-5">{{ i + 1 }} : {{ noteItem.Note }}</p>
       </div>
+
       <!-- end right div  -->
     </div>
   </div>
   <!-- end doctors notes  -->
 
-  <!-- Buttons to Add Medicine Advice and  Test Advice -->
-  <div style="display: flex; flex-direction:column;justify-content: space-evenly; " >
-    <select required id="doc" name="PharmID" #PharmId="ngModel" [(ngModel)]="PharmID">
-      <option *ngFor="let pharm of doctorService.pharms"  value="{{pharm.StaffId}}">{{pharm.Name}}</option> >
-  </select>
-  <button class="btn btn-primary" (click)="addMedicineadvice(PharmID)">Add Medicine Advice </button> &nbsp; &nbsp;
-  <select required id="doc" name="TechID" #TechId="ngModel" [(ngModel)]="TechID">
-    <option *ngFor="let tech of doctorService.techs" value="{{tech.StaffId}}">{{tech.Name}}</option> >
-</select>
-  <button class="btn btn-primary" (click)="addLabTestAdvice(TechID)">Add Test Advice </button>
-</div>
   <!-- labtest  -->
-  <div id="labTestDiv" class="card p-5 my-3" style="border-bottom: 2px solid #38b6ff;">
+  <div
+    id="labTestDiv"
+    class="card p-5 my-3"
+    style="border-bottom: 2px solid #38b6ff"
+  >
     <div>
-      <div style="display:flex; justify-content:space-evenly;">
-      Test Advice ID : {{TestAdId}} 
-      <button class="btn btn-info" (click)="TestSubmit()">Add Test List</button>
-    </div>
       <h4 class="display-6 my-4 text-center">Add Lab Test</h4>
+    </div>
+    <!-- select lab technician  -->
+    <div
+      class="px-5"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+      "
+    >
+      <div class="instruction">
+        <p class="lead text-center">
+          Please select a lab technician to generate test advice
+        </p>
+      </div>
+      <div class="" style="display: flex; flex-direction: column; justify-content: center;">
+        <select
+          class="mx-5"
+          required
+          id="doc"
+          name="TechID"
+          #TechId="ngModel"
+          [(ngModel)]="TechID"
+        >
+          <option
+            *ngFor="let tech of doctorService.techs"
+            value="{{ tech.StaffId }}"
+          >
+            {{ tech.Name }}
+          </option>
+          >
+        </select>
+
+        <!-- add the selected lab technician and generate lab test id -->
+        <button class="btn btn-primary" (click)="addLabTestAdvice(TechID)">
+          Generate Test Advice ID
+        </button>
+      </div>
     </div>
     <div
       class="container"
@@ -257,7 +200,11 @@
         </div>
         <!-- submit  -->
         <div class="form-group">
-          <button type="button" class="btn btn-primary form-control" (click)="addTestPrescription(TestId)" >
+          <button
+            type="button"
+            class="btn btn-primary form-control"
+            (click)="addTestPrescription(TestId)"
+          >
             Add Test
           </button>
         </div>
@@ -267,26 +214,52 @@
       <p class="lead text-center">Added Prescriptions</p>
       <div
         class="prescription d-flex justify-content-center"
-        *ngFor="let item of TestDetails">
+        *ngFor="let item of TestDetails"
+      >
         <p>{{ item.TestId }}</p>
       </div>
+    </div>
+    <div style="display: flex; justify-content: space-evenly">
+      Test Advice ID : {{ TestAdId }}
+      <button class="btn btn-info" (click)="TestSubmit()">Add Test List</button>
     </div>
   </div>
 
   <!-- end lab test  -->
 
-
-
-
   <!-- prescription  -->
-  
-  <div id="prescriptionDiv" class="card p-5 my-3" style="border-bottom: 2px solid #38b6ff; display: none;">
-    <div style="display:flex; justify-content:space-evenly;">
-       Medicine Advice ID : {{MedAdId}} 
-       <button class="btn btn-info" (click)="MedSubmit()">Add Medicine List</button>
-      </div>
-      <h2 class="display-6 my-4 text-center">Add Medicine Prescriptions</h2>
-   
+
+  <div
+    id="prescriptionDiv"
+    class="card p-5 my-3"
+    style="border-bottom: 2px solid #38b6ff"
+  >
+    <h2 class="display-6 my-4 text-center">Add Medicine Prescriptions</h2>
+    <div class="" style="display: flex; flex-direction: row">
+      <select
+        required
+        id="doc"
+        name="PharmID"
+        #PharmId="ngModel"
+        [(ngModel)]="PharmID"
+      >
+        <option selected disabled>Select Pharmacist</option>
+        <option
+          *ngFor="let pharm of doctorService.pharms"
+          value="{{ pharm.StaffId }}"
+        >
+          {{ pharm.Name }}
+        </option>
+        >
+      </select>
+      <button class="btn btn-primary" (click)="addMedicineadvice(PharmID)">
+        Create Medicine Advice ID
+      </button>
+    </div>
+    <div style="display: flex; justify-content: space-evenly">
+      Medicine Advice ID : {{ MedAdId }}
+    </div>
+
     <div class="container" style="display: flex; flex-direction: column">
       <form
         name="empForm"
@@ -294,10 +267,10 @@
         autocomplete="off"
         (ngSubmit)="onSubmit(form)"
       >
-        <div class="container" style="display: flex; flex-direction: row" >
-          <select  
+        <div class="container" style="display: flex; flex-direction: row">
+          <select
             name="MedId"
-            #medId="ngModel" 
+            #medId="ngModel"
             [(ngModel)]="MedId"
             class="form-control"
             id="medicineId"
@@ -313,30 +286,124 @@
               {{ med.MedicineName }}
             </option>
           </select>
-          <input  name="MedQty" 
-           #medQty="ngModel" 
-           [(ngModel)]="MedQty"
+          <input
+            name="MedQty"
+            #medQty="ngModel"
+            [(ngModel)]="MedQty"
             class="mx-1"
             type="number"
             placeholder="Quantity"
             style="border: 0px; border-bottom: 3px solid #38b6ff"
             id="qtyId"
-
           />
-          <button class="btn btn-primary mx-2" style="width: 13rem" (click)=" addMedPrescription(MedId,MedQty)">
+          <button
+            class="btn btn-primary mx-2"
+            style="width: 13rem"
+            (click)="addMedPrescription(MedId, MedQty)"
+          >
             Add Medicine
           </button>
         </div>
-      </form>
-      <div class="medList my-4">
-        <p class="lead text-center">Added Medicines</p>
-        <div *ngFor="let med of MedDetails"> 
-          <p>{{med.MedicineId}} {{med.Quantity}}</p>
+        <div class="medList my-4">
+          <p class="lead text-center">Medicines List</p>
+          <div *ngFor="let med of MedDetails">
+            <p>
+              {{ med.MedicineId }} {{ med.Quantity }} {{ med.MedicineName }}
+            </p>
+          </div>
         </div>
-      </div>
+        <div class="m-5" style="display: flex; justify-content: center">
+          <button class="btn btn-info" (click)="MedSubmit()">
+            Add Medicine List
+          </button>
+        </div>
+      </form>
     </div>
   </div>
   <div class="row my-3">
-    <div class="btn btn-primary text-center" (click)="markAsDone()">MARK AS DONE</div>
+    <div class="btn btn-primary text-center" (click)="markAsDone()">
+      MARK AS DONE
+    </div>
+  </div>
+</div>
+
+<!-- modals -->
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Doctor Note</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div
+          class="addnote p-2"
+          style="display: flex; flex-direction: row; justify-content: center"
+        >
+          <!-- model driven form  -->
+          <form
+            [formGroup]="notesForm"
+            (ngSubmit)="noteSubmit(notesForm.value)"
+          >
+            <!-- appointment id  -->
+            <input
+              type="number"
+              name="NoteId"
+              id="NoteId"
+              formControlName="NoteId"
+              hidden
+            />
+            <!-- patient id  -->
+            <input
+              type="number"
+              name="PatientId"
+              id="PatientId"
+              placeholder="choose patient id"
+              formControlName="PatientId"
+              class="my-3"
+            />
+            <!-- doctor id  -->
+            <input
+              type="number"
+              name="DoctorId"
+              id="DoctorId"
+              formControlName="DoctorId"
+              hidden
+            />
+            <!-- doctor note  -->
+            <textarea
+              name="Note"
+              id="Note"
+              formControlName="Note"
+              placeholder="Enter Doctor Note"
+              class="my-3"
+              style="border: opx; border-bottom: 3px solid #38b6ff; width: 100%"
+            ></textarea>
+            <!-- button  -->
+            <div class="row">
+              <button class="btn btn-primary my-3" type="submit">
+                Add Note
+              </button>
+            </div>
+          </form>
+          <!-- end forms  -->
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -54,7 +54,7 @@
     class="colorbar"
     style="
       height: 1rem;
-      background: linear-gradient(to right, #2c2c2a, #011d2e);
+      background: linear-gradient(to right, #c9e265, #38b6ff);
       border-radius: 1.5rem;
     ">
   </div>
@@ -63,21 +63,21 @@
     <div class="row">
       <h2 class="display-6 my-1">Dashboard</h2>
     </div><br>
-    <div class="parent" style="background-color: #2e2e2e;">
+    <div class="parent" style="background-color: #468092;">
       <div class="dropdown">
           <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         Staff
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Add Staffs</a></li>
-            <li><a class="dropdown-item" href="#">View Staffs</a></li>
-            <li><a class="dropdown-item" href="#">Update Staff</a></li>
-            <li><a class="dropdown-item" href="#">Remove Staff</a></li>
+            <li><a class="dropdown-item" href="#" (click)="toAddStaff()">Add Staffs</a></li>
+            <li><a class="dropdown-item" href="#" routerLink="/staff-list">View Staffs</a></li>
+            <!-- <li><a class="dropdown-item" href="#" routerLink="/staff-list">Update Staff</a></li> -->
+            <li><a class="dropdown-item" href="#" routerLink="/admin">Remove Staff</a></li>
             <li><a class="dropdown-item" >_____________</a></li>
-            <li><a class="dropdown-item" href="#">Update Qualifications</a></li>
+            <li><a class="dropdown-item" href="#" routerLink="/add-qualification" >Add Qualifications</a></li>
           </ul>
         </div>
-        <div class="dropdown">
+        <!-- <div class="dropdown">
           <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
        Medicines
           </button>
@@ -86,13 +86,13 @@
             <li><a class="dropdown-item" >Update Medicines</a></li>
             <li><a class="dropdown-item" >View Medicines</a></li>
           </ul>
-        </div>
+        </div> -->
         <div class="dropdown">
             <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
          Reports
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" ></a></li>
+              <li><a class="dropdown-item" >view medicine stock report</a></li>
               <li><a class="dropdown-item" ></a></li>
               <li><a class="dropdown-item" ></a></li>
             </ul>

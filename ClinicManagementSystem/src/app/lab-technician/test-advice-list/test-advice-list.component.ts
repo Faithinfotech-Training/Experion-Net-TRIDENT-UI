@@ -19,6 +19,8 @@ tID:number=0;
   LabBill:any;
   patch:any; //patch
   constructor(private authService: AuthService,public labtestService:LabtTestService,private router: Router,private route: ActivatedRoute,private toaster:ToastrService) { }
+  page:number=1;
+  filter:string;
 
   ngOnInit(): void {
     this.tID = this.route.snapshot.params['tID'];

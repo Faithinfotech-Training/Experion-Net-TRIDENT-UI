@@ -18,7 +18,7 @@
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle active" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Tridents
+                        {{ loggedUser |uppercase }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" (click)="logOut()">Logout</a></li>
@@ -36,9 +36,7 @@
 </div>
 
 <header>
-    <div class="container">
-        <h5>Welcome : {{ loggedUser |uppercase }}</h5>
-    </div>
+    
     <div>
         <nav class="nav" style="display:-webkit-inline-flex;  margin-left: 40%; padding: 6px;">
             <ul class="nav">
@@ -69,13 +67,12 @@
 
 <div class="container">
     <div class="header">
-        <div class="form-control mt-2" style="width: 300px;">
-            <input class="form-control" type="text" placeholder="search" [(ngModel)]="filter">
+        <div class="form-control " >
+            <input class="form-control" style="padding: 10px; margin-top: 20px; margin-bottom: 20px;" type="text" placeholder="search" [(ngModel)]="filter">
             <!-- {{filter}} -->
-            <!-- [(ngModel)]="filter"{{filter}} -->
+            
         </div>
 
-     
                     <!-- button -->
                    
                     <!-- &nbsp;
