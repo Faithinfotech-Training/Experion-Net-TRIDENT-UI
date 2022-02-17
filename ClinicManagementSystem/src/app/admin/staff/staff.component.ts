@@ -25,6 +25,7 @@ export class StaffComponent implements OnInit {
     this.staffService.bindListStaffs();
     this.staffService.bindListQualifications();
     this.staffService.bindListRoles();
+    
 
     //get sID from ActivateRoute
     this.sID = this.route.snapshot.params['sID'];
