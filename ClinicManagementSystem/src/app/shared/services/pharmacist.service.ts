@@ -16,6 +16,7 @@ export class PharmacistService {
   med: Medicine[];
   medicinebills: Medicinebill[];
   stock: any[];
+  medadid:number;
 
   // form controls
   //retrieve all data from getAll employees -- http -- HttpClient
@@ -36,11 +37,12 @@ export class PharmacistService {
   }
   bindListMedicineAdvicesById(id: number) {
     this.httpClient
-      .get(environment.apiUrl + '/api/MedicineAdvice/patient/' + id)
+      .get(environment.apiUrl + '/api/MedicineAdvice/id/' + id)
       .toPromise()
       .then((response) => {
         this.medAdvice = response as any[];
         this.medAdvice = Array.of(this.medAdvice);
+        this.medadid=this.medAdvice[0].MedicineAdviceId;
         console.log(response);
       });
   }
@@ -117,5 +119,10 @@ export class PharmacistService {
         this.stock = Array.of(this.stock);
         console.log(response);
       });
+  }
+
+  //Adding Medicine Bill
+  insertMedicineBill(med:any): Observable<any> {
+    return this.httpClient.post( 'https://localhost:44381/api/MedicineBill',med );
   }
 }

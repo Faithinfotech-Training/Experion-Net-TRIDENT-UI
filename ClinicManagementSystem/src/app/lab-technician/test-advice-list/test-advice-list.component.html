@@ -34,59 +34,39 @@
       background: linear-gradient(to right, #c9e265, #38b6ff);
       border-radius: 1.5rem;">
 </div>
-
-
-<div class="container" style=" padding: 10px;">
-    <h3 style="padding-left: 60px;">Test Advices </h3>
+<div class="container-lg" *ngFor="let test of labtestService.testreps" style="border: 1px solid black;  border-radius:20px;"><br>
+<a href="/lab-technician" class="btn btn-outline-dark">Back</a>
+<h3 style="text-align: center;">Lab Test  </h3>
+<h5>Test Report No:{{test.TestReportId}}</h5>
+<h6> Patient Name:{{test.PatientName}}</h6>
+<h6> Mobile No:{{test.Mobile}}</h6>
+<h6>Sex:{{test.Sex}}</h6>
+<h6>Appointment Date:{{test.AppointmentDate|date:'dd-MMM-yyyy'}}</h6>
+<h4 style="text-align: center;">Tests</h4>
+<table class="table table-striped table-bodered">
+    <thead style="background-color: yellow;">
+     <th>Test Name</th>
+     <th>Unit</th>
+     <th>Test Value</th>
+     <th>Min Range</th>
+     <th>Max Range</th>
+     <th>Price</th>
+     <th>Action</th>
+    </thead> 
+    <tbody>
+        <tr *ngFor="let item of test.TestDetails; let i=index ">
+            <td style="display: none;">{{item.TestId}}</td>
+            <td>{{item.TestName}}</td>
+            <td>{{item.Unit}}</td>
+            <td><input type="number"  value="{{item.TestValue}}" id="{item.TestValue}" name="TestValue" #Testvalue="ngModel" [(ngModel)]="TestValue"> </td> <!-- #Testvalue="ngModel" [ngModel]="newObject[value]-->
+            <td>{{item.MinRange}}</td>
+            <td>{{item.MaxRange}}</td>
+            <td>{{item.Price}}</td>
+            <td><button class="btn-sm btn-dark" (click)="Submit(TestValue,item.TestId)">Add </button></td>
+        </tr>
+    </tbody>
+   
+</table>
+<span style="display:flex; justify-content:center" (click)="GenBill()"><button  class="btn btn-warning" >Generate Bill </button></span>
 </div>
 
-
-<div class="container">
-    <div class="header">
-        <div class="form-control mt-2" style="width: 300px;">
-            <input class="form-control" type="text" placeholder="search" [(ngModel)]="filter">
-            <!-- {{filterTwo}} -->
-           
-        </div>
-
-       
-    </div>
-    <table class="table table-bordered table-striped">
-        <thead class="table-head " style="background-color: rgb(118, 197, 211);">
-            <tr>
-                <th>TestAdviceID</th>
-                <th>Patient Name</th>
-                <th>Patient Mobile </th>
-                <th>Doctor Name</th>
-                <th>Receptionist Name</th>
-                <th>Appointment Date</th>
-                <th>Test Names</th>
-                <!-- <th>Action</th> -->
-
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr
-                *ngFor="let ta of labtestService.testadvices | filter: filter | paginate: {itemsPerPage :2, currentPage: page} ">
-                <td>{{ta.TestAdviceId}}</td>
-                <td>{{ta.PatientName}}</td>
-                <td>{{ta.Mobile}}</td>
-                <td>{{ta.DoctorName}}</td>
-                <td>{{ta.ReceptionistName}}</td>
-                <td>{{ta.AppointmentDate | date: 'dd-MMM-yyyy'}}</td>
-                <td>{{ta.TestName}}</td>
-                <td>
-                     <!-- button  -->
-                     <!-- (click)="updateTestAdvice(ta.TestAdviceId)" -->
-                    <!-- <button class="btn btn-sm btn-info" >Update Value</button> -->
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <footer>
-        <!-- pagination -->
-        <pagination-controls (pageChange)="page =($event)"></pagination-controls>
-
-    </footer>
-</div>

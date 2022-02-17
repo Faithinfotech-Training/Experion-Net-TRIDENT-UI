@@ -29,6 +29,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { ViewreportComponent } from './lab-technician/viewreport/viewreport.component';
 import { ViewmedicinebillComponent } from './pharmacist/viewmedicinebill/viewmedicinebill.component';
 import { EditmedicineComponent } from './pharmacist/editmedicine/editmedicine.component';
+import { ViewTestComponent } from './lab-technician/view-test/view-test.component';
 import { StaffListComponent } from './admin/staff-list/staff-list.component';
 import { StaffComponent } from './admin/staff/staff.component';
 import { QualificationComponent } from './admin/qualification/qualification.component';
@@ -54,7 +55,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '1' },
   },
-
+//==========Lab Technician=======================
   {
     path: 'lab-technician',
     component: LabTechnicianComponent,
@@ -69,6 +70,15 @@ const routes: Routes = [
   },
   { path: 'add-test', component: TestComponent },
   { path: 'update-test/:tID', component: TestComponent },
+  { path: 'update-testreport/:tID', component:TestAdviceListComponent },
+  {
+    path: 'viewtest',
+    component:ViewTestComponent,
+    canActivate: [AuthGuard],
+    data: { RoleId: '4' },
+  },
+
+
   { path: 'test-advice-list', component: TestAdviceListComponent },
 
   //===================patient=============================
@@ -83,6 +93,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '3' },
   },
+  { path: 'patient-list', component: PatientListComponent },
+  { path: 'patient-list/dashboard', component: PatientListComponent },
+  { path: 'add-patient', component: PatientComponent },
+  { path: 'update-patient/:pID', component: PatientComponent },
   {
     path: 'receptionist/viewappointment',
     component: ViewappointmentsComponent,
@@ -135,7 +149,7 @@ const routes: Routes = [
   { path: 'staff-list', component:StaffListComponent},
   { path: 'add-staff', component:StaffComponent},
   { path: 'update-staff/:sID', component:StaffComponent},
-  { path: 'add-qualification', component: QualificationComponent},
+  { path: 'add-qualification', component:QualificationComponent},
   //=============================Pharmacist================================
   {
     path: 'pharmacist',
