@@ -202,10 +202,10 @@ export class ViewappointmentComponent implements OnInit {
   }
 
   showSuccess() {
-    this.toastr.success('Employee Updated Successfully', 'Success!');
+    this.toastr.success('Changes Made', 'Success!');
   }
   showFailure() {
-    this.toastr.error('Employee Updated Failed', 'Failure!');
+    this.toastr.error('Updated Failed', 'Failure!');
   }
 
   //push labtest to labtest array
@@ -333,13 +333,17 @@ export class ViewappointmentComponent implements OnInit {
     this.doctorService.UpdateAppointment(aid, pah).subscribe(
       (result) => {
         console.log(result);
-        alert('Patient Got Served');
         this.toastr.info('Sucessfully Updated', 'Serviced Patient');
-        //this.router.navigateByUrl('/doctor');
+        this.router.navigateByUrl('/doctor');
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  GoBack()
+  {
+    this.router.navigateByUrl('/doctor');
   }
 }

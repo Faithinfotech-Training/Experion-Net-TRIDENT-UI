@@ -37,13 +37,12 @@ export class DoctorComponent implements OnInit {
   //view patient details
   updatePatient(id: number) {
     this.router.navigate(['viewappointments', id]);
-    console.log(id);
+   // console.log(id);
   }
 
   //get appointment number
   updateAppointment(appointmentId: number) {
     console.log('the appointment id is ' + appointmentId);
-
     this.appointmentId = appointmentId;
   }
 

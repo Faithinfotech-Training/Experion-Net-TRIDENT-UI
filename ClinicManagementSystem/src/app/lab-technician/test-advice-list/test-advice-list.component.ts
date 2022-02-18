@@ -40,7 +40,9 @@ tID:number=0;
   this.labtestService.updateLabReportTests(tid,pa).subscribe(
     (result)=>{
       console.log(result);
+      this.labtestService.bindListReportsById(this.tID);
       this.toaster.info("Sucessfully Updated","Lab Test Value");
+
     },
     (error)=>{
       console.log(error);
