@@ -148,7 +148,7 @@ export class ViewappointmentComponent implements OnInit {
     if (addId == 0 || addId == null) {
       this.insertNote(form.value);
       console.log('posted the values');
-      this.toastr.success('Success', 'Note Added');
+      this.toastr.success('Success', 'Inserted');
 
       this.resetForm(form);
     } else {
@@ -156,7 +156,7 @@ export class ViewappointmentComponent implements OnInit {
       console.log('updated');
       this.updateNote(form);
       this.resetForm(form);
-      this.toastr.success('Success', 'Note Updated');
+      this.toastr.success('Success', 'Updated');
     }
   }
   //insert method
