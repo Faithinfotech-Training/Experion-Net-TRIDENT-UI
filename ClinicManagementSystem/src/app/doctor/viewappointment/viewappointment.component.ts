@@ -302,11 +302,11 @@ export class ViewappointmentComponent implements OnInit {
   TestSubmit() {
     for (let i = 0; i < this.TestDetails.length; i++) {
       console.log(this.TestDetails[i]);
+      this.visible = !this.visible;
       this.doctorService.insertTestDetails(this.TestDetails[i]).subscribe(
         (res) => {
           console.log(res);
           console.log('Inserted Test Details' + i);
-          this.visible = !this.visible;
         },
         (error) => {
           console.log(error);
@@ -325,6 +325,12 @@ export class ViewappointmentComponent implements OnInit {
       );
       // this.toaster.info("Patient is Serviced ","Doctor ");
       // Navigate Back
+      // this.router.navigate(['/doctor']);
+      // time out function
+      setTimeout(() => {
+        console.log('time out functionS');
+        this.doctorService.navDoc();
+      }, 4000);
     }
   }
   UpdatePath(aid: number, pah: any) {
