@@ -239,6 +239,7 @@ export class ViewappointmentComponent implements OnInit {
     this.medicineAdvice.AppointmentId = this.appointmentId;
     this.medicineAdvice.DoctorId = +this.staffId;
     this.medicineAdvice.PharmacistId = +pharmId;
+    this.medicineAdvice.Status=+1;
     console.log(this.medicineAdvice);
     this.AddMedAdv(this.medicineAdvice);
     this.show = !this.show;
@@ -296,6 +297,7 @@ export class ViewappointmentComponent implements OnInit {
     this.testAdvice.DoctorId = +this.staffId;
     this.testAdvice.LabTechnicianId = +techId;
     this.testAdvice.TestAmount = 0;
+    this.testAdvice.Status=+1;
     console.log(this.testAdvice);
     this.AddTestAdv(this.testAdvice); //uncomment
     this.toastr.success('Test Advice ID Generated Successfully', 'Success!');
@@ -304,7 +306,7 @@ export class ViewappointmentComponent implements OnInit {
   }
   AddTestAdv(testadv: any) {
     console.log('Inserting  Test Advice record');
-    this.doctorService.insertMedicineAdvice(testadv).subscribe(
+    this.doctorService.insertTestAdvice(testadv).subscribe(
       (res) => {
         console.log(res);
         this.TestAdId = +res;
@@ -366,6 +368,7 @@ export class ViewappointmentComponent implements OnInit {
         // alert('Patient Got Served');
         this.toastr.success('Patient Got Served', 'Doctor');
         this.toastr.info('Sucessfully Updated', 'Serviced Patient');
+        this.router.navigateByUrl('/doctor');
       },
       (error) => {
         console.log(error);

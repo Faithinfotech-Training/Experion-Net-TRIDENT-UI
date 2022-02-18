@@ -49,6 +49,7 @@ import { QualificationComponent } from './admin/qualification/qualification.comp
 
 import { LabtTestService } from './shared/services/labt-test.service';
 import { StaffService } from './shared/services/staff.service';
+//import { NgxBootstrapIconsModule,allIcons } from 'ngx-bootstrap-icons';
 
 
 @NgModule({
@@ -64,7 +65,6 @@ import { StaffService } from './shared/services/staff.service';
     PatientListComponent,
     PatientComponent,
     ViewappointmentComponent,
-
     PrescriptionComponent,
     MedicinesComponent,
     AddmedicineComponent,
@@ -100,6 +100,7 @@ import { StaffService } from './shared/services/staff.service';
     ToastrModule.forRoot(),
     CommonModule,
     FontAwesomeModule,
+   // NgxBootstrapIconsModule.pick(allIcons),
   ],
   providers: [AuthService, PatientService,LabtTestService,StaffService],
   bootstrap: [AppComponent],
