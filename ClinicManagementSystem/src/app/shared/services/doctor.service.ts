@@ -42,6 +42,7 @@ export class DoctorService {
       .toPromise()
       .then((response) => {
         this.appointments = response as Appointments[];
+        this.patientId = this.appointment[0][0].PatientId;
         console.log(response);
       });
   }
@@ -201,5 +202,23 @@ export class DoctorService {
   //route to doctors page
   navDoc() {
     this.router.navigate(['doctor']);
+  }
+
+  //get appointmrnt details
+  getAppointmentDetails(id: number): Observable<any> {
+    return this.httpClient.get(
+      environment.apiUrl + '/api/Appointments/ViewAppointmentById/' + id
+    );
+  }
+
+  //delete notes
+  bindDeleteNotes(id: number) {
+    this.httpClient
+      .delete(environment.apiUrl + '/api/DoctorsNotes/' + id)
+      .toPromise()
+      .then((response) => {
+        console.log(response);
+        console.log('note deleted');
+      });
   }
 }

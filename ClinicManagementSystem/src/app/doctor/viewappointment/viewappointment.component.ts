@@ -13,6 +13,7 @@ import { Test } from 'src/app/shared/class/test';
 import { Medicinedetails } from 'src/app/shared/class/medicinedetails';
 import { Testdetails } from 'src/app/shared/class/testdetails';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Appointments } from 'src/app/shared/class/appointments';
 
 @Component({
   selector: 'app-viewappointment',
@@ -33,6 +34,7 @@ export class ViewappointmentComponent implements OnInit {
   appointmentId: number = 0;
   patientId: number;
   DoctorId: number;
+  appointmentDetails: Appointments[] = [];
 
   patch: any; // Updating Status
   //----Medicine Group-----------
@@ -76,23 +78,32 @@ export class ViewappointmentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.patientId = this.route.snapshot.params['id'];
+    this.appointmentId = this.route.snapshot.params['id'];
     console.log('Binding Appointments');
-    this.doctorService.bindListAppointmentsByID(+this.patientId);
-    console.log('patient id is ' + this.patientId);
-
+    this.doctorService.bindListAppointmentsByID(+this.appointmentId);
+    this.getAppointmentDetails(this.appointmentId);
+    console.log('patient is ' + this.doctorService);
     // this.appointmentId = this.doctorService.appointmentId;
 
     this.notesForm = new FormGroup({
       NoteId: new FormControl(0),
-      Note: new FormControl(''),
+      Note: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(500),
+        Validators.minLength(5),
+      ]),
       DoctorId: new FormControl(+this.staffId),
-      PatientId: new FormControl(0),
-      AppointmentId: new FormControl(+this.patientId),
+      PatientId: new FormControl(0, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(100),
+        Validators.pattern('^[0-9]*$'),
+      ]),
+      AppointmentId: new FormControl(+this.appointmentId),
     });
 
     console.log('patient details');
-    this.doctorService.bindlistPatientNotes(+this.patientId);
+    this.doctorService.bindlistPatientNotes(+this.appointmentId);
     this.doctorService.BindPharmList();
     this.doctorService.BindTechnicianList();
     this.doctorService.bindListTests();
@@ -100,7 +111,7 @@ export class ViewappointmentComponent implements OnInit {
   }
   //get form controls
   get formControls() {
-    return this.addPostForm.controls;
+    return this.notesForm.controls;
   }
   // ? form submission notes
   noteSubmit(notes) {
@@ -134,6 +145,21 @@ export class ViewappointmentComponent implements OnInit {
         }
       );
     }
+  }
+
+  //get appointment details
+  getAppointmentDetails(id: number) {
+    this.doctorService.getAppointmentDetails(id).subscribe(
+      (res) => {
+        this.appointmentDetails = res;
+        console.log('appointment details');
+
+        console.log(this.appointmentDetails);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   //logout function
@@ -216,7 +242,10 @@ export class ViewappointmentComponent implements OnInit {
     console.log(this.medicineAdvice);
     this.AddMedAdv(this.medicineAdvice);
     this.show = !this.show;
-    this.toastr.success('Medicine Advice Added Successfully', 'Success!');
+    this.toastr.success(
+      'Medicine Advice ID Generated Successfully',
+      'Success!'
+    );
     //----------Adding Medicine Advice---------------
     //this.MedAdId=1;
     //alert('Appointment Id:'+this.appointmentId+' Doctor ID:'+this.staffId +' PharmId:'+pharmId);
@@ -269,6 +298,7 @@ export class ViewappointmentComponent implements OnInit {
     this.testAdvice.TestAmount = 0;
     console.log(this.testAdvice);
     this.AddTestAdv(this.testAdvice); //uncomment
+    this.toastr.success('Test Advice ID Generated Successfully', 'Success!');
     // show div
     this.visible = !this.visible;
   }
@@ -341,5 +371,12 @@ export class ViewappointmentComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  deleteNote(id: number) {
+    this.doctorService.bindDeleteNotes(id);
+    this.toastr.success('Note Deleted Successfully', 'Success!');
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   }
 }

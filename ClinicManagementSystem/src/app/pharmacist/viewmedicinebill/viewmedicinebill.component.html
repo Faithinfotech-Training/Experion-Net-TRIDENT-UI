@@ -1,9 +1,10 @@
 <!-- navbar  -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<!-- navbar  -->
+<nav class="navbar navbar-expand-lg shadow" style="background: #38b6ff">
   <div class="container-fluid">
     <a class="navbar-brand"
       ><img
-        src="../../assets/images/logo small.png"
+        src="../../assets/images/logo.png"
         class="img-fluid img logo"
         alt=""
     /></a>
@@ -23,25 +24,47 @@
       id="navbarNavDropdown"
     >
       <ul class="navbar-nav mx-3">
+        <!-- <li class="nav-item">
+          <a class="nav-link active text-bold button2" routerLink="/doctor"
+            >Dashboard</a
+          >
+        </li> -->
         <li class="nav-item">
-          <a class="nav-link active text-bold" routerLink="/pharmacist"
+          <a class="nav-link active text-bold button2" routerLink="/pharmacist"
             >Medicine Advices</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/medicines"
+          <a
+            class="nav-link active button2"
+            aria-current="page"
+            routerLink="/medicines"
             >Medicines</a
           >
         </li>
 
         <li class="nav-item dropdown active">
           <a
-            class="nav-link dropdown-toggle active"
+            class="nav-link dropdown-toggle active button2"
             id="navbarDropdownMenuLink"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="19"
+              height="19"
+              fill="currentColor"
+              class="bi bi-person-circle mx-3"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+              />
+            </svg>
             {{ this.username }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -54,21 +77,12 @@
     </div>
   </div>
 </nav>
-<!-- navbar  -->
-<div
-  class="colorbar"
-  style="
-    height: 1rem;
-    background: linear-gradient(to right, #c9e265, #38b6ff);
-    border-radius: 1.5rem;
-  "
-></div>
 <!-- content  -->
 
-<div class="container">
+<div class="container-fluid">
   <h3 class="display-6 my-3">Medicine Bill</h3>
   <div
-    class="shadow-sm p-2"
+    class="shadow-sm p-5 m-2"
     style="border: 0px; border-bottom: 3px solid #38b6ff"
   >
     <div class="form-control" style="border: 0px">
@@ -159,7 +173,7 @@
     <button
       printTitle="Clinic Management System"
       printSectionId="tablePdf"
-      class="btn btn-primary mx-2"
+      class="button1 mx-2"
       ngxPrint
     >
       <svg
@@ -176,21 +190,6 @@
         />
       </svg>
       Print
-    </button>
-    <button class="btn btn-outline-primary" routerLink="/pharmacist">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-caret-left mx-1"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"
-        />
-      </svg>
-      Go Back
     </button>
   </div>
 </div>
