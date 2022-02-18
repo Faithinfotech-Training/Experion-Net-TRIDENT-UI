@@ -52,7 +52,7 @@ export class LabtTestService {
 
   //get  test advices
   bindListTestAdvices(){
-    this.httpClient.get(environment.apiUrl + '/api/TestPrescription/GetTestAdvice').toPromise().then(
+    this.httpClient.get(environment.apiUrl + '/api/TestAdvice/GetTestDetails').toPromise().then(
       response => {
         console.log("from lab test advice service");
         console.log(response);
