@@ -9,5 +9,5 @@ export class Testreport {
     DateOfReport:Date=new Date()
     LabTechnician:string= ""
     TestReport:any
-    TotalAmount:number=0   
+    TotalAmount:number
 }

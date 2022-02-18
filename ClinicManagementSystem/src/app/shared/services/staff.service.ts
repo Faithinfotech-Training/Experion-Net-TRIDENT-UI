@@ -53,6 +53,7 @@ export class StaffService {
         console.log('from role  service');
         console.log(response);
         this.roles = response as any[];
+       
       });
   }
   //get staff by id

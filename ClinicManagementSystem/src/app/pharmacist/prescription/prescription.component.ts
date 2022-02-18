@@ -19,6 +19,7 @@ export class PrescriptionComponent implements OnInit {
   todayDate:Date=new Date();
   totalAmount:number=0;
   medicineBill:any;
+  patchs:any;
 
 
   constructor(
@@ -35,6 +36,7 @@ export class PrescriptionComponent implements OnInit {
    // console.log(this.appointmentId+" : "+this.pharmService.medadid);
     this.pharmService.bindListMedicineAdvicesById(this.appointmentId);
     // this.pharmService.bindListMedicineAdvicesById(3);
+    
   }
   //logout function
   logout() {
@@ -68,11 +70,31 @@ export class PrescriptionComponent implements OnInit {
       (res) => {
         console.log(res);
         console.log("Inserted Medicine Bill");
-        this.toaster.success("Sucessfully Generated Bill","Pharmacist");
+        this.UpdateMedBill();
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  UpdateMedBill()
+  {
+    if(confirm("Do you want to  Generate Bill ? You can no longer Update Tests"))
+  {   
+    this.patchs=[{'value':2,'path':'status','op':'replace'}];
+    this.pharmService.updateMedAdvice(this.pharmService.medadid,this.patchs).subscribe(
+      (result)=>{
+        console.log(result);
+        this.pharmService.bindListMedicineAdvices();
+        this.toaster.success("Successfully Generated Bill","Pharmacist");
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+  console.log("Patch Sucessfully");
+
+ }
   }
 }

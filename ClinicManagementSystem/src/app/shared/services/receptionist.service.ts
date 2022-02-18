@@ -5,6 +5,7 @@ import {Appointments} from '../class/appointments';
 import {Consultationbill} from '../class/consultationbill';
 import {Invoice} from '../class/invoice';
 import {Appoint} from '../class/appoint';
+import {FinalBilllist} from '../class/final-billlist';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -14,6 +15,7 @@ import { Observable } from 'rxjs';
 export class ReceptionistService {
   appointments:Appointments[];
   myappoint:Appoint;
+  finalbill:FinalBilllist[];
   appFormData:Appoint=new Appoint();
   conFormData:Consultationbill=new Consultationbill();
   consultationbills:Consultationbill[];
@@ -74,7 +76,17 @@ this.httpClient.get('https://localhost:44381/api/Role/Staff/1').toPromise().then
   this.roles=response;
 })
 }
-
+bindFinalInvoiceList(){
+  this.httpClient.get('https://localhost:44381/api/Bills/UserBill').toPromise().then(response=>{
+    console.log("From Receptionist Service \n Fetching Doctor Lists");
+    console.log(response);
+  this.finalbill =response as FinalBilllist[];
+  })
+  }
+getABill(id:number):Observable<any>
+{
+  return this.httpClient.get('https://localhost:44381/api/Bills/UserBill/'+id);
+}
 getAppoint(id:number):Observable<any>
 {
   return this.httpClient.get('https://localhost:44381/api/Appointments/ViewAppointmentById/'+id);
@@ -88,6 +100,10 @@ AddConsultationBill(form:NgForm):Observable<any>
 {
   return this.httpClient.post('https://localhost:44381/api/ConsultationBill',form);
 }
+AddFinalBill(form:NgForm):Observable<any>
+{
+  return this.httpClient.post('https://localhost:44381/api/Bills',form);
+}
 //-------------------------Patch-------------------------------------------------
 UpdateAppointment(id:number,form:any):Observable<any>
 {
@@ -99,7 +115,6 @@ DeleteAppointment(aid:number):Observable<any>
 {
   return this.httpClient.delete('https://localhost:44381/api/Appointments/'+aid);
 }
-
 
 
 }

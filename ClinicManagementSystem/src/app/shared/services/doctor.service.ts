@@ -194,7 +194,7 @@ export class DoctorService {
   //======================Patch=================================
   UpdateAppointment(id: number, form: any): Observable<any> {
     return this.httpClient.patch(
-      'https://localhost:44381/api/Appointments/' + id,
+      'https://localhost:44381/api/Appointments/'+ id,
       form
     );
   }

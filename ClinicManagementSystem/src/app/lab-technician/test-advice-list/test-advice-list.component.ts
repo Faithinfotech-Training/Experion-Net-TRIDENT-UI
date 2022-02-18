@@ -18,6 +18,7 @@ tID:number=0;
   totalAmount:number=0;
   LabBill:any;
   patch:any; //patch
+  patchs:any;//patch
   constructor(private authService: AuthService,public labtestService:LabtTestService,private router: Router,private route: ActivatedRoute,private toaster:ToastrService) { }
   page:number=1;
   filter:string;
@@ -77,7 +78,7 @@ tID:number=0;
     this.LabBill.TestReportId=+this.tID
     this.LabBill.Date=formattedDate;
     this.LabBill.TotalAmount=+this.totalAmount;
-   console.log(this.LabBill);
+     console.log(this.LabBill);
     this.AddLabBill(this.LabBill);
   }
 
@@ -87,13 +88,34 @@ tID:number=0;
       (res) => {
         console.log(res);
         console.log("Inserted Lab Bill");
-        this.toaster.success("Sucessfully Generated Bill","Lab Technician");
+        this.UpdateReports();
       },
       (error) => {
         console.log(error);
       }
     );
   }
+UpdateReports()
+{
+  if(confirm("Do you want to  Generate Bill ? You can no longer Update Tests"))
+  {   
+    this.patchs=[{'value':2,'path':'status','op':'replace'}];
+    this.labtestService.updateLabReport(this.tID,this.patchs).subscribe(
+      (result)=>{
+        console.log(result);
+        this.labtestService.bindListReports();
+        this.toaster.success("Successfully Generated Bill","Lab Technician");
+        this.router.navigateByUrl('/lab-technician');
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
 
+  console.log("Patch Sucessfully");
+ // this.toaster.info("Patient is Serviced ","Doctor ");
+  // Navigate Back
+ }
+}
 
 }

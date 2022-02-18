@@ -125,4 +125,12 @@ export class PharmacistService {
   insertMedicineBill(med:any): Observable<any> {
     return this.httpClient.post( 'https://localhost:44381/api/MedicineBill',med );
   }
+
+
+  //Patch
+updateMedAdvice(id:number,mpat:any):Observable<any>
+{
+  return this.httpClient.patch('https://localhost:44381/api/MedicineAdvice/'+id,mpat);
+}
+  //==============
 }
