@@ -9,6 +9,7 @@ import { Test } from '../class/test';
 import { Medicine } from '../class/medicine';
 import { Medicinedetails } from '../class/medicinedetails';
 import { Testdetails } from '../class/testdetails';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +32,7 @@ export class DoctorService {
 
   formDataLab: Test = new Test();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, public router: Router) {}
 
   bindListAppointments(id: number) {
     this.httpClient
@@ -151,8 +152,6 @@ export class DoctorService {
       });
   }
 
-
-
   //add doctors notes
   //insert employee
   insertNotes(note: Notes): Observable<any> {
@@ -197,5 +196,10 @@ export class DoctorService {
       'https://localhost:44381/api/Appointments/' + id,
       form
     );
+  }
+
+  //route to doctors page
+  navDoc() {
+    this.router.navigate(['doctor']);
   }
 }
