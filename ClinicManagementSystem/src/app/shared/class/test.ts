@@ -4,6 +4,6 @@ export class Test {
   TestDescription: string = '';
   TestPrice: number;
   Unit: string = '';
-  MinRange: number = 0;
-  MaxRange: number = 0;
+  MinRange: number;
+  MaxRange: number;
 }

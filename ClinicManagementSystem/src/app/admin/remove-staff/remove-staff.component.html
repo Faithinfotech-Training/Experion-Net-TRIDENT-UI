@@ -75,7 +75,8 @@
                 <th>Phone</th>
                 <th>Address</th>
                 <th>DateOfBirth</th>
-                <th>Qualification</th>
+                <!-- <th>Qualification</th> -->
+                <!-- <th>Status</th> -->
                 <th>Role Name</th>
                 <th>Action</th>                
             </tr>
@@ -88,11 +89,14 @@
                 <td>{{s.Phone}}</td>
                 <td>{{s.Address}}</td>
                 <td>{{s.DateOfBirth | date: 'dd-MMM-yyyy'}}</td>
-                <td>{{s.Qualification}}</td>
+                <!-- <td>{{s.Qualification}}</td> -->
+                <!-- <td>{{s.Status}}</td> -->
                 <td>{{s.Role1}}</td>
                 <td>
                     <!-- button -->
-                    <button class="btn btn-sm btn-info" (click)="toUpdateStaff(s.StaffId)">Edit</button>                   
+                    <button class="btn btn-sm btn-danger" (click)="toDisableStaff(s.StaffId);  " >Disable</button>                 
+                    <!-- &nbsp; -->
+                    <button class="btn btn-sm btn-success" (click)="toEnableStaff(s.StaffId);  " >Enaable</button>
                 </td>
             </tr>
         </tbody>
@@ -103,6 +107,3 @@
 
     </footer>   
 </div>
-
-
-

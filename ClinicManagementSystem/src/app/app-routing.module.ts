@@ -33,6 +33,7 @@ import { ViewTestComponent } from './lab-technician/view-test/view-test.componen
 import { StaffListComponent } from './admin/staff-list/staff-list.component';
 import { StaffComponent } from './admin/staff/staff.component';
 import { QualificationComponent } from './admin/qualification/qualification.component';
+import { RemoveStaffComponent } from './admin/remove-staff/remove-staff.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -68,9 +69,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '4' },
   },
-  { path: 'add-test', component: TestComponent },
-  { path: 'update-test/:tID', component: TestComponent },
-  { path: 'update-testreport/:tID', component:TestAdviceListComponent },
+  { path: 'add-test', component: TestComponent, canActivate: [AuthGuard],
+  data: { RoleId: '4' } },
+  { path: 'update-test/:tID', component: TestComponent , canActivate: [AuthGuard],
+  data: { RoleId: '4' }},
+  { path: 'update-testreport/:tID', component:TestAdviceListComponent, canActivate: [AuthGuard],
+  data: { RoleId: '4' } },
   {
     path: 'viewtest',
     component:ViewTestComponent,
@@ -79,7 +83,8 @@ const routes: Routes = [
   },
 
 
-  { path: 'test-advice-list', component: TestAdviceListComponent },
+  { path: 'test-advice-list', component: TestAdviceListComponent, canActivate: [AuthGuard],
+  data: { RoleId: '4' } },
 
   //===================patient=============================
   { path: 'patient-list', component: PatientListComponent },
@@ -146,10 +151,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '2' },
   },
-  { path: 'staff-list', component:StaffListComponent},
-  { path: 'add-staff', component:StaffComponent},
-  { path: 'update-staff/:sID', component:StaffComponent},
-  { path: 'add-qualification', component:QualificationComponent},
+  { path: 'staff-list', component:StaffListComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'add-staff', component:StaffComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'update-staff/:sID', component:StaffComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'add-qualification', component:QualificationComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'remove-staff', component:RemoveStaffComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
   //=============================Pharmacist================================
   {
     path: 'pharmacist',

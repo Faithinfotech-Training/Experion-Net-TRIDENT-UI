@@ -40,10 +40,18 @@ export class StaffComponent implements OnInit {
           console.log("response from get staff method");
           console.log(response);
 
+          //let staffProperty = this.safetyCheck( ()=> response.staffFormData.StaffId);
+
           var datePipe = new DatePipe("en-UK");
           let formatedDate:any = datePipe.transform(response.DateOfBirth,'yyyy-MM-dd');
           response.DateOfBirth = formatedDate;
-
+          // if(response.Staff == "true"){
+          //   this.staffService.staffFormData.Status = "Active";
+          // }
+          // else{
+          //   this.staffService.staffFormData.Status = "InActive";
+          // }
+          console.log("here is the status ="+this.staffService.staffFormData.Status);
           this.staffService.staffFormData = Object.assign({},response);
         },
         error =>{
@@ -51,6 +59,7 @@ export class StaffComponent implements OnInit {
         }
       )
     }
+    
 
   }
 
@@ -63,8 +72,9 @@ export class StaffComponent implements OnInit {
     // INSERT OR UPDATE
     if(addStaffId == 0 || addStaffId == null){
       //INSERT
+      
       this.insertStaffRecord(form);
-      this.resetForm(form);    
+      this.resetForm(form);   
     }
     else{
       //UPDATE     
@@ -77,6 +87,8 @@ export class StaffComponent implements OnInit {
   //insert Method
   insertStaffRecord(form?: NgForm){
     console.log("Inserting a record...");
+    console.log(form.value);
+    console.log(this.staffService.staffFormData.Status);
     this.staffService.insertStaff(form.value).subscribe(
       (result) => {
         console.log(result);
@@ -111,9 +123,28 @@ export class StaffComponent implements OnInit {
   }
 
 
-  resetForm(form?: NgForm){   
-    form.resetForm();  
+  // resetForm(form?: NgForm){   
+  //   form.resetForm();  
+  // }
+
+  resetForm(form?: NgForm){
+    
+    try{
+          form.resetForm();
+        }
+        catch(e){
+          return undefined;
+        }
   }
+
+  // safetyCheck(fn:any){
+  //   try{
+  //     return fn();
+  //   }
+  //   catch(e){
+  //     return undefined;
+  //   }
+  // }
 
 //logout
 logOut(){

@@ -8,9 +8,9 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav mx-3">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/lab-technician">Home</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link active text-bold">Features</a>
                 </li>
@@ -40,10 +40,7 @@
     <div>
         <nav class="nav" style="display:-webkit-inline-flex;  margin-left: 40%; padding: 6px;">
             <ul class="nav">
-                <li class="nav-item" style="margin-right: 20px;">
-                    <!-- <a class="nav-link" href="#" routerLink="/user">User</a> -->
-                    <button class="btn btn-sm btn-warning" routerLink="/test-advice-list">List Of Test Advices</button>
-                </li>
+               
 
                 <li class="nav-item" style="margin-right: 20px;">
                     <!-- <a class="nav-link" href="#" routerLink="/attendance">Attendance</a> -->
@@ -66,7 +63,8 @@
 
 
 <div class="container">
-    <div class="header">
+    <h3>List Of Test Advices</h3>
+    <div class="header" style="padding: 5px;">
         <div class="form-control " >
             <input class="form-control" style="padding: 10px; margin-top: 20px; margin-bottom: 20px;" type="text" placeholder="search" [(ngModel)]="filter">
             <!-- {{filter}} -->            

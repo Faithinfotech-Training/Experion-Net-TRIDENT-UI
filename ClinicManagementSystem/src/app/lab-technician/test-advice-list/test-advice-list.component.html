@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav mx-3">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#" routerLink="/lab-technician">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active text-bold">Features</a>
@@ -34,9 +34,9 @@
       background: linear-gradient(to right, #c9e265, #38b6ff);
       border-radius: 1.5rem;">
 </div>
-<div class="container-lg" *ngFor="let test of labtestService.testreps" style="border: 1px solid black;  border-radius:20px;"><br>
+<div class="container-lg" *ngFor="let test of labtestService.testreps" style="border: 1px solid black;  border-radius:20px; margin-top: 50px; padding-bottom: 10px;"><br>
 <a href="/lab-technician" class="btn btn-outline-dark">Back</a>
-<h3 style="text-align: center;">Lab Test  </h3>
+<h3 style="text-align: center; ">Lab Test  </h3>
 <h5>Test Report No:{{test.TestReportId}}</h5>
 <h6> Patient Name:{{test.PatientName}}</h6>
 <h6> Mobile No:{{test.Mobile}}</h6>
@@ -44,7 +44,7 @@
 <h6>Appointment Date:{{test.AppointmentDate|date:'dd-MMM-yyyy'}}</h6>
 <h4 style="text-align: center;">Tests</h4>
 <table class="table table-striped table-bodered">
-    <thead style="background-color: yellow;">
+    <thead style="background-color: rgb(158, 204, 85);">
      <th>Test Name</th>
      <th>Unit</th>
      <th>Test Value</th>
@@ -64,7 +64,7 @@
             <td>{{item.MinRange}}</td>
             <td>{{item.MaxRange}}</td>
             <td>{{item.Price}}</td>
-            <td><button class="btn-sm btn-dark" (click)="Submit(TestValue,item.TestId)">Add </button></td>
+            <td><button class="btn-sm btn-secondary" (click)="Submit(TestValue,item.TestId)">Add </button></td>
         </tr>
     </tbody>
    

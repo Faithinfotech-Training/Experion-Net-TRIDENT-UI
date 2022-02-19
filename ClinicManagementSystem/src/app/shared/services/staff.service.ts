@@ -64,25 +64,33 @@ export class StaffService {
 
   //insert staff
   insertStaff(staffs: Staff): Observable<any> {
-    console.log(' staff id: ' + staffs.StaffId);
-    console.log(' staff name: ' + staffs.FirstName);
-    console.log(' role: ' + staffs.Role1);
+    
+
+    let temp = staffs.Status;
+    if(temp){      
+      staffs.Status = "Active";
+    }else{
+      staffs.Status = "InActive";
+    }
+    console.log(' status: ' + staffs.Status);
+    
     return this.httpClient.post(environment.apiUrl + '/api/Staff', staffs);
   }
 
   //update staff
   updateStaff(staffs: Staff): Observable<any> {
-    console.log(' staff id: ' + staffs.StaffId);
-    console.log(' staff name: ' + staffs.FirstName);
-    console.log(' qualification ID : ' + staffs.QualificationsId);
-    console.log(' role ID : ' + staffs.RoleId);
+    
+    let temp = staffs.Status;
+    if(temp){      
+      staffs.Status = "Active";
+    }else{
+      staffs.Status = "InActive";
+    }
     return this.httpClient.put(environment.apiUrl + '/api/Staff', staffs);
   }
 
   insertQualification(qualify: Qualification): Observable<any> {
-    console.log(' qual id: ' + qualify.QualificationsId);
-    console.log(' qual name: ' + qualify.Qualification);
-    console.log(' role id: ' + qualify.RoleId);
+ 
     return this.httpClient.post(
       environment.apiUrl + '/api/Qualifications',
       qualify
