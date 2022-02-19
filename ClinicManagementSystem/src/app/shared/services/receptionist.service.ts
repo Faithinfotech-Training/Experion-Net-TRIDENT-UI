@@ -22,6 +22,7 @@ export class ReceptionistService {
   bills:Invoice[];
   billFormData:Invoice=new Invoice();
   roles:any;
+  appointcnt:number;
   constructor(private httpClient:HttpClient) { }
 
 
@@ -37,6 +38,23 @@ export class ReceptionistService {
   bindListActiveAppointments(){
     this.httpClient.get('https://localhost:44381/api/Appointments/Status/1').toPromise().then(response=>{
       console.log("From Receptionist Service\n Fetching Active Appointments");
+      console.log(response);
+      this.appointments=response as Appointments[];
+    })
+  }
+  bindTodayAppointmentCount()
+  {
+    this.httpClient.get('https://localhost:44381/api/Appointments/CountAppointments').toPromise().then(response=>{
+      console.log("From Receptionist Service\n Fetching Active Appointments Count");
+      console.log(response);
+      this.appointcnt=response as number+1;
+    }) 
+  }
+  bindAppointmentbyDate(Dates:Date)
+  {
+   
+    this.httpClient.get('https://localhost:44381/api/Appointments/Date/'+Dates).toPromise().then(response=>{
+      console.log("From Receptionist Service\n Fetching  Appointments by Date");
       console.log(response);
       this.appointments=response as Appointments[];
     })
@@ -83,6 +101,15 @@ bindFinalInvoiceList(){
   this.finalbill =response as FinalBilllist[];
   })
   }
+  bindAppointmentByStatus(id:number)
+  {
+    this.httpClient.get('https://localhost:44381/api/Appointments/Status/'+id).toPromise().then(response=>{
+      console.log("From Receptionist Service\n Fetching Consultation Bill Ready  Patients ");
+      console.log(response);
+      this.appointments=response as Appointments[];
+    })
+  }
+  //----------------------------------------------------------
 getABill(id:number):Observable<any>
 {
   return this.httpClient.get('https://localhost:44381/api/Bills/UserBill/'+id);

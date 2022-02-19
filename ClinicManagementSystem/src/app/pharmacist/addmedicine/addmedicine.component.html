@@ -157,6 +157,8 @@
         class="form-control"
         placeholder="Enter Medicine Price"
         required
+        min="1"
+        oninput="validity.valid||(value='')"
         minlength="1"
         maxlength="10"
         [ngClass]="{
@@ -188,6 +190,8 @@
         class="form-control"
         placeholder="Enter Medicine Stock"
         required
+        min="1"
+        oninput="validity.valid||(value='')"
         minlength="1"
         maxlength="1000"
         [ngClass]="{
@@ -196,7 +200,7 @@
       />
       <!-- validations  -->
       <div class="validation-error" *ngIf="Stock.invalid && Stock.touched">
-        <div *ngIf="Stock.errors.required">medicine stock is required</div>
+        <div *ngIf="Stock.errors.required">Medicine stock is required</div>
       </div>
     </div>
     <!-- Dose  -->
@@ -221,7 +225,7 @@
       />
       <!-- validations  -->
       <div class="validation-error" *ngIf="Dose.invalid && Dose.touched">
-        <div *ngIf="Dose.errors.required">medicine dose is required</div>
+        <div *ngIf="Dose.errors.required">Medicine dose is required</div>
       </div>
     </div>
 

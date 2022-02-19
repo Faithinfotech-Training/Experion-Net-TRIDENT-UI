@@ -22,12 +22,14 @@ tID:number=0;
   constructor(private authService: AuthService,public labtestService:LabtTestService,private router: Router,private route: ActivatedRoute,private toaster:ToastrService) { }
   page:number=1;
   filter:string;
+ btn;
 
   ngOnInit(): void {
     this.tID = this.route.snapshot.params['tID'];
     this.loggedUser = localStorage.getItem("userName");
     this.labtestService.bindListReportsById(this.tID);
     this.labtestService.appointId;
+    
   }
 
   //logout
@@ -116,6 +118,10 @@ UpdateReports()
  // this.toaster.info("Patient is Serviced ","Doctor ");
   // Navigate Back
  }
+}
+btnShow()
+{
+  (document.getElementById('btn') as HTMLInputElement).disabled = false;
 }
 
 }

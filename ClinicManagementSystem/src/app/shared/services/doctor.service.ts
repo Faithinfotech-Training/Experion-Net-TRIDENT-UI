@@ -23,7 +23,7 @@ export class DoctorService {
   medicines: Medicine[];
   techs: any;
   pharms: any;
-
+  apppatientId:number;
   patientNotes: Notes[] = [];
   appointmentId: number;
   patientId: number;
@@ -83,6 +83,7 @@ export class DoctorService {
         this.appointmentId = id;
         console.log('Appointment ID' + id);
         this.appointment = Array.of(this.appointment);
+        this.apppatientId=this.appointment[0].PatientId;
 
         console.log(response);
       });

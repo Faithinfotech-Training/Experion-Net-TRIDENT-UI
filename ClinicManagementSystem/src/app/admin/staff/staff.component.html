@@ -69,8 +69,8 @@
         <!-- Mobile number -->
         <div class="form-group">
             <label style="color: black">Phone : </label>
-            <input type="tel" name="Phone" #Phone="ngModel" [(ngModel)]="staffService.staffFormData.Phone"
-                class="form-control" placeholder="Enter  your mobile number" minlength="10" maxlength="10" required
+            <input type="number" name="Phone" #Phone="ngModel" [(ngModel)]="staffService.staffFormData.Phone"
+                class="form-control" placeholder="Enter  your mobile number" minlength="10" maxlength="10" min="0000000000" max="9999999999"   oninput="validity.valid||(value='');" required
                 [ngClass]="{ 'is-invalid': Phone.touched && Phone.invalid }" />
             <!-- validation -->
             <div class="validation-errors" *ngIf="Phone.touched && Phone.invalid" style="color: red; text-align: left">

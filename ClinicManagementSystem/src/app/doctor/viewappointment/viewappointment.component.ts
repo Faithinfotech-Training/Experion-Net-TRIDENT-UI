@@ -108,10 +108,13 @@ export class ViewappointmentComponent implements OnInit {
     this.doctorService.BindTechnicianList();
     this.doctorService.bindListTests();
     this.doctorService.bindListMedicines();
+
   }
   //get form controls
   get formControls() {
+  
     return this.notesForm.controls;
+
   }
   // ? form submission notes
   noteSubmit(notes) {

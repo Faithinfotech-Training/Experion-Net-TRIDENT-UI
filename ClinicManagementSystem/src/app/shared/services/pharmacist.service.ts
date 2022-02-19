@@ -121,6 +121,12 @@ export class PharmacistService {
       });
   }
 
+  //Get a Stock
+
+  fetchStock(id:number):Observable<any>
+  {
+    return this.httpClient.get(environment.apiUrl + '/api/Medicines/stock?id=' + id);
+  }
   //Adding Medicine Bill
   insertMedicineBill(med:any): Observable<any> {
     return this.httpClient.post( 'https://localhost:44381/api/MedicineBill',med );
@@ -131,6 +137,11 @@ export class PharmacistService {
 updateMedAdvice(id:number,mpat:any):Observable<any>
 {
   return this.httpClient.patch('https://localhost:44381/api/MedicineAdvice/'+id,mpat);
+}
+
+updateMedStock(medname:string,pathca:any)
+{
+  return this.httpClient.patch('https://localhost:44381/api/Medicines/'+medname,pathca);
 }
   //==============
 }

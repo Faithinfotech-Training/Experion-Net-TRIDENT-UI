@@ -14,7 +14,7 @@ export class AddconsultationComponent implements OnInit {
 page:number=1;
 consultbill:any;
 appointment:any;
-TotalAmounts:number;
+TotalAmounts:number=100;
   constructor(public receptionservice:ReceptionistService,private toaster:ToastrService,private router:Router) { }
 
   ngOnInit(): void {

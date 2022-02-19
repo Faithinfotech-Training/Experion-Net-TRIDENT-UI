@@ -20,6 +20,7 @@ export class PrescriptionComponent implements OnInit {
   totalAmount:number=0;
   medicineBill:any;
   patchs:any;
+  stoik:any;
 
 
   constructor(
@@ -48,9 +49,16 @@ export class PrescriptionComponent implements OnInit {
     this.pharmService.bindListStock(this.medicineName);
   }
 
+  UpdateStock()
+  {
+
+  }
+
   GenBill()
   {
-    for(let i=0;i<this.pharmService.medAdvice[0].medicineList.length;i++)
+    if(confirm("Do you want to  Generate Bill ? You can no longer Update Tests"))
+    {   
+      for(let i=0;i<this.pharmService.medAdvice[0].medicineList.length;i++)
     this.totalAmount=this.totalAmount+(this.pharmService.medAdvice[0].medicineList[i].MedicinePrice*this.pharmService.medAdvice[0].medicineList[i].Quantity);
     this.totalAmount;
     var datepipe=new DatePipe("en-UK");
@@ -61,7 +69,29 @@ export class PrescriptionComponent implements OnInit {
     this.medicineBill.MedicineBillDate=formattedDate;
     this.medicineBill.TotalAmount=+this.totalAmount;
     console.log(this.medicineBill);
+    let newStock=0;
+
+    for(let i=0;i<this.pharmService.medAdvice[0].medicineList.length;i++)
+    {
+      this.pharmService.fetchStock(this.pharmService.medAdvice[0].medicineList[i].Medicine).subscribe(
+        (res)=>{this.stoik=res as any
+          //Fetching Stock
+       newStock=this.stoik.Stock-this.pharmService.medAdvice[0].medicineList[i].Quantity
+       console.log('Current Stock:'+this.stoik.Stock+' New Stock :'+newStock)
+       this.patchs=[{'value':+newStock,'path':'stock','op':'replace'}];
+       // Updating Stock
+        this.pharmService.updateMedStock(this.pharmService.medAdvice[0].medicineList[i].Medicine,this.patchs).subscribe(
+         (res)=>{console.log(res)
+        },(error)=>{console.log(error)} 
+        );
+      }
+       ,(error)=>console.log(error)
+      );
+   
+      }//For Loop Ends
     this.AddMedicineBill(this.medicineBill);
+    this.router.navigateByUrl('/pharmacist');
+    }
   }
 
   AddMedicineBill(medbill:any)
@@ -80,8 +110,7 @@ export class PrescriptionComponent implements OnInit {
 
   UpdateMedBill()
   {
-    if(confirm("Do you want to  Generate Bill ? You can no longer Update Tests"))
-  {   
+   
     this.patchs=[{'value':2,'path':'status','op':'replace'}];
     this.pharmService.updateMedAdvice(this.pharmService.medadid,this.patchs).subscribe(
       (result)=>{
@@ -94,7 +123,6 @@ export class PrescriptionComponent implements OnInit {
       }
     );
   console.log("Patch Sucessfully");
-
  }
   }
-}
+

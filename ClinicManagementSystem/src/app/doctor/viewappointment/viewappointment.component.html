@@ -134,7 +134,7 @@
       >
         <p class="">{{ i + 1 }} : {{ noteItem.Note }} <br /></p>
         <div class="date" style="display: flex; flex-direction: row">
-          <p>{{ noteItem.Date.slice(0, 10) }}</p>
+         <p>{{ (noteItem.Date).slice(0,10) }}</p>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +196,6 @@
           name="TechID"
           #TechId="ngModel"
           [(ngModel)]="TechID"
-          style="border: 2px solid black"
         >
           <option
             *ngFor="let tech of doctorService.techs"
@@ -323,8 +322,8 @@
         name="PharmID"
         #PharmId="ngModel"
         [(ngModel)]="PharmID"
-      >
-        <option selected disabled>Select Pharmacist</option>
+      >      
+      <option selected disabled>Select Pharmacist</option>                                                                 
         <option
           *ngFor="let pharm of doctorService.pharms"
           value="{{ pharm.StaffId }}"
@@ -333,6 +332,7 @@
         </option>
         >
       </select>
+       <!-- -->
       <button
         class="button1"
         style="font-size: 10px"
@@ -488,6 +488,9 @@
               type="number"
               name="PatientId"
               id="PatientId"
+              min="1"
+              oninput="validity.valid||(value='')"
+              name="DoctorId"
               placeholder="choose patient id"
               formControlName="PatientId"
               class="my-3"
@@ -509,6 +512,8 @@
             <!-- doctor id  -->
             <input
               type="number"
+              min="1"
+        oninput="validity.valid||(value='')"
               name="DoctorId"
               id="DoctorId"
               formControlName="DoctorId"

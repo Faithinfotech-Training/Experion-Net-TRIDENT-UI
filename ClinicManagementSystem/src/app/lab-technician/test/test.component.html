@@ -74,8 +74,9 @@
         <!--  Test Description -->
         <div class="form-group">
             <label>Test Description : </label>
-            <input type="text" name="TestDescription" #TestDescription="ngModel" [(ngModel)]="labtestService.formDataOne.TestDescription"
-                class="form-control" placeholder="Enter description" minlength="5" maxlength="30" required
+            <input type="text" name="TestDescription" #TestDescription="ngModel"
+                [(ngModel)]="labtestService.formDataOne.TestDescription" class="form-control"
+                placeholder="Enter description" minlength="5" maxlength="30" required
                 [ngClass]="{'is-invalid': TestDescription.touched && TestDescription.invalid}">
             <!-- validation -->
             <div class="validation-errors" *ngIf="TestDescription.touched && TestDescription.invalid"
@@ -92,10 +93,9 @@
                 class="form-control" placeholder="Enter Unit" minlength="2" maxlength="12" required
                 [ngClass]="{'is-invalid': Unit.touched && Unit.invalid}">
             <!-- validation -->
-            <div class="validation-errors" *ngIf="Unit.touched && Unit.invalid"
-                style="color: red; text-align: left;">
+            <div class="validation-errors" *ngIf="Unit.touched && Unit.invalid" style="color: red; text-align: left;">
                 <div *ngIf="Unit.errors.required">
-                    Unit  is required!
+                    Unit is required!
                 </div>
             </div>
         </div>
@@ -103,13 +103,14 @@
         <div class="form-group">
             <label>Minimum Range : </label>
             <input type="number" name="MinRange" #MinRange="ngModel" [(ngModel)]="labtestService.formDataOne.MinRange"
-                class="form-control" placeholder="Enter min range" minlength="1" maxlength="5" required
+                class="form-control" placeholder="Enter min range" minlength="1" maxlength="5"  min="1"
+                oninput="validity.valid||(value='');" required
                 [ngClass]="{'is-invalid': MinRange.touched && MinRange.invalid}">
             <!-- validation -->
             <div class="validation-errors" *ngIf="MinRange.touched && MinRange.invalid"
                 style="color: red; text-align: left;">
                 <div *ngIf="MinRange.errors.required">
-                    MinRange  is required!
+                    MinRange is required!
                 </div>
             </div>
         </div>
@@ -118,13 +119,14 @@
         <div class="form-group">
             <label>Maximum Range : </label>
             <input type="number" name="MaxRange" #MaxRange="ngModel" [(ngModel)]="labtestService.formDataOne.MaxRange"
-                class="form-control" placeholder="Enter max range" minlength="1" maxlength="5" required
+                class="form-control" placeholder="Enter max range" minlength="1" maxlength="5" min="1"
+                oninput="validity.valid||(value='');" required
                 [ngClass]="{'is-invalid': MaxRange.touched && MaxRange.invalid}">
             <!-- validation -->
             <div class="validation-errors" *ngIf="MaxRange.touched && MaxRange.invalid"
                 style="color: red; text-align: left;">
                 <div *ngIf="MaxRange.errors.required">
-                    MaxRange  is required!
+                    MaxRange is required!
                 </div>
             </div>
         </div>
@@ -132,17 +134,19 @@
         <!-- Total Amount -->
         <div class="form-group">
             <label>Price Of Test : </label>
-            <input type="number" name="TotalAmount" #TotalAmount="ngModel" [(ngModel)]="labtestService.formDataOne.TotalAmount"
-                class="form-control" placeholder="Enter amount" minlength="1" maxlength="4" required
+            <input type="number" name="TotalAmount" #TotalAmount="ngModel"
+                [(ngModel)]="labtestService.formDataOne.TotalAmount" class="form-control" placeholder="Enter amount"
+                minlength="1" maxlength="4" min="1"
+                oninput="validity.valid||(value='');" required
                 [ngClass]="{'is-invalid': TotalAmount.touched && TotalAmount.invalid}">
             <!-- validation -->
             <div class="validation-errors" *ngIf="TotalAmount.touched && TotalAmount.invalid"
                 style="color: red; text-align: left;">
                 <div *ngIf="TotalAmount.errors.required">
-                    Total Amount   is required!
+                    Total Amount is required!
                 </div>
             </div>
-        </div>  
+        </div>
         <!-- submit -->
         <br>
         <div class="form-group">
