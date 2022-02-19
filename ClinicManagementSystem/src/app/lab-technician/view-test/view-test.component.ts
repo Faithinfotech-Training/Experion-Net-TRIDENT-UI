@@ -31,4 +31,10 @@ export class ViewTestComponent implements OnInit {
     //navigate to edit form with selected test details
     this.router.navigate(['update-test',tID]);
   }
+
+  //logout
+  logOut(){
+    this.authService.logout();
+    this.router.navigateByUrl('login');
+  }
 }

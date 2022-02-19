@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -50,6 +50,8 @@ import { QualificationComponent } from './admin/qualification/qualification.comp
 import { LabtTestService } from './shared/services/labt-test.service';
 import { StaffService } from './shared/services/staff.service';
 import { RemoveStaffComponent } from './admin/remove-staff/remove-staff.component';
+import { AuthGuard } from './shared/auth.guard';
+import { AuthInterceptor } from './shared/auth.interceptor';
 //import { NgxBootstrapIconsModule,allIcons } from 'ngx-bootstrap-icons';
 
 
@@ -104,7 +106,11 @@ import { RemoveStaffComponent } from './admin/remove-staff/remove-staff.componen
     FontAwesomeModule,
    // NgxBootstrapIconsModule.pick(allIcons),
   ],
-  providers: [AuthService, PatientService,LabtTestService,StaffService],
+  providers: [AuthService, PatientService,LabtTestService,StaffService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, 
+      useClass:AuthInterceptor,
+      multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

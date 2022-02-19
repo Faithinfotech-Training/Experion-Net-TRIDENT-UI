@@ -69,9 +69,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '4' },
   },
-  { path: 'add-test', component: TestComponent },
-  { path: 'update-test/:tID', component: TestComponent },
-  { path: 'update-testreport/:tID', component:TestAdviceListComponent },
+  { path: 'add-test', component: TestComponent, canActivate: [AuthGuard],
+  data: { RoleId: '4' } },
+  { path: 'update-test/:tID', component: TestComponent , canActivate: [AuthGuard],
+  data: { RoleId: '4' }},
+  { path: 'update-testreport/:tID', component:TestAdviceListComponent, canActivate: [AuthGuard],
+  data: { RoleId: '4' } },
   {
     path: 'viewtest',
     component:ViewTestComponent,
@@ -80,7 +83,8 @@ const routes: Routes = [
   },
 
 
-  { path: 'test-advice-list', component: TestAdviceListComponent },
+  { path: 'test-advice-list', component: TestAdviceListComponent, canActivate: [AuthGuard],
+  data: { RoleId: '4' } },
 
   //===================patient=============================
   { path: 'patient-list', component: PatientListComponent },
@@ -147,11 +151,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { RoleId: '2' },
   },
-  { path: 'staff-list', component:StaffListComponent},
-  { path: 'add-staff', component:StaffComponent},
-  { path: 'update-staff/:sID', component:StaffComponent},
-  { path: 'add-qualification', component:QualificationComponent},
-  { path: 'remove-staff', component:RemoveStaffComponent},
+  { path: 'staff-list', component:StaffListComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'add-staff', component:StaffComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'update-staff/:sID', component:StaffComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'add-qualification', component:QualificationComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'remove-staff', component:RemoveStaffComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
   //=============================Pharmacist================================
   {
     path: 'pharmacist',
