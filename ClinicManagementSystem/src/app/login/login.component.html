@@ -1,15 +1,14 @@
 <div class="container">
   <!-- center a div  -->
 
-  <div class="row d-flex justify-content-center my-5">
-    <img class="img img-fluid" src="../../assets/images/logo-big.png" alt="" />
+  <div class="row d-flex justify-content-center mt-5">
+    <img class="img img-fluid" src="../../assets/images/main2.png" alt="" />
   </div>
-  <div class="row my-2">
-    <h1 class="text-center display-6">Login</h1>
-  </div>
-  <div class="row d-flex justify-content-center">
+
+  <div class="row d-flex justify-content-center align-items-center">
     <div class="form-content login-form">
       <!-- login part  -->
+      <p class="text-center" style="font-size: 2rem">Login</p>
       <!-- form  -->
       <form [formGroup]="loginForm" (ngSubmit)="loginCredentials()">
         <!-- user name control  -->
@@ -98,7 +97,7 @@
         <!-- center a button  -->
 
         <div class="my-3 text-center">
-          <button class="btn-primary btn">Login</button>
+          <button class="button2">Login</button>
         </div>
         <div
           class="text-center"

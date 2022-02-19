@@ -65,7 +65,8 @@ export class PatientComponent implements OnInit {
     if(addId == 0 || addId == null){
       //INSERT
       this.insertPatientRecord(form);
-      this.patientService.resetForm();     
+      this.toasterService.success('patient record has been inserted','CMSApp v2022');
+      form.resetForm();
     }
     else{
       //UPDATE     
@@ -79,8 +80,8 @@ export class PatientComponent implements OnInit {
     console.log("Inserting a record...");
     this.patientService.insertPatient(form.value).subscribe(
       (result) => {
-        console.log(result);
         this.toasterService.success('patient record has been inserted','CMSApp v2022');
+        console.log(result);
         this.patientService.resetForm();
         
       },

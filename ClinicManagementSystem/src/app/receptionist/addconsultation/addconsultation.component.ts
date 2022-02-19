@@ -39,7 +39,7 @@ TotalAmounts:number;
   //
   console.log("Adding Bill and Updating Appointment");
   console.log(this.consultbill);
-  this.appointment=[{'value':5,'path':'status','op':'replace'}];
+  this.appointment=[{'value':4,'path':'status','op':'replace'}];
  //this.appointment=JSON.parse(this.appointment);
   console.log(this.appointment);
   this.addConsultationBill(this.consultbill);
@@ -56,6 +56,7 @@ TotalAmounts:number;
         console.log(result);
         this.toaster.success("Sucessfully Added","Consultation Bill");
         this.router.navigateByUrl('/receptionist');
+        window.location.reload();
       },
       (error)=>{
         console.log(error);

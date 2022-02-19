@@ -68,26 +68,23 @@
 <div class="container">
     <div class="header" style="padding: 5px;">
         <div class="form-control " >
-            <input class="form-control" style=" margin-top: 20px; margin-bottom: 20px;" type="text" placeholder="search" [(ngModel)]="filter">
-            <!-- {{filter}} -->
-            
+            <input class="form-control" style="padding: 10px; margin-top: 20px; margin-bottom: 20px;" type="text" placeholder="search" [(ngModel)]="filter">
+            <!-- {{filter}} -->            
         </div>
-
-                    <!-- button -->
-                   
+                    <!-- button -->                  
                     <!-- &nbsp;
                     <button class="btn btn-sm btn-danger" (click)="deletePost(p.Postid)">Delete</button> -->
         <div class="row" >
-       <div class="col-md-12 bg-dark text-light" *ngFor="let test of labtestService.testview" style="border: 1px solid black; margin-right:50px; border-radius:20px;"><br>
-        <h5>Test Report No : {{test.TestReportId}}</h5>
-        <h6> Patient Name : {{test.PatientName}}</h6>
-        <h6> Mobile No : {{test.Mobile}}</h6>
-        <h6>Sex : {{test.Sex}}</h6>
-        <h6>Appointment Date : {{test.AppointmentDate|date:'dd-MMM-yyyy'}}</h6>
+       <div class="col-md-3 bg-dark text-light" *ngFor="let test of labtestService.testview|filter:filter|paginate:{itemsPerPage:3,currentPage:page}" style="border: 1px solid black;margin-left:5px; margin-right:60px; margin-bottom:20px; border-radius:20px;"><br>
+        <h5>Test Report No:{{test.TestReportId}}</h5>
+        <h6> Patient Name:{{test.PatientName}}</h6>
+        <h6> Mobile No:{{test.Mobile}}</h6>
+        <h6>Sex:{{test.Sex}}</h6>
+        <h6>Appointment Date:{{test.AppointmentDate|date:'dd-MMM-yyyy'}}</h6>
         <h6 style="text-align: center;">Tests:</h6><p style="text-align: center;" *ngFor="let item of test.TestDetails let i as index">
             {{item.TestName}}
         </p>
-        <button class="btn btn-sm btn-warning" style="width:100%;" (click)="updateTestReport(test.TestReportId)">Edit</button>
+        <button class="btn btn-sm btn-warning" style="width:100%; margin-bottom:15px;" (click)="updateTestReport(test.TestReportId)">Edit</button>
             </div>
    
     </div>

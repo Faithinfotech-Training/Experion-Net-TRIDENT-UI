@@ -17,7 +17,7 @@ export class LabtTestService {
   testview:Testrep[];
   testreps:any;
   formDataOne: LabtTest = new LabtTest();
-  testreports:any;
+  testreports:Testreport[];
   testadvices:TestAdvice[];
   appointId:number;
   constructor(private httpClient: HttpClient) { }
@@ -89,7 +89,7 @@ export class LabtTestService {
       console.log("From Service");
       console.log(response);
       this.testreports=response as Testreport[];
-      this.testreports=Array.of(this.testreports);
+     // this.testreports=Array.of(this.testreports);
       console.log(this.testreports);
     })
   }
@@ -102,7 +102,12 @@ export class LabtTestService {
   {
     return this.httpClient.patch('https://localhost:44381/api/TestAdvice/'+id,patch);
   }
+  updateLabReport(id:number,patch:any):Observable<any>
+  {
+    return this.httpClient.patch('https://localhost:44381/api/TestReport/'+id,patch);
+  }
 
+//=========================================================
   resetForm(form?: NgForm){
       this.formDataOne = null;
       form.resetForm();

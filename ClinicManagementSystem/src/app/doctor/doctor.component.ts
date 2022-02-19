@@ -13,6 +13,7 @@ export class DoctorComponent implements OnInit {
   username = sessionStorage.getItem('userName');
   staffId = sessionStorage.getItem('staffId');
   appointmentId: number;
+  patientId: number;
   page: number = 1;
   filter: string;
 
@@ -34,20 +35,20 @@ export class DoctorComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  //view patient details
-  updatePatient(id: number) {
-    this.router.navigate(['viewappointments', id]);
-    console.log(id);
-  }
-
   //get appointment number
   updateAppointment(appointmentId: number) {
     console.log('the appointment id is ' + appointmentId);
-
+    this.router.navigate(['viewappointments', appointmentId]);
+    // console.log(appointmentId);
     this.appointmentId = appointmentId;
   }
 
   loadApppointments(date) {
     this.doctorService.bindListAppointmentsForDate(+this.staffId, date);
+  }
+  passPatientId(id: number) {
+    console.log('my patient is ' + id);
+    this.patientId = id;
+    this.doctorService.patientId = id;
   }
 }

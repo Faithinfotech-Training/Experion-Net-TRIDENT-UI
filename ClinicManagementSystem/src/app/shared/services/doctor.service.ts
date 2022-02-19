@@ -9,6 +9,7 @@ import { Test } from '../class/test';
 import { Medicine } from '../class/medicine';
 import { Medicinedetails } from '../class/medicinedetails';
 import { Testdetails } from '../class/testdetails';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +32,7 @@ export class DoctorService {
 
   formDataLab: Test = new Test();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, public router: Router) {}
 
   bindListAppointments(id: number) {
     this.httpClient
@@ -41,6 +42,7 @@ export class DoctorService {
       .toPromise()
       .then((response) => {
         this.appointments = response as Appointments[];
+        this.patientId = this.appointment[0][0].PatientId;
         console.log(response);
       });
   }
@@ -151,8 +153,6 @@ export class DoctorService {
       });
   }
 
-
-
   //add doctors notes
   //insert employee
   insertNotes(note: Notes): Observable<any> {
@@ -194,8 +194,31 @@ export class DoctorService {
   //======================Patch=================================
   UpdateAppointment(id: number, form: any): Observable<any> {
     return this.httpClient.patch(
-      'https://localhost:44381/api/Appointments/' + id,
+      'https://localhost:44381/api/Appointments/'+ id,
       form
     );
+  }
+
+  //route to doctors page
+  navDoc() {
+    this.router.navigate(['doctor']);
+  }
+
+  //get appointmrnt details
+  getAppointmentDetails(id: number): Observable<any> {
+    return this.httpClient.get(
+      environment.apiUrl + '/api/Appointments/ViewAppointmentById/' + id
+    );
+  }
+
+  //delete notes
+  bindDeleteNotes(id: number) {
+    this.httpClient
+      .delete(environment.apiUrl + '/api/DoctorsNotes/' + id)
+      .toPromise()
+      .then((response) => {
+        console.log(response);
+        console.log('note deleted');
+      });
   }
 }
