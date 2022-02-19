@@ -69,8 +69,8 @@
         <!-- Mobile number -->
         <div class="form-group">
             <label style="color: black">Phone : </label>
-            <input type="number" name="Phone" #Phone="ngModel" [(ngModel)]="staffService.staffFormData.Phone"
-                class="form-control" placeholder="Enter  your mobile number" required
+            <input type="tel" name="Phone" #Phone="ngModel" [(ngModel)]="staffService.staffFormData.Phone"
+                class="form-control" placeholder="Enter  your mobile number" minlength="10" maxlength="10" required
                 [ngClass]="{ 'is-invalid': Phone.touched && Phone.invalid }" />
             <!-- validation -->
             <div class="validation-errors" *ngIf="Phone.touched && Phone.invalid" style="color: red; text-align: left">
@@ -96,7 +96,7 @@
         <div class="form-group">
             <label style="color: black"> Address: </label>
             <input type="text" name="Address" #Address="ngModel" [(ngModel)]="staffService.staffFormData.Address"
-                class="form-control" placeholder="Enter Address" minlength="2" maxlength="25" required
+                class="form-control" placeholder="Enter Address" minlength="4" maxlength="30" required
                 [ngClass]="{ 'is-invalid': Address.touched && Address.invalid }" />
             <!-- validation -->
             <div class="validation-errors" *ngIf="Address.touched && Address.invalid"
@@ -143,14 +143,14 @@
         </div>
 
         <!-- IsActive -->
-        <!-- <div class="form-group">
+        <div class="form-group">
             <div class="form-check">
                 <label class="form-check-label">In Service</label>
                 <input type="checkbox" name="Status" id="Status" #Status="ngModel"
                     [(ngModel)]="staffService.staffFormData.Status" class="form-check-input">
 
             </div>
-        </div> -->
+        </div>
 
         <!-- submit -->
         <br />

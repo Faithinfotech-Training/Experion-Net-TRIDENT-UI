@@ -25,6 +25,7 @@ export class PharmacistComponent implements OnInit {
     console.log(this.username);
     console.log('hello pharmacist ' + this.staffId);
     this.pharmService.bindListMedicineAdvices();
+    
   }
   //logout function
   logout() {

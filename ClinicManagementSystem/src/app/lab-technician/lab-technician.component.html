@@ -8,9 +8,9 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav mx-3">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#" routerLink="/lab-technician">Home</a>
-                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/lab-technician">Home</a>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link active text-bold">Features</a>
                 </li>
@@ -38,7 +38,7 @@
 <header>
     
     <div>
-        <nav class="nav" style="display:-webkit-inline-flex;  margin-left: 50%; padding: 6px;">
+        <nav class="nav" style="display:-webkit-inline-flex;  margin-left: 40%; padding: 6px;">
             <ul class="nav">
                 <li class="nav-item" style="margin-right: 20px;">
                     <!-- <a class="nav-link" href="#" routerLink="/user">User</a> -->
@@ -51,7 +51,7 @@
                 </li>
                 <li class="nav-item" style="margin-right: 20px;">
                     <!-- <a class="nav-link" href="#" routerLink="/attendance">Attendance</a> -->
-                    <button class="btn btn-sm btn-warning" routerLink="/lab-report">Add Report </button>
+                    <button class="btn btn-sm btn-warning" routerLink="/viewtest">View Tests</button>
                 </li>
                 <li class="nav-item" style="margin-right: 20px;">
                     <!-- <a class="nav-link" href="#" routerLink="/attendance">Attendance</a> -->
@@ -66,51 +66,31 @@
 
 
 <div class="container">
-    <div class="header">
+    <div class="header" style="padding: 5px;">
         <div class="form-control " >
-            <input class="form-control" style="padding: 10px; margin-top: 20px; margin-bottom: 20px;" type="text" placeholder="search" [(ngModel)]="filter">
+            <input class="form-control" style=" margin-top: 20px; margin-bottom: 20px;" type="text" placeholder="search" [(ngModel)]="filter">
             <!-- {{filter}} -->
             
         </div>
 
-        
-
-
-    </div>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>TestID</th>
-                <th>Test Name</th>
-                <th>Test Description </th>
-                <th>Unit</th>
-                <th>MinRange</th>
-                <th>MaxRange</th>
-                <th>Total Amount</th>
-                <th>Action</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <!-- | filter: filter | paginate: {itemsPerPage :2, currentPage: page} -->
-            <tr
-                *ngFor="let p of labtestService.tests | filter: filter | paginate: {itemsPerPage :2, currentPage: page} ">
-                <td>{{p.TestId}}</td>
-                <td>{{p.TestName}}</td>
-                <td>{{p.TestDescription}}</td>
-                <td>{{p.Unit}}</td>
-                <td>{{p.MinRange}}</td>
-                <td>{{p.MaxRange}}</td>
-                <td>{{p.TotalAmount}}</td>
-                <td>
                     <!-- button -->
-                    <button class="btn btn-sm btn-info" (click)="updateTest(p.TestId)">Edit</button>
+                   
                     <!-- &nbsp;
                     <button class="btn btn-sm btn-danger" (click)="deletePost(p.Postid)">Delete</button> -->
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="row" >
+       <div class="col-md-12 bg-dark text-light" *ngFor="let test of labtestService.testview" style="border: 1px solid black; margin-right:50px; border-radius:20px;"><br>
+        <h5>Test Report No : {{test.TestReportId}}</h5>
+        <h6> Patient Name : {{test.PatientName}}</h6>
+        <h6> Mobile No : {{test.Mobile}}</h6>
+        <h6>Sex : {{test.Sex}}</h6>
+        <h6>Appointment Date : {{test.AppointmentDate|date:'dd-MMM-yyyy'}}</h6>
+        <h6 style="text-align: center;">Tests:</h6><p style="text-align: center;" *ngFor="let item of test.TestDetails let i as index">
+            {{item.TestName}}
+        </p>
+        <button class="btn btn-sm btn-warning" style="width:100%;" (click)="updateTestReport(test.TestReportId)">Edit</button>
+            </div>
+   
+    </div>
 
     <footer>
         <!-- pagination -->

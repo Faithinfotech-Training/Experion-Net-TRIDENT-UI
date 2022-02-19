@@ -20,6 +20,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./viewappointment.component.scss'],
 })
 export class ViewappointmentComponent implements OnInit {
+  // visible non visible
+  visible: boolean = false;
+  show: boolean = false;
   //form declaration
   //1. form for notes
   notesForm: FormGroup;
@@ -139,22 +142,13 @@ export class ViewappointmentComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  //addpost function
-  addPost() {
-    console.log(this.addPostForm.value);
-    console.log('hello form submitted using form submit');
-  }
-  //log the post values
-  DoPost(post) {
-    this.myNote = post;
-  }
   onSubmit(form: NgForm) {
     console.log(form.value);
     let addId = this.doctorService.formData.NoteId;
     if (addId == 0 || addId == null) {
       this.insertNote(form.value);
       console.log('posted the values');
-      this.showSuccess();
+      this.toastr.success('Success', 'Inserted');
 
       this.resetForm(form);
     } else {
@@ -162,7 +156,7 @@ export class ViewappointmentComponent implements OnInit {
       console.log('updated');
       this.updateNote(form);
       this.resetForm(form);
-      this.showSuccess();
+      this.toastr.success('Success', 'Updated');
     }
   }
   //insert method
@@ -201,13 +195,6 @@ export class ViewappointmentComponent implements OnInit {
     }
   }
 
-  showSuccess() {
-    this.toastr.success('Employee Updated Successfully', 'Success!');
-  }
-  showFailure() {
-    this.toastr.error('Employee Updated Failed', 'Failure!');
-  }
-
   //push labtest to labtest array
   addLabTest(test) {
     this.labTests.push(test);
@@ -228,6 +215,8 @@ export class ViewappointmentComponent implements OnInit {
     this.medicineAdvice.PharmacistId = +pharmId;
     console.log(this.medicineAdvice);
     this.AddMedAdv(this.medicineAdvice);
+    this.show = !this.show;
+    this.toastr.success('Medicine Advice Added Successfully', 'Success!');
     //----------Adding Medicine Advice---------------
     //this.MedAdId=1;
     //alert('Appointment Id:'+this.appointmentId+' Doctor ID:'+this.staffId +' PharmId:'+pharmId);
@@ -247,7 +236,7 @@ export class ViewappointmentComponent implements OnInit {
   }
   //============================Medicine Details=========================
   addMedPrescription(Mid: number, Mqty: number) {
-    alert('Added Medicine Id: ' + Mid + 'and Quantity : ' + Mqty);
+    this.toastr.show('Added Medicine Id: ' + Mid + 'and Quantity : ' + Mqty);
     this.medicineDetails = {};
     this.medicineDetails.MedicineAdviceId = +this.MedAdId;
     this.medicineDetails.MedicineId = +Mid;
@@ -262,6 +251,7 @@ export class ViewappointmentComponent implements OnInit {
         (res) => {
           console.log(res);
           console.log('Inserted Medicine Detail' + i);
+          this.show = !this.show;
         },
         (error) => {
           console.log(error);
@@ -279,6 +269,8 @@ export class ViewappointmentComponent implements OnInit {
     this.testAdvice.TestAmount = 0;
     console.log(this.testAdvice);
     this.AddTestAdv(this.testAdvice); //uncomment
+    // show div
+    this.visible = !this.visible;
   }
   AddTestAdv(testadv: any) {
     console.log('Inserting  Test Advice record');
@@ -295,7 +287,8 @@ export class ViewappointmentComponent implements OnInit {
   }
   //-------------------Test Details---------------
   addTestPrescription(TId: number) {
-    alert('Added Test Id: ' + TId);
+    // alert('Added Test Id: ' + TId);
+    this.toastr.show('Added Test Id: ' + TId);
     this.testDetails = {};
     this.testDetails.TestId = +TId;
     this.testDetails.TestReportId = +this.TestAdId;
@@ -309,6 +302,7 @@ export class ViewappointmentComponent implements OnInit {
         (res) => {
           console.log(res);
           console.log('Inserted Test Details' + i);
+          this.visible = !this.visible;
         },
         (error) => {
           console.log(error);
@@ -333,7 +327,8 @@ export class ViewappointmentComponent implements OnInit {
     this.doctorService.UpdateAppointment(aid, pah).subscribe(
       (result) => {
         console.log(result);
-        alert('Patient Got Served');
+        // alert('Patient Got Served');
+        this.toastr.success('Patient Got Served', 'Doctor');
         this.toastr.info('Sucessfully Updated', 'Serviced Patient');
         //this.router.navigateByUrl('/doctor');
       },

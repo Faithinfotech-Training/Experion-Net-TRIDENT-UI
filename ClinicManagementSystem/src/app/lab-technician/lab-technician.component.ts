@@ -20,19 +20,18 @@ export class LabTechnicianComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedUser = localStorage.getItem("userName");
-    this.labtestService.bindListTests();
+    this.labtestService.bindListReports();
   }
 
-  addTest(){
-    this.router.navigateByUrl('add-test');
-    this.labtestService.resetForm();   
-  }
-
-  //Edit test
-  updateTest(tID:number){
+  //Edit test Report
+  updateTestReport(tID:number){
     console.log(" going to update this " +tID);
     //navigate to edit form with selected test details
-    this.router.navigate(['update-test',tID]);
+    this.router.navigate(['update-testreport',tID]);
+  }
+  addTest()
+  {
+    this.router.navigateByUrl('/add-test');
   }
 
   //logout
