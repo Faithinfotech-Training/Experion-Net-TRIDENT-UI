@@ -13,15 +13,19 @@ import { ReceptionistService } from 'src/app/shared/services/receptionist.servic
 export class AddappointmentComponent implements OnInit {
   dates =<HTMLInputElement> document.getElementById('date');
   dmin;
-  tokenlen;
   frame;
   constructor(public receptionservice:ReceptionistService,public patientservice:PatientService,private toaster:ToastrService,private router:Router) { }
 
   ngOnInit(): void {
-    this.dmin=new Date().toISOString().slice(0, 10)+ "T00:00";
+    let todayDate = new Date();
+    let h=todayDate.getHours();
+    let m=todayDate.getMinutes();
+    this.dmin=new Date().toISOString().slice(0, 10)+ "T"+h+":"+m;
+ this.receptionservice.bindTodayAppointmentCount();
   this.receptionservice.bindDoctorList();
-this.tokenlen=Math.floor(Math.random()*(30-1+1)+1);
+
 this.patientservice.bindListPatients();
+this.receptionservice.appFormData.AppointmentDate=this.dmin;
 
   }
  
@@ -55,20 +59,41 @@ addAppointment(form:NgForm)
     }
   );
   form.resetForm();
-  this.tokenlen=Math.floor(Math.random()*(30-1+1)+1);
+  this.receptionservice.bindTodayAppointmentCount();
+  this.frame=<HTMLIFrameElement> document.getElementById("frame");
+    this.frame.src="receptionist/addappointment";
 }
  isDateBeforeToday() {
-      let todayDate = new Date();
-      let h=todayDate.getHours();
-      let m=todayDate.getMinutes();
-      let dat=todayDate.toISOString().slice(0, 10) + "T"+h+":"+m;
-      console.log(dat);
-      //console.log(this.dates.value);
-      /*if(this.dates.value<dat)
+
+     // console.log(todayDate);
+      console.log(this.dmin+" Hello");
+      console.log(this.receptionservice.appFormData.AppointmentDate);
+      if(this.receptionservice.appFormData.AppointmentDate<this.dmin)
       {
           alert("You Can't Book for already past time");
-          this.dates.value=dat;
-          this.dates.focus();
-      }*/
+          console.log(this.receptionservice.appFormData.AppointmentDate);
+          let todayDate = new Date();
+    let h=todayDate.getHours();
+    let m=todayDate.getMinutes();
+        this.dmin=new Date().toISOString().slice(0, 10)+ "T"+h+":"+m;
+          this.receptionservice.appFormData.AppointmentDate=this.dmin;
+      }
+  }
+
+  isIdInList()
+  {
+    let flg=0;
+for(let i=0;i<this.patientservice.patients.length;i++)
+{
+if(this.receptionservice.appFormData.PatientId==this.patientservice.patients[i].PatientId)
+{
+flg=1;
+}
+}
+if(flg==1)
+  console.log('Valid Data');
+else
+  this.receptionservice.appFormData.PatientId=null;
+//this.patientservice.patients
   }
 }

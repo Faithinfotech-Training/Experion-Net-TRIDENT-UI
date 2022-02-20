@@ -54,12 +54,12 @@ export class TestComponent implements OnInit {
     if(addId == 0 || addId == null){
       //INSERT
       this.insertTestRecord(form);
-      this.labtestService.resetForm();     
+     // this.labtestService.resetForm();     
     }
     else{
       //UPDATE     
       this.updateTestRecord(form);
-      this.labtestService.resetForm();  
+      //this.labtestService.resetForm();  
     }
   }
 
@@ -71,8 +71,8 @@ export class TestComponent implements OnInit {
     this.labtestService.insertTest(form.value).subscribe(
       (result) => {
         console.log(result);
-        this.labtestService.resetForm();
-        this.toasterService.success('test record has been inserted','CMSApp v2022');
+        this.toasterService.success('Test record has been inserted','CMS App 2022');
+        form.reset();
       },
       (error)=>{
         console.log(error);
@@ -87,11 +87,11 @@ export class TestComponent implements OnInit {
     this.labtestService.updateTest(form.value).subscribe(
       (result) => {
         console.log(result);
-
-        this.toasterService.success('test record has been updated','CMSApp v2022');
+        this.toasterService.success('Test record has been updated','CMS App -2022');
+        form.reset();
         //this.router.navigateByUrl("/test");
         //call reset form for clear the content
-        this.labtestService.resetForm();
+        //this.labtestService.resetForm();
         
         
         

@@ -3,7 +3,7 @@ export class Appoint {
    PatientId:number
   DoctorId:number
    ReceptionistId:number 
-    AppointmentDate:number
+    AppointmentDate:Date=new Date()
  TokenNo:number
  Status:number=1
 }

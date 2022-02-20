@@ -93,8 +93,8 @@
         class="form-control"
         placeholder="Enter Medicine Price"
         required
-        min="0"
-        oninput="validity.valid||(value='');"
+        min="1"
+        oninput="validity.valid||(value='')"
         minlength="1"
         maxlength="10"
         [ngClass]="{
@@ -108,7 +108,7 @@
         *ngIf="MedicinePrice.invalid && MedicinePrice.touched"
       >
         <div *ngIf="MedicinePrice.errors.required">
-          medicine price is required
+          Medicine price is required
         </div>
       </div>
     </div>
@@ -126,8 +126,8 @@
         class="form-control"
         placeholder="Enter Medicine Stock"
         required
-        min="0"
-        oninput="validity.valid||(value='');"
+        min="1"
+        oninput="validity.valid||(value='')"
         minlength="1"
         maxlength="1000"
         [ngClass]="{
@@ -136,7 +136,7 @@
       />
       <!-- validations  -->
       <div class="validation-error" *ngIf="Stock.invalid && Stock.touched">
-        <div *ngIf="Stock.errors.required">medicine stock is required</div>
+        <div *ngIf="Stock.errors.required">Medicine stock is required</div>
       </div>
     </div>
     <!-- Dose  -->

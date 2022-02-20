@@ -12,8 +12,12 @@ export class ViewappointmentsComponent implements OnInit {
   constructor(public receptionservice:ReceptionistService) { }
 
   ngOnInit(): void {
-    this.receptionservice.bindListAppointments();
+    this.receptionservice.bindAppointmentByStatus(1);
 
+  }
+  Bind(id:number)
+  {
+  this.receptionservice.bindAppointmentByStatus(id);
   }
 
 }

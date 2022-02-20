@@ -134,7 +134,7 @@
       >
         <p class="">{{ i + 1 }} : {{ noteItem.Note }} <br /></p>
         <div class="date" style="display: flex; flex-direction: row">
-          <p>{{ noteItem.Date.slice(0, 10) }}</p>
+         <p>{{ (noteItem.Date).slice(0,10) }}</p>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -329,8 +329,8 @@
         (change)="onChangePharmacist($event.target.value)"
         #PharmId="ngModel"
         [(ngModel)]="PharmID"
-      >
-        <option selected disabled>Select Pharmacist</option>
+      >      
+      <option selected disabled>Select Pharmacist</option>                                                                 
         <option
           *ngFor="let pharm of doctorService.pharms"
           value="{{ pharm.StaffId }}"
@@ -501,6 +501,9 @@
               type="number"
               name="PatientId"
               id="PatientId"
+              min="1"
+              oninput="validity.valid||(value='')"
+              name="DoctorId"
               placeholder="choose patient id"
               formControlName="PatientId"
               class="my-3"
@@ -522,6 +525,8 @@
             <!-- doctor id  -->
             <input
               type="number"
+              min="1"
+        oninput="validity.valid||(value='')"
               name="DoctorId"
               id="DoctorId"
               formControlName="DoctorId"

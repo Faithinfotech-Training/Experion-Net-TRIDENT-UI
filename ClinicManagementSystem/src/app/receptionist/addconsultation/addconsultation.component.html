@@ -28,7 +28,7 @@
                         <td>{{app.PhoneNumber}} </td>
                         <td>{{app.DoctorName}}</td>
                         <td >{{app.AppointmentDate | date:'dd-MMM-yyyy hh:mm aa'}}</td> 
-                        <td><input type="number" #TotalAmount="ngModel" [(ngModel)]="TotalAmounts"  required   placeholder="Enter Bill Amount" minlength="1" maxlength="5" required name="TotalAmount"></td>
+                        <td><input type="number" #TotalAmount="ngModel" [(ngModel)]="TotalAmounts"  required   placeholder="Amount"  value="100"  minlength="1" maxlength="5" min="100" max="5000" step="50"  oninput="validity.valid||(value='100');" required name="TotalAmount" ></td>
                        <td class="buton" > <button class="btn btn-sm btn-primary" type="button" (click)="OnSubmit(app.AppointmentId,TotalAmounts)" >
                            Add Bill</button> &nbsp;&nbsp;  <!--(click)="updateEmployee(emp.EmployeeID)"-->
                         </td>

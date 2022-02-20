@@ -16,10 +16,12 @@ export class PrescriptionComponent implements OnInit {
   username = sessionStorage.getItem('userName');
   staffId = sessionStorage.getItem('staffId');
   medicineName: string;
-  todayDate: Date = new Date();
-  totalAmount: number = 0;
-  medicineBill: any;
-  patchs: any;
+  todayDate:Date=new Date();
+  totalAmount:number=0;
+  medicineBill:any;
+  patchs:any;
+  stoik:any;
+
 
   constructor(
     private router: Router,
@@ -47,12 +49,17 @@ export class PrescriptionComponent implements OnInit {
     this.pharmService.bindListStock(this.medicineName);
   }
 
-  GenBill() {
-    for (let i = 0; i < this.pharmService.medAdvice[0].medicineList.length; i++)
-      this.totalAmount =
-        this.totalAmount +
-        this.pharmService.medAdvice[0].medicineList[i].MedicinePrice *
-          this.pharmService.medAdvice[0].medicineList[i].Quantity;
+  UpdateStock()
+  {
+
+  }
+
+  GenBill()
+  {
+    if(confirm("Do you want to  Generate Bill ? You can no longer Update Tests"))
+    {   
+      for(let i=0;i<this.pharmService.medAdvice[0].medicineList.length;i++)
+    this.totalAmount=this.totalAmount+(this.pharmService.medAdvice[0].medicineList[i].MedicinePrice*this.pharmService.medAdvice[0].medicineList[i].Quantity);
     this.totalAmount;
     var datepipe = new DatePipe('en-UK');
     let formattedDate: any = datepipe.transform(Date.now(), 'yyyy-MM-dd');
@@ -62,7 +69,29 @@ export class PrescriptionComponent implements OnInit {
     this.medicineBill.MedicineBillDate = formattedDate;
     this.medicineBill.TotalAmount = +this.totalAmount;
     console.log(this.medicineBill);
+    let newStock=0;
+
+    for(let i=0;i<this.pharmService.medAdvice[0].medicineList.length;i++)
+    {
+      this.pharmService.fetchStock(this.pharmService.medAdvice[0].medicineList[i].Medicine).subscribe(
+        (res)=>{this.stoik=res as any
+          //Fetching Stock
+       newStock=this.stoik.Stock-this.pharmService.medAdvice[0].medicineList[i].Quantity
+       console.log('Current Stock:'+this.stoik.Stock+' New Stock :'+newStock)
+       this.patchs=[{'value':+newStock,'path':'stock','op':'replace'}];
+       // Updating Stock
+        this.pharmService.updateMedStock(this.pharmService.medAdvice[0].medicineList[i].Medicine,this.patchs).subscribe(
+         (res)=>{console.log(res)
+        },(error)=>{console.log(error)} 
+        );
+      }
+       ,(error)=>console.log(error)
+      );
+   
+      }//For Loop Ends
     this.AddMedicineBill(this.medicineBill);
+    this.router.navigateByUrl('/pharmacist');
+    }
   }
 
   AddMedicineBill(medbill: any) {
@@ -78,24 +107,21 @@ export class PrescriptionComponent implements OnInit {
     );
   }
 
-  UpdateMedBill() {
-    if (
-      confirm('Do you want to  Generate Bill ? You can no longer Update Tests')
-    ) {
-      this.patchs = [{ value: 2, path: 'status', op: 'replace' }];
-      this.pharmService
-        .updateMedAdvice(this.pharmService.medadid, this.patchs)
-        .subscribe(
-          (result) => {
-            console.log(result);
-            this.pharmService.bindListMedicineAdvices();
-            this.toaster.success('Successfully Generated Bill', 'Pharmacist');
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      console.log('Patch Sucessfully');
-    }
+  UpdateMedBill()
+  {
+   
+    this.patchs=[{'value':2,'path':'status','op':'replace'}];
+    this.pharmService.updateMedAdvice(this.pharmService.medadid,this.patchs).subscribe(
+      (result)=>{
+        console.log(result);
+        this.pharmService.bindListMedicineAdvices();
+        this.toaster.success("Successfully Generated Bill","Pharmacist");
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+  console.log("Patch Sucessfully");
+ }
   }
-}
+

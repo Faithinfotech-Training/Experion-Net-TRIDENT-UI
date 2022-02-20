@@ -6,12 +6,12 @@
             <br>
             <pagination-controls (pageChange)="page= $event"></pagination-controls>
             <div style="display: flex;justify-content: flex-end;">
-           <!--- <select>
-                <option value="1">All</option>
-                <option value="2">Today</option>
-                <option value="3">Tommorow</option>
-                <option value="4">Select Date</option>
-            </select>-->
+            <select #filters (change)="Bind(filters.value)">
+                <option value="1">Booked</option>
+                <option value="2">With Doctor</option>
+                <option value="3">Ready to Bill</option>
+                <option value="5">Serviced</option>
+            </select>
             </div>
             <br><table class="table table-bordered table-stripped">
                 <thead style="background-color: #0183ce; color:azure;">

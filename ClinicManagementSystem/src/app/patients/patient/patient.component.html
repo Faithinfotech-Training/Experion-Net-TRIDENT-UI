@@ -62,8 +62,8 @@
         <!-- Patient Phone -->
         <div class="form-group">
             <label>Phone Number : </label>
-            <input type="text" name="Phone" #Phone="ngModel" [(ngModel)]="patientService.formData.Phone"
-                class="form-control" placeholder="Enter Mobile number" minlength="10" maxlength="10" required
+            <input type="number" name="Phone" #Phone="ngModel" [(ngModel)]="patientService.formData.Phone"
+                class="form-control" placeholder="Enter Mobile number" minlength="10" maxlength="10" min="0000000000" max="9999999999"   oninput="validity.valid||(value='');"required
                 [ngClass]="{'is-invalid': Phone.touched && Phone.invalid}">
             <!-- validation -->
             <div class="validation-errors" *ngIf="Phone.touched && Phone.invalid"
@@ -77,11 +77,12 @@
         <div class="form-group">
             <label>Patient Sex : </label>
             
-            <select  name="Sex" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex"class="form-control"  [ngClass]="{'is-invalid': Sex.touched && Sex.invalid}" required>
+           <!-- <select  name="Sex" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex"class="form-control"  [ngClass]="{'is-invalid': Sex.touched && Sex.invalid}" required>
                 <option >Male</option>
                 <option >Female</option>
                 <option >Other</option>
-            </select>               
+            </select>       -->
+           <br> <input type="radio" name="Sex" value="Male" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex" > Male &nbsp; <input type="radio" name="Sex" value="Female" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex" > Female &nbsp; <input type="radio" name="Sex" value="Other" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex" required>  Other       
             <!-- validation -->
             <div class="validation-errors" *ngIf="Sex.touched && Sex.invalid"
                 style="color: red; text-align: left;">
@@ -108,7 +109,7 @@
         <!-- Patient DOB -->
         <div class="form-group">
             <label>Patient DOB : </label>
-            <input type="date" name="DateOfBirth" #DateOfBirth="ngModel" [(ngModel)]="patientService.formData.DateOfBirth"
+            <input type="date" name="DateOfBirth" #DateOfBirth="ngModel" [max]="dmin" [min]="dmax"  [(ngModel)]="patientService.formData.DateOfBirth"
                 class="form-control" placeholder="Enter DateOfBirth"  required
                 [ngClass]="{'is-invalid': DateOfBirth.touched && DateOfBirth.invalid}">
             <!-- validation -->

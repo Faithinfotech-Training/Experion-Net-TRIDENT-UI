@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./patient.component.scss']
 })
 export class PatientComponent implements OnInit {
-
+dmin;dmax;
   loggedUser:string;
   pID:number;
   newAttribute: any = {};
@@ -24,8 +24,8 @@ export class PatientComponent implements OnInit {
 
     this.loggedUser = localStorage.getItem("userName");
     
-  
-
+    this.dmin=new Date().toISOString().slice(0, 10);
+  this.dmax=new Date("1890-01-01");
     //get bID from ActivateRoute
     this.pID = this.route.snapshot.params['pID'];
 
