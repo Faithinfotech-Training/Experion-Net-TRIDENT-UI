@@ -16,27 +16,26 @@ export class PrescriptionComponent implements OnInit {
   username = sessionStorage.getItem('userName');
   staffId = sessionStorage.getItem('staffId');
   medicineName: string;
-  todayDate:Date=new Date();
-  totalAmount:number=0;
-  medicineBill:any;
-  patchs:any;
-
+  todayDate: Date = new Date();
+  totalAmount: number = 0;
+  medicineBill: any;
+  patchs: any;
 
   constructor(
     private router: Router,
     private authService: AuthService,
     public pharmService: PharmacistService,
     private route: ActivatedRoute,
-    private toaster:ToastrService
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.appointmentId = this.route.snapshot.params['id']; 
+    this.appointmentId = this.route.snapshot.params['id'];
 
-   // console.log(this.appointmentId+" : "+this.pharmService.medadid);
+    // console.log(this.appointmentId+" : "+this.pharmService.medadid);
     this.pharmService.bindListMedicineAdvicesById(this.appointmentId);
+    this.pharmService.bindListMedicines();
     // this.pharmService.bindListMedicineAdvicesById(3);
-    
   }
   //logout function
   logout() {
@@ -48,28 +47,29 @@ export class PrescriptionComponent implements OnInit {
     this.pharmService.bindListStock(this.medicineName);
   }
 
-  GenBill()
-  {
-    for(let i=0;i<this.pharmService.medAdvice[0].medicineList.length;i++)
-    this.totalAmount=this.totalAmount+(this.pharmService.medAdvice[0].medicineList[i].MedicinePrice*this.pharmService.medAdvice[0].medicineList[i].Quantity);
+  GenBill() {
+    for (let i = 0; i < this.pharmService.medAdvice[0].medicineList.length; i++)
+      this.totalAmount =
+        this.totalAmount +
+        this.pharmService.medAdvice[0].medicineList[i].MedicinePrice *
+          this.pharmService.medAdvice[0].medicineList[i].Quantity;
     this.totalAmount;
-    var datepipe=new DatePipe("en-UK");
-    let formattedDate:any=datepipe.transform(Date.now(),'yyyy-MM-dd');
-    this.medicineBill={};
-    this.medicineBill.AppointmentId=+ this.appointmentId;
-    this.medicineBill.MedicineAdviceId=+ this.pharmService.medadid;
-    this.medicineBill.MedicineBillDate=formattedDate;
-    this.medicineBill.TotalAmount=+this.totalAmount;
+    var datepipe = new DatePipe('en-UK');
+    let formattedDate: any = datepipe.transform(Date.now(), 'yyyy-MM-dd');
+    this.medicineBill = {};
+    this.medicineBill.AppointmentId = +this.appointmentId;
+    this.medicineBill.MedicineAdviceId = +this.pharmService.medadid;
+    this.medicineBill.MedicineBillDate = formattedDate;
+    this.medicineBill.TotalAmount = +this.totalAmount;
     console.log(this.medicineBill);
     this.AddMedicineBill(this.medicineBill);
   }
 
-  AddMedicineBill(medbill:any)
-  {
+  AddMedicineBill(medbill: any) {
     this.pharmService.insertMedicineBill(medbill).subscribe(
       (res) => {
         console.log(res);
-        console.log("Inserted Medicine Bill");
+        console.log('Inserted Medicine Bill');
         this.UpdateMedBill();
       },
       (error) => {
@@ -78,23 +78,24 @@ export class PrescriptionComponent implements OnInit {
     );
   }
 
-  UpdateMedBill()
-  {
-    if(confirm("Do you want to  Generate Bill ? You can no longer Update Tests"))
-  {   
-    this.patchs=[{'value':2,'path':'status','op':'replace'}];
-    this.pharmService.updateMedAdvice(this.pharmService.medadid,this.patchs).subscribe(
-      (result)=>{
-        console.log(result);
-        this.pharmService.bindListMedicineAdvices();
-        this.toaster.success("Successfully Generated Bill","Pharmacist");
-      },
-      (error)=>{
-        console.log(error);
-      }
-    );
-  console.log("Patch Sucessfully");
-
- }
+  UpdateMedBill() {
+    if (
+      confirm('Do you want to  Generate Bill ? You can no longer Update Tests')
+    ) {
+      this.patchs = [{ value: 2, path: 'status', op: 'replace' }];
+      this.pharmService
+        .updateMedAdvice(this.pharmService.medadid, this.patchs)
+        .subscribe(
+          (result) => {
+            console.log(result);
+            this.pharmService.bindListMedicineAdvices();
+            this.toaster.success('Successfully Generated Bill', 'Pharmacist');
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      console.log('Patch Sucessfully');
+    }
   }
 }

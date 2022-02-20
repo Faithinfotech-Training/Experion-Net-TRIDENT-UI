@@ -193,6 +193,7 @@
           class="mx-5"
           required
           id="doc"
+          (change)="onChangeTechnician($event.target.value)"
           name="TechID"
           #TechId="ngModel"
           [(ngModel)]="TechID"
@@ -207,13 +208,15 @@
         </select>
 
         <!-- add the selected lab technician and generate lab test id -->
-        <button
-          class="button1"
-          style="font-size: 10px"
-          (click)="addLabTestAdvice(TechID)"
+        <ng-container *ngIf="buttonTechnician">
+          <button
+            class="button1"
+            style="font-size: 10px"
+            (click)="addLabTestAdvice(TechID)"
+          >
+            Generate TestAdvice ID
+          </button></ng-container
         >
-          Generate TestAdvice ID
-        </button>
       </div>
     </div>
     <!-- select medicine advice  -->
@@ -250,6 +253,7 @@
                 class="form-control"
                 id="testId"
                 name="TestId"
+                (change)="onChangetest($event.target.value)"
                 #TestID="ngModel"
                 [(ngModel)]="TestId"
                 class="form-control"
@@ -270,15 +274,17 @@
               </select>
             </div>
             <!-- submit  -->
-            <div class="form-group">
-              <button
-                type="button"
-                class="button1"
-                (click)="addTestPrescription(TestId)"
-              >
-                Add Test
-              </button>
-            </div>
+            <ng-container *ngIf="buttonTest">
+              <div class="form-group">
+                <button
+                  type="button"
+                  class="button1"
+                  (click)="addTestPrescription(TestId)"
+                >
+                  Add Test
+                </button>
+              </div>
+            </ng-container>
           </form>
         </div>
 
@@ -320,6 +326,7 @@
         required
         id="doc"
         name="PharmID"
+        (change)="onChangePharmacist($event.target.value)"
         #PharmId="ngModel"
         [(ngModel)]="PharmID"
       >
@@ -332,13 +339,15 @@
         </option>
         >
       </select>
-      <button
-        class="button1"
-        style="font-size: 10px"
-        (click)="addMedicineadvice(PharmID)"
-      >
-        Create Medicine Advice ID
-      </button>
+      <ng-container *ngIf="buttonPharmacist">
+        <button
+          class="button1"
+          style="font-size: 10px"
+          (click)="addMedicineadvice(PharmID)"
+        >
+          Create Medicine Advice ID
+        </button>
+      </ng-container>
     </div>
 
     <!-- extended prescription table -->
@@ -367,6 +376,7 @@
                 #medId="ngModel"
                 [(ngModel)]="MedId"
                 class="form-control"
+                (change)="onChangeMed($event.target.value)"
                 id="medicineId"
                 name="DepartmentId"
                 class="form-control"
@@ -390,13 +400,15 @@
                 style="border-bottom: 3px solid #38b6ff"
                 id="qtyId"
               />
-              <button
-                class="button1 mx-2"
-                style="width: 13rem"
-                (click)="addMedPrescription(MedId, MedQty)"
-              >
-                Add Medicine
-              </button>
+              <ng-container *ngIf="buttonMed">
+                <button
+                  class="button1 mx-2"
+                  style="width: 13rem"
+                  (click)="addMedPrescription(MedId, MedQty)"
+                >
+                  Add Medicine
+                </button>
+              </ng-container>
             </div>
             <div class="medList my-4">
               <p class="lead text-center">Medicines List</p>
@@ -404,6 +416,8 @@
                 <p class="text-center">
                   Medicine {{ med.MedicineId }}, Quantity : {{ med.Quantity }}
                   {{ med.Medicine }}
+                  <!-- <button class="button3"
+                  >Remove</button> -->
                 </p>
               </div>
             </div>

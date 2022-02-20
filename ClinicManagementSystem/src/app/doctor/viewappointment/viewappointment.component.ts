@@ -24,6 +24,11 @@ export class ViewappointmentComponent implements OnInit {
   // visible non visible
   visible: boolean = false;
   show: boolean = false;
+  buttonTest: boolean = false;
+  buttonTechnician: boolean = false;
+  buttonPharmacist: boolean = false;
+  buttonMed: boolean = false;
+  testDrop = document.getElementById('testId') as HTMLSelectElement;
   //form declaration
   //1. form for notes
   notesForm: FormGroup;
@@ -146,6 +151,33 @@ export class ViewappointmentComponent implements OnInit {
       );
     }
   }
+  //button show logics
+  onChangetest(deviceValue) {
+    console.log(deviceValue);
+    console.log('changed test drop');
+    this.buttonTest = true;
+  }
+  onChangeTechnician(deviceValue) {
+    console.log(deviceValue);
+    console.log('changed technician');
+    this.buttonTechnician = true;
+  }
+  onChangePharmacist(deviceValue) {
+    console.log(deviceValue);
+    console.log('changed pharmacist drop');
+    this.buttonPharmacist = true;
+  }
+  onChangeMed(deviceValue) {
+    console.log(deviceValue);
+    console.log('changed med drop');
+    this.buttonMed = true;
+  }
+
+  //remove medicines from med list
+  // removeMed(id: number) {
+  //   this.MedDetails.splice(id, 1);
+  //   console.log('medicine removed');
+  // }
 
   //get appointment details
   getAppointmentDetails(id: number) {
@@ -239,7 +271,7 @@ export class ViewappointmentComponent implements OnInit {
     this.medicineAdvice.AppointmentId = this.appointmentId;
     this.medicineAdvice.DoctorId = +this.staffId;
     this.medicineAdvice.PharmacistId = +pharmId;
-    this.medicineAdvice.Status=+1;
+    this.medicineAdvice.Status = +1;
     console.log(this.medicineAdvice);
     this.AddMedAdv(this.medicineAdvice);
     this.show = !this.show;
@@ -297,7 +329,7 @@ export class ViewappointmentComponent implements OnInit {
     this.testAdvice.DoctorId = +this.staffId;
     this.testAdvice.LabTechnicianId = +techId;
     this.testAdvice.TestAmount = 0;
-    this.testAdvice.Status=+1;
+    this.testAdvice.Status = +1;
     console.log(this.testAdvice);
     this.AddTestAdv(this.testAdvice); //uncomment
     this.toastr.success('Test Advice ID Generated Successfully', 'Success!');
