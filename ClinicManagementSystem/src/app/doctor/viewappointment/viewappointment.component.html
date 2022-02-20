@@ -134,7 +134,7 @@
       >
         <p class="">{{ i + 1 }} : {{ noteItem.Note }} <br /></p>
         <div class="date" style="display: flex; flex-direction: row">
-         <p>{{ (noteItem.Date).slice(0,10) }}</p>
+          <p>{{ noteItem.Date.slice(0, 10) }}</p>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -329,8 +329,8 @@
         (change)="onChangePharmacist($event.target.value)"
         #PharmId="ngModel"
         [(ngModel)]="PharmID"
-      >      
-      <option selected disabled>Select Pharmacist</option>                                                                 
+      >
+        <option selected disabled>Select Pharmacist</option>
         <option
           *ngFor="let pharm of doctorService.pharms"
           value="{{ pharm.StaffId }}"
@@ -496,8 +496,15 @@
               hidden
             />
             <!-- patient id  -->
-            <label class="my-2" for="PatientId">Add Patient Id</label>
+            <!-- <label class="my-2" for="PatientId">Add Patient Id</label> -->
             <input
+              type="number"
+              name="PatientId"
+              id="PatientId"
+              formControlName="PatientId"
+              hidden
+            />
+            <!-- <input
               type="number"
               name="PatientId"
               id="PatientId"
@@ -508,6 +515,7 @@
               formControlName="PatientId"
               class="my-3"
               required
+              hidden
               [ngClass]="{
                 'is-invalid':
                   formControls.PatientId.invalid &&
@@ -521,12 +529,12 @@
               >
                 Patient Id is required !
               </div>
-            </div>
+            </div> -->
             <!-- doctor id  -->
             <input
               type="number"
               min="1"
-        oninput="validity.valid||(value='')"
+              oninput="validity.valid||(value='')"
               name="DoctorId"
               id="DoctorId"
               formControlName="DoctorId"

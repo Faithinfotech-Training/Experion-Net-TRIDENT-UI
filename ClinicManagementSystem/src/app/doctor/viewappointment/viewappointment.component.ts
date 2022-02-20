@@ -79,15 +79,29 @@ export class ViewappointmentComponent implements OnInit {
     private route: ActivatedRoute,
     public doctorService: DoctorService,
     private httpClient: HttpClient,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public httpclient: HttpClient
   ) {}
 
   ngOnInit(): void {
     this.appointmentId = this.route.snapshot.params['id'];
+    this.doctorService.getPatientId(this.appointmentId);
+    this.patientId = this.doctorService.patientId;
+    console.log('patient id' + this.patientId);
+    this.getPatientID(this.appointmentId);
+
+    // console.log('patient id prescription' + this.patientId);
+
     console.log('Binding Appointments');
     this.doctorService.bindListAppointmentsByID(+this.appointmentId);
     this.getAppointmentDetails(this.appointmentId);
-    console.log('patient is ' + this.doctorService);
+    // console.log('patient is ' + this.doctorService);
+    // get doctors notes
+
+    console.log(
+      'patient if from appointment is' + this.doctorService.patientId
+    );
+
     // this.appointmentId = this.doctorService.appointmentId;
 
     this.notesForm = new FormGroup({
@@ -98,12 +112,7 @@ export class ViewappointmentComponent implements OnInit {
         Validators.minLength(5),
       ]),
       DoctorId: new FormControl(+this.staffId),
-      PatientId: new FormControl(0, [
-        Validators.required,
-        Validators.min(1),
-        Validators.max(100),
-        Validators.pattern('^[0-9]*$'),
-      ]),
+      PatientId: new FormControl(+this.patientId),
       AppointmentId: new FormControl(+this.appointmentId),
     });
 
@@ -113,13 +122,10 @@ export class ViewappointmentComponent implements OnInit {
     this.doctorService.BindTechnicianList();
     this.doctorService.bindListTests();
     this.doctorService.bindListMedicines();
-
   }
   //get form controls
   get formControls() {
-  
     return this.notesForm.controls;
-
   }
   // ? form submission notes
   noteSubmit(notes) {
@@ -416,5 +422,28 @@ export class ViewappointmentComponent implements OnInit {
     setTimeout(() => {
       window.location.reload();
     }, 2000);
+  }
+
+  getPatientID(id: number) {
+    this.doctorService.getPatient(id).subscribe((result) => {
+      console.log(result);
+      this.patientId = result[Object.keys(result)[0]] as number;
+      console.log(this.patientId + 'is patient id here');
+      // this.getPatientDetails(this.patientId);
+      this.doctorService.bindListPatientsNotes(this.patientId);
+      this.doctorService.bindlistPatientNotes(+this.patientId);
+
+      this.notesForm = new FormGroup({
+        NoteId: new FormControl(0),
+        Note: new FormControl('', [
+          Validators.required,
+          Validators.maxLength(500),
+          Validators.minLength(5),
+        ]),
+        DoctorId: new FormControl(+this.staffId),
+        PatientId: new FormControl(+this.patientId),
+        AppointmentId: new FormControl(+this.appointmentId),
+      });
+    });
   }
 }

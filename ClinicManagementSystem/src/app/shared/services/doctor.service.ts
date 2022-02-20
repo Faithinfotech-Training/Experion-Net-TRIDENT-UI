@@ -23,7 +23,7 @@ export class DoctorService {
   medicines: Medicine[];
   techs: any;
   pharms: any;
-  apppatientId:number;
+  apppatientId: number;
   patientNotes: Notes[] = [];
   appointmentId: number;
   patientId: number;
@@ -83,7 +83,7 @@ export class DoctorService {
         this.appointmentId = id;
         console.log('Appointment ID' + id);
         this.appointment = Array.of(this.appointment);
-        this.apppatientId=this.appointment[0].PatientId;
+        this.apppatientId = this.appointment[0].PatientId;
 
         console.log(response);
       });
@@ -111,6 +111,7 @@ export class DoctorService {
       });
   }
   bindListPatientsNotes(id: number) {
+    // patient notes binding
     this.httpClient
       .get(environment.apiUrl + '/api/DoctorsNotes/patient/' + id)
       .toPromise()
@@ -121,6 +122,8 @@ export class DoctorService {
   }
 
   bindlistPatientNotes(id: number) {
+    console.log('binding notes');
+
     this.httpClient
       .get(environment.apiUrl + '/api/DoctorsNotes/patient/' + id)
       .toPromise()
@@ -195,7 +198,7 @@ export class DoctorService {
   //======================Patch=================================
   UpdateAppointment(id: number, form: any): Observable<any> {
     return this.httpClient.patch(
-      'https://localhost:44381/api/Appointments/'+ id,
+      'https://localhost:44381/api/Appointments/' + id,
       form
     );
   }
@@ -221,5 +224,22 @@ export class DoctorService {
         console.log(response);
         console.log('note deleted');
       });
+  }
+
+  //get patient id with appointment id
+  getPatientId(id: number) {
+    this.httpClient
+      .get(environment.apiUrl + '/api/Appointments/GetPatient/' + id)
+      .toPromise()
+      .then((response) => {
+        this.patientId = response[Object.keys(response)[0]] as number;
+
+        console.log('patient id is ' + this.patientId);
+      });
+  }
+  getPatient(id: number): Observable<any> {
+    return this.httpClient.get(
+      environment.apiUrl + '/api/Appointments/GetPatient/' + id
+    );
   }
 }
