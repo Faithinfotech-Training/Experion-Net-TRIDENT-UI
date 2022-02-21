@@ -38,6 +38,16 @@ export class StaffService {
         this.staffs = response as Staff[];
       });
   }
+  bindListEmployees() {
+    this.httpClient
+      .get(environment.apiUrl + '/api/Staff/Employees')
+      .toPromise()
+      .then((response) => {
+        console.log('from  staff service');
+        console.log(response);
+        this.staffs = response as Staff[];
+      });
+  }
 
   //get  qualifications
   bindListQualifications() {
@@ -95,6 +105,11 @@ export class StaffService {
       staffs.Status = "InActive";
     }
     return this.httpClient.put(environment.apiUrl + '/api/Staff', staffs);
+  }
+//---------------------Patch-------------------------------
+  updateStaffStats(id:number,patch:any):Observable<any>
+  {
+    return this.httpClient.patch('https://localhost:44381/api/Staff/'+id,patch);
   }
 
   insertQualification(qualify: Qualification): Observable<any> {
