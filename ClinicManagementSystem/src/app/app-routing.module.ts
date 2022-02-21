@@ -34,6 +34,9 @@ import { StaffListComponent } from './admin/staff-list/staff-list.component';
 import { StaffComponent } from './admin/staff/staff.component';
 import { QualificationComponent } from './admin/qualification/qualification.component';
 import { RemoveStaffComponent } from './admin/remove-staff/remove-staff.component';
+import { ViewMedicineStockReportComponent } from './admin/view-medicine-stock-report/view-medicine-stock-report.component';
+import { ViewSalesReportComponent } from './admin/view-sales-report/view-sales-report.component';
+import { ViewLabReportComponent } from './admin/view-lab-report/view-lab-report.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -160,6 +163,12 @@ const routes: Routes = [
   { path: 'add-qualification', component:QualificationComponent, canActivate: [AuthGuard],
   data: { RoleId: '2' }},
   { path: 'remove-staff', component:RemoveStaffComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'view-medicine-stock', component:ViewMedicineStockReportComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'view-sales-report', component:ViewSalesReportComponent, canActivate: [AuthGuard],
+  data: { RoleId: '2' }},
+  { path: 'view-lab-report', component:ViewLabReportComponent, canActivate: [AuthGuard],
   data: { RoleId: '2' }},
   //=============================Pharmacist================================
   {

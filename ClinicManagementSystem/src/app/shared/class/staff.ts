@@ -3,6 +3,7 @@ export class Staff {
   FirstName: string = '';
   LastName: string = '';
   Phone: number;
+  Email:string='';
   Address: string = '';
   DateOfBirth: Date = new Date();
   QualificationsId: number = 0;

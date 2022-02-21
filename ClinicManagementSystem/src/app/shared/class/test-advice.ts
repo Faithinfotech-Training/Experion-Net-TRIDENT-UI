@@ -7,4 +7,6 @@ export class TestAdvice {
     ReceptionistName:string='';
     AppointmentDate:Date;
     TestName:string[]=[];
+
+    
 }
