@@ -80,15 +80,15 @@
 
         <div class="form-group">
             <label style="color: black">Email : </label>
-            <input type="email" name="Email" #Email="ngModel" [(ngModel)]="staffService.staffFormData.Email"
-            [ng-pattern]="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+            <input  name="Email" #Email="ngModel" email="true" [(ngModel)]="staffService.staffFormData.Email"
+            
                 class="form-control" placeholder="Enter email address" minlength="5" maxlength="30" required
                 [ngClass]="{ 'is-invalid': Email.touched && Email.invalid }" />
             <!-- validation -->
             <div class="validation-errors" *ngIf="Email.touched && Email.invalid"
                 style="color: red; text-align: left">
                 <div *ngIf="Email.errors.required">email address is required!</div>
-                <div *ngIf="Email.errors.pattern"> Valid email address is required!</div>
+                <div *ngIf="Email.errors?.email">  Email not valid.</div>
             </div>
         </div>
 
