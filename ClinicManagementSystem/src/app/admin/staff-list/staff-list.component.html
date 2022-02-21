@@ -77,6 +77,7 @@
                 <th>DateOfBirth</th>
                 <th>Qualification</th>
                 <th>Role Name</th>
+                <th>Status</th>
                 <th>Action</th>                
             </tr>
         </thead>
@@ -90,6 +91,7 @@
                 <td>{{s.DateOfBirth | date: 'dd-MMM-yyyy'}}</td>
                 <td>{{s.Qualification}}</td>
                 <td>{{s.Role1}}</td>
+                <td>{{s.Status}}</td>
                 <td>
                     <!-- button -->
                     <button class="btn btn-sm btn-info" (click)="toUpdateStaff(s.StaffId)">Edit</button>                   

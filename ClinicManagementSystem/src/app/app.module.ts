@@ -88,7 +88,7 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     StaffComponent,
     QualificationComponent,
     StaffListComponent,
-    RemoveStaffComponent
+    RemoveStaffComponent,
   ],
   imports: [
     BrowserModule,
