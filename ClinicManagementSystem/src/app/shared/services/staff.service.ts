@@ -95,6 +95,9 @@ export class StaffService {
     return this.httpClient.post(environment.apiUrl + '/api/Staff', staffs);
   }
 
+  insertLogins(log:any):Observable<any>{
+    return this.httpClient.post(environment.apiUrl + '/api/Login',log);
+  }
   //update staff
   updateStaff(staffs: Staff): Observable<any> {
     
