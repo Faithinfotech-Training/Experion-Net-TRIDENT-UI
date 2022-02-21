@@ -1,0 +1,84 @@
+.logo {
+    width: 13rem;
+  }
+  li {
+    padding: 0.9rem;
+  }
+  .bi-trash:hover {
+    color: red;
+  }
+  .button1 {
+    color: white;
+    background-color: #109cf1;
+    border: 5px solid transparent;
+    transition: 0.2s ease;
+    border-radius: 50px;
+    padding: 15px 20px;
+    font: 13px montserrat;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    margin: 1em;
+    cursor: pointer;
+  }
+  
+  .button1:hover {
+    color: #109cf1;
+    background-color: white;
+    transform: scale(1.1);
+    border: 5px solid #109cf1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  .button2 {
+    color: white;
+    background-color: #109cf1;
+    border: 5px solid transparent;
+    transition: 0.2s ease;
+    border-radius: 50px;
+    padding: 15px 20px;
+    font: 13px montserrat;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    margin: 1em;
+    cursor: pointer;
+  }
+  
+  .button2:hover {
+    color: #109cf1;
+    background-color: white;
+    transform: scale(1.1);
+    border: 5px solid #109cf1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  .button3 {
+    color: white;
+    background-color: #da1b5a;
+    border: 5px solid transparent;
+    transition: 0.2s ease;
+    border-radius: 50px;
+    padding: 15px 20px;
+    font: 13px montserrat;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    margin: 1em;
+    cursor: pointer;
+  }
+  
+  .button3:hover {
+    color: #da1b5a;
+    background-color: white;
+    transform: scale(1.1);
+    border: 5px solid #da1b5a;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
