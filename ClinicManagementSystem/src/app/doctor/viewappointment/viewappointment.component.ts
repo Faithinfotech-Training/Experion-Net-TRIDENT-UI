@@ -391,6 +391,7 @@ export class ViewappointmentComponent implements OnInit {
           console.log(res);
           console.log('Inserted Test Details' + i);
           this.toastr.success('Test Details Added Successfully', 'Success!');
+          this.visible = false;
         },
         (error) => {
           console.log(error);
