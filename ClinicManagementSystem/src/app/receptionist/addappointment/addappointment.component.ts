@@ -14,6 +14,7 @@ export class AddappointmentComponent implements OnInit {
   dates =<HTMLInputElement> document.getElementById('date');
   dmin;
   frame;
+  newdate;
   constructor(public receptionservice:ReceptionistService,public patientservice:PatientService,private toaster:ToastrService,private router:Router) { }
 
   ngOnInit(): void {
@@ -66,7 +67,21 @@ addAppointment(form:NgForm)
  isDateBeforeToday() {
 
      // console.log(todayDate);
-      console.log(this.dmin+" Hello");
+     
+      let todayDate = new Date();
+      let h=todayDate.getHours();
+      let m=todayDate.getMinutes();
+      console.log('Hour:'+h);
+      if(h>9 && m>9)
+     this.dmin=new Date().toISOString().slice(0, 10)+ "T"+h+":"+m;
+     else if(h>9 && m<9)
+      this.dmin=new Date().toISOString().slice(0, 10)+ "T"+h+":"+0+m;
+      else if(h<9&&m>9)
+      this.dmin=new Date().toISOString().slice(0, 10)+ "T"+0+h+":"+m;
+      else
+      this.dmin=new Date().toISOString().slice(0, 10)+ "T"+0+h+":"+0+m;
+ 
+      console.log(this.dmin+"Current Time");
       console.log(this.receptionservice.appFormData.AppointmentDate);
       if(this.receptionservice.appFormData.AppointmentDate<this.dmin)
       {
@@ -75,8 +90,8 @@ addAppointment(form:NgForm)
           let todayDate = new Date();
     let h=todayDate.getHours();
     let m=todayDate.getMinutes();
-        this.dmin=new Date().toISOString().slice(0, 10)+ "T"+h+":"+m;
-          this.receptionservice.appFormData.AppointmentDate=this.dmin;
+   this.newdate=new Date().toISOString().slice(0, 10)+ "T"+h+":"+m;
+          this.receptionservice.appFormData.AppointmentDate=this.newdate;
       }
   }
 
