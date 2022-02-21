@@ -94,9 +94,12 @@
                 <td>{{s.Role1}}</td>
                 <td>
                     <!-- button -->
-                    <button class="btn btn-sm btn-danger" (click)="toDisableStaff(s.StaffId);  " >Disable</button>                 
-                    <!-- &nbsp; -->
-                    <button class="btn btn-sm btn-success" (click)="toEnableStaff(s.StaffId);  " >Enaable</button>
+                    <div *ngIf="s.Status=='Active' else eb">
+                    <button class="btn btn-sm btn-danger" (click)="toDisableStaff(s.StaffId);  " >Disable Staff</button>   
+                  </div>   
+                  <ng-template #eb>          
+                    <button class="btn btn-sm btn-success" (click)="toEnableStaff(s.StaffId);  " >Enable Staff</button>
+                  </ng-template> 
                 </td>
             </tr>
         </tbody>

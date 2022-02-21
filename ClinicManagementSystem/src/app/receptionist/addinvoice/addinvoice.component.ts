@@ -31,7 +31,7 @@ patch:any;
   {
     var datepipe=new DatePipe("en-UK");
    let formattedDate:any=datepipe.transform(Date.now(),'yyyy-MM-dd');
-  alert('Appointment Id:'+aid+'and Total:'+total);
+  //alert('Appointment Id:'+aid+'and Total:'+total);
   this.appid=aid;
   this.receptionservice.getABill(aid).subscribe(
     (res)=>{console.log(res); //this.bill=res as any;

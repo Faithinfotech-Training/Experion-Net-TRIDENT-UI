@@ -110,7 +110,7 @@ export class StaffComponent implements OnInit {
       (result) => {
         console.log(result);
 
-        this.toasterService.success('staff record has been updated','CMSApp v2022');
+        this.toasterService.success('Staff record has been updated','CMSApp v2022');
         this.resetForm(form);
         //this.router.navigateByUrl("/update-staff");
         //call reset form for clear the content

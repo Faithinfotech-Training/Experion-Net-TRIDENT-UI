@@ -3,4 +3,5 @@ export class User {
   RoleId: number = 0;
   Password: string = '';
   StaffId: number = 0;
+  Status:string='';
 }
