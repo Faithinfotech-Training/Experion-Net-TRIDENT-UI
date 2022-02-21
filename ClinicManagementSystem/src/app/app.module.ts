@@ -19,7 +19,7 @@ import { PatientListComponent } from './patients/patient-list/patient-list.compo
 import { PatientComponent } from './patients/patient/patient.component';
 import { AuthService } from './shared/services/auth.service';
 import { PatientService } from './shared/services/patient.service';
-import {NgxPrintModule} from 'ngx-print'
+import { NgxPrintModule } from 'ngx-print';
 import { ViewappointmentComponent } from './doctor/viewappointment/viewappointment.component';
 import { PrescriptionComponent } from './pharmacist/prescription/prescription.component';
 import { MedicinesComponent } from './pharmacist/medicines/medicines.component';
@@ -54,6 +54,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { AuthInterceptor } from './shared/auth.interceptor';
 //import { NgxBootstrapIconsModule,allIcons } from 'ngx-bootstrap-icons';
 
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -104,13 +105,17 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     ToastrModule.forRoot(),
     CommonModule,
     FontAwesomeModule,
-   // NgxBootstrapIconsModule.pick(allIcons),
+    NgSelectModule,
+    // NgxBootstrapIconsModule.pick(allIcons),
   ],
-  providers: [AuthService, PatientService,LabtTestService,StaffService,
+  providers: [
+    AuthService,
+    PatientService,
+    LabtTestService,
+    StaffService,
     AuthGuard,
-    { provide: HTTP_INTERCEPTORS, 
-      useClass:AuthInterceptor,
-      multi: true}],
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

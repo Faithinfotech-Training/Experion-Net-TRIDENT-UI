@@ -75,40 +75,9 @@
 </nav>
 <!-- end navbar  -->
 
-<header>
-  <div>
-    <nav
-      class="nav"
-      style="display: -webkit-inline-flex; margin-left: 40%; padding: 6px"
-    >
-      <ul class="nav">
-        <li class="nav-item" style="margin-right: 20px">
-          <!-- <a class="nav-link" href="#" routerLink="/attendance">Attendance</a> -->
-          <button class="btn btn-sm btn-warning" (click)="addTest()">
-            Add New Tests
-          </button>
-        </li>
-        <li class="nav-item" style="margin-right: 20px">
-          <!-- <a class="nav-link" href="#" routerLink="/attendance">Attendance</a> -->
-          <button class="btn btn-sm btn-warning" routerLink="/viewtest">
-            View Tests
-          </button>
-        </li>
-        <li class="nav-item" style="margin-right: 20px">
-          <!-- <a class="nav-link" href="#" routerLink="/attendance">Attendance</a> -->
-          <button class="btn btn-sm btn-warning" routerLink="/viewreport">
-            View Report
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
 <div class="container-fluid">
-  <div class="row">
-    <h3 class="display-6">Test Advices</h3>
-  </div>
+  <h3 class="display-6">Test Advices</h3>
+
   <div
     class="row p-3 justify-content-center shadow-sm"
     style="border: 1px solid #109cf1"
@@ -127,7 +96,7 @@
                     <button class="btn btn-sm btn-danger" (click)="deletePost(p.Postid)">Delete</button> -->
 
     <div
-      class="row my-5 shadow-sm p-2 py-5 m-5 justify-content-around"
+      class="row my-5 shadow-sm p-5 py-5 m-5 justify-content-around"
       style="border-bottom: 3px solid #38b6ff"
       *ngFor="
         let item of labtestService.testview

@@ -7,33 +7,38 @@ import { LabtTestService } from 'src/app/shared/services/labt-test.service';
 @Component({
   selector: 'app-view-test',
   templateUrl: './view-test.component.html',
-  styleUrls: ['./view-test.component.scss']
+  styleUrls: ['./view-test.component.scss'],
 })
 export class ViewTestComponent implements OnInit {
-  loggedUser:string;
-  page:number =1;
-  filter:string;
-  tID:number;
-  constructor(private authService: AuthService,public labtestService:LabtTestService,private router: Router, private toasterService: ToastrService) { }
+  username: string;
+  page: number = 1;
+  filter: string;
+  tID: number;
+  constructor(
+    private authService: AuthService,
+    public labtestService: LabtTestService,
+    private router: Router,
+    private toasterService: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.loggedUser = localStorage.getItem("userName");
+    this.username = localStorage.getItem('userName');
     this.labtestService.bindListTests();
   }
-  addTest(){
+  addTest() {
     this.router.navigateByUrl('add-test');
-    this.labtestService.resetForm();   
+    this.labtestService.resetForm();
   }
 
   //Edit test
-  updateTest(tID:number){
-    console.log(" going to update this " +tID);
+  updateTest(tID: number) {
+    console.log(' going to update this ' + tID);
     //navigate to edit form with selected test details
-    this.router.navigate(['update-test',tID]);
+    this.router.navigate(['update-test', tID]);
   }
 
   //logout
-  logOut(){
+  logout() {
     this.authService.logout();
     this.router.navigateByUrl('login');
   }

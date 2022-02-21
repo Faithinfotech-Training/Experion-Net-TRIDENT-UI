@@ -64,6 +64,21 @@
   </div>
 </nav>
 <!-- navbar  -->
+<!-- TODO Multiselect -->
+<!-- <div class="m-5 p-5"> -->
+<!-- <form (ngSubmit)="addTestsTry()" #Testform="ngForm">
+    <ng-select
+      [items]="doctorService.tests"
+      bindLabel="TestName"
+      placeholder="Select Category"
+      appendTo="body"
+      [multiple]="true"
+      (change)="getValues()"
+    >
+    </ng-select>
+    <button class="button2">show tests</button>
+  </form> -->
+<!-- </div> -->
 
 <!-- contents  -->
 <div class="container-fluid">
@@ -395,6 +410,8 @@
                 #medQty="ngModel"
                 [(ngModel)]="MedQty"
                 class="mx-1"
+                min="1"
+                oninput="validity.valid||(value='')"
                 type="number"
                 placeholder="Quantity"
                 style="border-bottom: 3px solid #38b6ff"

@@ -72,6 +72,20 @@ export class ViewappointmentComponent implements OnInit {
   //test
   TestName: string;
 
+  //angular multiselect
+  cars = [
+    { id: 1, name: 'BMW Hyundai' },
+    { id: 2, name: 'Kia Tata' },
+    { id: 3, name: 'Volkswagen Ford' },
+    { id: 4, name: 'Renault Audi' },
+    { id: 5, name: 'Mercedes Benz Skoda' },
+  ];
+
+  selected = [{ id: 3, name: 'Volkswagen Ford' }];
+
+  myTests: Test[] = [];
+  Testform: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -376,9 +390,11 @@ export class ViewappointmentComponent implements OnInit {
         (res) => {
           console.log(res);
           console.log('Inserted Test Details' + i);
+          this.toastr.success('Test Details Added Successfully', 'Success!');
         },
         (error) => {
           console.log(error);
+          this.toastr.error('Error in Test Details', 'Error!');
         }
       );
     }
@@ -445,5 +461,24 @@ export class ViewappointmentComponent implements OnInit {
         AppointmentId: new FormControl(+this.appointmentId),
       });
     });
+  }
+
+  addTestsTry() {
+    this.Testform = new FormGroup({
+      TestId: new FormControl(0),
+      TestName: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(50),
+        Validators.minLength(5),
+      ]),
+      TestAmount: new FormControl(0),
+      TestReportId: new FormControl(0),
+      TestValue: new FormControl(0),
+    });
+    this.myTests.push(this.Testform.value);
+    console.log('myTests', this.myTests);
+  }
+  getValues() {
+    console.log(this.selected);
   }
 }
