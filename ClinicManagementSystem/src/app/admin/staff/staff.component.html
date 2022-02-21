@@ -36,7 +36,7 @@
   "></div>
 
 <div>
-    <form name="staffform" #form="ngForm" autocomplete="off" style="padding: 30px" (ngSubmit)="onSubmit(form)">
+    <form name="staffform" #form="ngForm" autocomplete="off" style="padding: 30px" (ngSubmit)="onSubmit(form,LoginId.value,Password.value)">
         <!-- staff ID  making this as hidden-->
         <input type="hidden" name="StaffId" #StaffId="ngModel" [(ngModel)]="staffService.staffFormData.StaffId" />
 
@@ -81,7 +81,7 @@
         <!-- staff DOB -->
         <div class="form-group">
             <label> DOB : </label>
-            <input type="date" name="DateOfBirth" #DateOfBirth="ngModel"
+            <input type="date" name="DateOfBirth" #DateOfBirth="ngModel" [max]="dmin"
                 [(ngModel)]="staffService.staffFormData.DateOfBirth" class="form-control"
                 placeholder="Enter DateOfBirth" required
                 [ngClass]="{ 'is-invalid': DateOfBirth.touched && DateOfBirth.invalid }" />
@@ -142,6 +142,29 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label style="color: black"> Username: </label>
+            <input type="text" name="Username" #LoginId
+                class="form-control" placeholder="Enter Username" minlength="4" maxlength="10" required
+                [ngClass]="{ 'is-invalid':LoginId.touched && LoginId.invalid }" />
+            <!-- validation -->
+            <div class="validation-errors" *ngIf="LoginId.touched && LoginId.invalid"
+                style="color: red; text-align: left">
+                <div *ngIf="Username.errors.required">Username is required!</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label style="color: black">Password: </label>
+            <input type="password" name="Password" #Password 
+                class="form-control" placeholder="Enter Password" minlength="4" maxlength="15" required
+                [ngClass]="{ 'is-invalid':Password.touched && Password.invalid }" />
+            <!-- validation -->
+            <div class="validation-errors" *ngIf="Password.touched && Password.invalid"
+                style="color: red; text-align: left">
+                <div *ngIf="Username.errors.required">Password is required!</div>
+            </div>
+        </div>
         <!-- IsActive -->
         <div class="form-group">
             <div class="form-check">
@@ -151,7 +174,6 @@
 
             </div>
         </div>
-
         <!-- submit -->
         <br />
         <div class="form-group">
