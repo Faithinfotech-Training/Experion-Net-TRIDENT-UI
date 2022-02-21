@@ -5,6 +5,7 @@ export class Invoice {
     ReceptionistName:string=""
     DoctorName:string=""
     PatientName:string=""
+    Email:string=""
     Phone:number=0
     Address: string=""
     DateOfBirth:Date=new Date()

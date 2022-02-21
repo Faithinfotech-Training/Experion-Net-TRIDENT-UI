@@ -125,7 +125,7 @@ export class DoctorService {
     console.log('binding notes');
 
     this.httpClient
-      .get(environment.apiUrl + '/api/DoctorsNotes/patient/' + id)
+      .get(environment.apiUrl + '/api/DoctorsNotes/patient/'+ id)
       .toPromise()
       .then((response) => {
         this.patientNotes = response as Notes[];
@@ -241,5 +241,9 @@ export class DoctorService {
     return this.httpClient.get(
       environment.apiUrl + '/api/Appointments/GetPatient/' + id
     );
+  }
+  fetchStock(id:number):Observable<any>
+  {
+    return this.httpClient.get(environment.apiUrl + '/api/Medicines/stocks/'+ id);
   }
 }

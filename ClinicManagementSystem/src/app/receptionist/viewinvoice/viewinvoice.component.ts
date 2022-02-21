@@ -3,6 +3,7 @@ import { ReceptionistService } from 'src/app/shared/services/receptionist.servic
 import{NgxPrintModule} from 'ngx-print';
 import   './../../../assets/js/smtp.js'; //path might change
 import { HttpRequest } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -24,6 +25,11 @@ filter:string;
 
   sendEmail()
   {
+    var datePipe = new DatePipe("en-UK");
+
+          let AppointformatedDate:any = datePipe.transform(this.receptionservice.bills[this.page-1].AppointmentDate,'MMM d, y, h:mm:ss a');
+          let BillDate:any= datePipe.transform(this.receptionservice.bills[this.page-1].BillDate,'MMM d, y, h:mm:ss a');
+
     var Email = { send: function (a) { return new Promise(function (n, e) { a.nocache = Math.floor(1e6 * Math.random() + 1), 
       a.Action = "Send"; var t = JSON.stringify(a); Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) { n(e) }) }) }, ajaxPost: function (e, n, t) { var a = Email.createCORSRequest("POST", e); 
       a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), 
@@ -40,19 +46,19 @@ filter:string;
       Host : 'smtp.elasticemail.com',
       Username : 'sumeethexperion@gmail.com',
       Password : '45816B271D21A951B111754AAE40236441F9',
-      To : 'sumeeth.naik@learner.manipal.edu',  //testemailforasite@gmail.com //nikhil.nandagopan@experionglobal.com
+      To : this.receptionservice.bills[this.page-1].Email,  //testemailforasite@gmail.com //nikhil.nandagopan@experionglobal.com
       From : 'sumeethexperion@gmail.com',
       Subject : 'Clinic Management System - Final Invoice',
       Body : `
       <i>Hello ${this.receptionservice.bills[this.page-1].PatientName},</i> <br/> Please Find your Invoice Copy below <br>
       <center><h2> Final Invoice </h2></center>
       <b>Invoice No: ${this.receptionservice.bills[this.page-1].BillId}</b><br/>
-      <div align="right"><b >Bill Date: ${this.receptionservice.bills[this.page-1].BillDate}</b><br/></div>
+      <div align="right"><b >Bill Date: ${BillDate}</b><br/></div>
        <b> Patient Name: ${this.receptionservice.bills[this.page-1].PatientName}</b> <br/>
        <b>Blood Group:${this.receptionservice.bills[this.page-1].BloodGroup} </b> <br/>
        <div align="right"><b>Phone no:${this.receptionservice.bills[this.page-1].Phone} </b> <br/></div>
        <b>Receptionist Name:  ${this.receptionservice.bills[this.page-1].ReceptionistName}</b> 
-       <div align="right"> <b>Appointment Date: ${this.receptionservice.bills[this.page-1].AppointmentDate}</b></div>
+       <div align="right"> <b>Appointment Date: ${AppointformatedDate}</b></div>
        <b>Consulted Doctor Name:  ${this.receptionservice.bills[this.page-1].DoctorName} </b><br />
         <center> <br /> 
         <table  cellspacing="2" bgcolor="#1aff8c" style="width:100%">
@@ -78,7 +84,7 @@ filter:string;
         </table>
         <br></center>
         <center><b>~Thank you for your patronage and Stay Healthy  .~</b> </center>`
-      }).then( (message) => {alert(message); } );
+      }).then( (message) => { if(message=='OK')alert('Billwas sent to Patients Email'); else alert('Email Sending Failed...'); } );
 
 
   }
