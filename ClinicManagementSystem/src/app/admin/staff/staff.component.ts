@@ -12,9 +12,12 @@ import { StaffService } from 'src/app/shared/services/staff.service';
   styleUrls: ['./staff.component.scss']
 })
 export class StaffComponent implements OnInit {
-
+  dmin=new Date().toISOString().slice(0, 10);
   loggedUser:string;
   sID:number;
+  LoginId:number;
+  password:string='';
+  Login:any={};
   constructor(private authService: AuthService,public staffService: StaffService,private router: Router, 
     private toasterService: ToastrService, private route: ActivatedRoute) { }
 
@@ -64,7 +67,7 @@ export class StaffComponent implements OnInit {
   }
 
   //Submit
-  onSubmit(form:NgForm){
+  onSubmit(form:NgForm,lid:string,pass:string){
     console.log(form.value);
 
     let addStaffId = this.staffService.staffFormData.StaffId;
@@ -72,8 +75,7 @@ export class StaffComponent implements OnInit {
     // INSERT OR UPDATE
     if(addStaffId == 0 || addStaffId == null){
       //INSERT
-      
-      this.insertStaffRecord(form);
+      this.insertStaffRecord(form,lid,pass);
       this.resetForm(form);   
     }
     else{
@@ -85,15 +87,19 @@ export class StaffComponent implements OnInit {
 
   
   //insert Method
-  insertStaffRecord(form?: NgForm){
+  insertStaffRecord(form: NgForm,log:string,pas:string){
     console.log("Inserting a record...");
     console.log(form.value);
     console.log(this.staffService.staffFormData.Status);
     this.staffService.insertStaff(form.value).subscribe(
       (result) => {
         console.log(result);
-        
-        this.toasterService.success('staff record has been inserted','CMSApp v2022');
+         this.Login.StaffId=+result
+         this.Login.LoginId=log;
+         this.Login.Password=pas;
+         this.staffService.insertLogins(this.Login).subscribe((res)=>console.log(res),(error)=>console.log(error));
+        // console.log(this.Login);
+        this.toasterService.success('Staff Record has been inserted','CMSApp v2022');
         this.resetForm(form);
       },
       (error)=>{

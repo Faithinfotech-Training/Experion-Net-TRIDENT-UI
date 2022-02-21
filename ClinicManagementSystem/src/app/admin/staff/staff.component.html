@@ -89,7 +89,7 @@
       class="mx-3"
       autocomplete="off"
       style="padding: 30px"
-      (ngSubmit)="onSubmit(form)"
+      (ngSubmit)="onSubmit(form,LoginId.value,Password.value)"
     >
       <!-- staff ID  making this as hidden-->
       <input
@@ -187,6 +187,7 @@
           [(ngModel)]="staffService.staffFormData.DateOfBirth"
           class="form-control"
           placeholder="Enter DateOfBirth"
+          [max]="dmin"
           required
           [ngClass]="{
             'is-invalid': DateOfBirth.touched && DateOfBirth.invalid
@@ -283,7 +284,29 @@
           <div *ngIf="RoleId.errors.required">Role is required!</div>
         </div>
       </div>
+        <div class="form-group">
+            <label style="color: black"> Username: </label>
+            <input type="text" name="Username" #LoginId
+                class="form-control" placeholder="Enter Username" minlength="4" maxlength="10" required
+                [ngClass]="{ 'is-invalid':LoginId.touched && LoginId.invalid }" />
+            <!-- validation -->
+            <div class="validation-errors" *ngIf="LoginId.touched && LoginId.invalid"
+                style="color: red; text-align: left">
+                <div *ngIf="Username.errors.required">Username is required!</div>
+            </div>
+        </div>
 
+        <div class="form-group">
+            <label style="color: black">Password: </label>
+            <input type="password" name="Password" #Password 
+                class="form-control" placeholder="Enter Password" minlength="4" maxlength="15" required
+                [ngClass]="{ 'is-invalid':Password.touched && Password.invalid }" />
+            <!-- validation -->
+            <div class="validation-errors" *ngIf="Password.touched && Password.invalid"
+                style="color: red; text-align: left">
+                <div *ngIf="Username.errors.required">Password is required!</div>
+            </div>
+        </div>
       <!-- IsActive -->
       <div class="form-group m-3 mx-4">
         <div
@@ -304,7 +327,34 @@
           >
         </div>
       </div>
+<!-- 
+        <div class="form-group">
+            <label style="color: black">Email : </label>
+            <input  name="Email" #Email="ngModel" email="true" [(ngModel)]="staffService.staffFormData.Email"
+            
+                class="form-control" placeholder="Enter email address" minlength="5" maxlength="30" required
+                [ngClass]="{ 'is-invalid': Email.touched && Email.invalid }" />
+             validation 
+            <div class="validation-errors" *ngIf="Email.touched && Email.invalid"
+                style="color: red; text-align: left">
+                <div *ngIf="Email.errors.required">email address is required!</div>
+                <div *ngIf="Email.errors?.email">  Email not valid.</div>
+            </div>
+        </div> --> 
 
+        <!-- staff DOB -->
+        <div class="form-group">
+            <label> DOB : </label>
+            <input type="date" name="DateOfBirth" #DateOfBirth="ngModel"
+                [(ngModel)]="staffService.staffFormData.DateOfBirth" class="form-control"
+                placeholder="Enter DateOfBirth" required
+                [ngClass]="{ 'is-invalid': DateOfBirth.touched && DateOfBirth.invalid }" />
+            <!-- validation -->
+            <div class="validation-errors" *ngIf="DateOfBirth.touched && DateOfBirth.invalid"
+                style="color: red; text-align: left">
+                <div *ngIf="DateOfBirth.errors.required">DateOfBirth is required!</div>
+            </div>
+        </div>
       <!-- submit -->
       <br />
       <div class="form-group">
@@ -316,6 +366,7 @@
           Submit
         </button>
       </div>
+
     </form>
   </div>
 </div>
