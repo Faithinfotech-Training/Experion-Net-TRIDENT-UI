@@ -7,6 +7,10 @@ import { Qualification } from '../class/qualification';
 import { Role } from '../class/role';
 import { Staff } from '../class/staff';
 
+import { MedicineStock } from '../class/medicine-stock';
+import { LabReport } from '../class/lab-report';
+import { SalesReport } from '../class/sales-report';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +20,10 @@ export class StaffService {
   qualify: any[];
   qualFormData: Qualification = new Qualification();
   roles: any[];
+
+  medStocks:MedicineStock[];
+  sales:SalesReport[];
+  labreports:LabReport[];
 
   constructor(private httpClient: HttpClient) {}
 
@@ -96,6 +104,47 @@ export class StaffService {
       qualify
     );
   }
+
+
+  //getting medicine stock report
+  bindListMedStockReport() {
+    this.httpClient
+      .get(environment.apiUrl + '/api/Report/GetStockReport')
+      .toPromise()
+      .then((response) => {
+        console.log('from stock report  service');
+
+        this.medStocks = response as any[];
+        
+      });
+  }
+
+  //getting  sales report(profit per month)
+  bindListSalesReport() {
+    this.httpClient
+      .get(environment.apiUrl + '/api/Report/GetSalesReport')
+      .toPromise()
+      .then((response) => {
+        console.log('from sales report  service');
+
+        this.sales = response as any[];
+        
+      });
+  }
+
+  //getting report of lab 
+  bindListLabReport() {
+    this.httpClient
+      .get(environment.apiUrl + '/api/Report/GetLabTestReport')
+      .toPromise()
+      .then((response) => {
+        console.log('from lab report  service');
+
+        this.labreports = response as any[];
+        
+      });
+  }
+
 
   resetForm(form?: NgForm) {
     this.staffFormData = null;

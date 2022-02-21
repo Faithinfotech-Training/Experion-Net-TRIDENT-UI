@@ -74,6 +74,7 @@ export class LabtTestService {
   }
 
 
+
   //get  test advices
   bindListTestAdvices(){
     this.httpClient.get(environment.apiUrl + '/api/TestAdvice/GetTestDetails').toPromise().then(
@@ -84,6 +85,7 @@ export class LabtTestService {
       }
     )
   }
+  
  bindListTestReports(){
     this.httpClient.get('https://localhost:44381/api/LabBill').toPromise().then(response=>{
       console.log("From Service");

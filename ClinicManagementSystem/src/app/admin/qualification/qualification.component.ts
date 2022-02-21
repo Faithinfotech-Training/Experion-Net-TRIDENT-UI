@@ -50,7 +50,7 @@ export class QualificationComponent implements OnInit {
     this.staffService.insertQualification(form.value).subscribe(
       (result) => {
         console.log(result);
-        this.toasterService.success('Qualification record has been inserted','CMSApp v2022');
+        this.toasterService.success('Qualification has been Successfully inserted','CMSApp v2022');
         this.resetForm(form);
       },
       (error)=>{

@@ -55,6 +55,9 @@ import { AuthInterceptor } from './shared/auth.interceptor';
 //import { NgxBootstrapIconsModule,allIcons } from 'ngx-bootstrap-icons';
 
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ViewSalesReportComponent } from './admin/view-sales-report/view-sales-report.component';
+import { ViewMedicineStockReportComponent } from './admin/view-medicine-stock-report/view-medicine-stock-report.component';
+import { ViewLabReportComponent } from './admin/view-lab-report/view-lab-report.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +93,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     QualificationComponent,
     StaffListComponent,
     RemoveStaffComponent,
+    ViewSalesReportComponent,
+    ViewMedicineStockReportComponent,
+    ViewLabReportComponent,
   ],
   imports: [
     BrowserModule,

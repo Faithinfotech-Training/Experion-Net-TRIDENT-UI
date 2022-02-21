@@ -87,9 +87,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('userName', this.loginUser.LoginId);
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
           sessionStorage.setItem('userName', this.loginUser.LoginId);
-          sessionStorage.setItem(
-            'accessRole',
-            this.loginUser.RoleId.toString()
+          sessionStorage.setItem('accessRole',this.loginUser.RoleId.toString()
           );
           sessionStorage.setItem('token', this.loginUser.token);
           sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
