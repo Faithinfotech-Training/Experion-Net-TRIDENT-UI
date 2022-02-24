@@ -31,6 +31,14 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    history.pushState(null, null, document.URL);
+
+    window.addEventListener('popstate', function () {
+
+      history.pushState(null, null, document.URL);
+
+    });
     //creates a reactive form model
     this.loginForm = this.formBuilder.group({
       //FormControlname Fields

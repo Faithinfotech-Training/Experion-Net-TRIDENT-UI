@@ -27,7 +27,18 @@ export class LabTechnicianComponent implements OnInit {
   ngOnInit(): void {
     // this.username = sessionStorage.getItem('userName');
     // this.loggedUser = localStorage.getItem('userName');
-    this.labtestService.bindListReports();
+    window.location.hash = 'no-back-button';
+
+    window.location.hash = 'Again-No-back-button'; //again because google chrome don't insert first hash into history
+
+    window.onhashchange = function () {
+
+      window.location.hash = 'no-back-button';
+
+    };
+    //this.labtestService.bindListReports();
+this.labtestService.bindListReportsforPharm(+this.staffId);
+
   }
 
   //Edit test Report

@@ -91,7 +91,7 @@ export class DoctorService {
   //--------- Binding Lab Technicians------------
   BindTechnicianList() {
     this.httpClient
-      .get('https://localhost:44381/api/Role/Staff/5')
+      .get('https://localhost:44381/api/Role/Staff/4')
       .toPromise()
       .then((response) => {
         console.log('From Doctor Service \n Fetching Lab Technician Lists');
@@ -102,7 +102,7 @@ export class DoctorService {
   //--------- Binding Pharmacist------------
   BindPharmList() {
     this.httpClient
-      .get('https://localhost:44381/api/Role/Staff/4')
+      .get('https://localhost:44381/api/Role/Staff/5')
       .toPromise()
       .then((response) => {
         console.log('From Doctor Service \n Fetching Pharmacist Lists');

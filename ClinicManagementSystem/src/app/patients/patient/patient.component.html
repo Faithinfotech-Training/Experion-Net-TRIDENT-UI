@@ -35,15 +35,26 @@
     "></div>
 -->
 <!-- navbar  -->
-<div>
+  <!-- template driven -->
 
-    <!-- template driven -->
+  <form
+    name="patientform"
+    #form="ngForm"
+    autocomplete="off"
+    style="padding: 30px"
+    (ngSubmit)="onSubmit(form)"
+  >
+    <input
+      type="hidden"
+      name="PatientId"
+      [(ngModel)]="patientService.formData.PatientId"
+    />
+    <div>
+      <h3 class="my-2 text-center">Add Patient</h3>
+    </div>
 
-    
-    <form name="patientform" #form="ngForm" autocomplete="off" style="padding: 30px;" (ngSubmit)="onSubmit(form)">
-        
-        <input type="hidden" name="PatientId" [(ngModel)]="patientService.formData.PatientId">
-        
+    <!-- Patient Name -->
+  
 
         <!-- Patient Name -->
         <div class="form-group">
@@ -91,94 +102,164 @@
             <label>Patient Sex : </label>
             
            <!-- <select  name="Sex" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex"class="form-control"  [ngClass]="{'is-invalid': Sex.touched && Sex.invalid}" required>
+
+      <select  name="Sex" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex"class="form-control"  [ngClass]="{'is-invalid': Sex.touched && Sex.invalid}" required>
+
                 <option >Male</option>
                 <option >Female</option>
                 <option >Other</option>
             </select>       -->
-           <br> 
-           <input type="radio" name="Sex" value="Male" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex" > Male &nbsp; 
-           <input type="radio" name="Sex" value="Female" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex" > Female &nbsp; 
-           <input type="radio" name="Sex" value="Other" #Sex="ngModel" [(ngModel)]="patientService.formData.Sex" required>  Other       
-            <!-- validation -->
-            <div class="validation-errors" *ngIf="Sex.touched && Sex.invalid"
-                style="color: red; text-align: left;">
-                <div *ngIf="Sex.errors.required">
-                    Confirm Sex!
-                </div>
-            </div>
-        </div>
+      <br />
+      <input
+        type="radio"
+        name="Sex"
+        value="Male"
+        #Sex="ngModel"
+        [(ngModel)]="patientService.formData.Sex"
+      />
+      Male &nbsp;
+      <input
+        type="radio"
+        name="Sex"
+        value="Female"
+        #Sex="ngModel"
+        [(ngModel)]="patientService.formData.Sex"
+      />
+      Female &nbsp;
+      <input
+        type="radio"
+        name="Sex"
+        value="Other"
+        #Sex="ngModel"
+        [(ngModel)]="patientService.formData.Sex"
+        required
+      />
+      Other
+      <!-- validation -->
+      <div
+        class="validation-errors"
+        *ngIf="Sex.touched && Sex.invalid"
+        style="color: red; text-align: left"
+      >
+        <div *ngIf="Sex.errors.required">Confirm Sex!</div>
+      </div>
+    </div>
 
-        <div class="form-group">
-            <label style="color: black">Email : </label>
-            <input  name="Email" #Email="ngModel" email="true" [(ngModel)]="patientService.formData.Email"            
-                class="form-control" placeholder="Enter email address" minlength="5" maxlength="30" required
-                [ngClass]="{ 'is-invalid': Email.touched && Email.invalid }" />
-            <!-- validation -->
-            <div class="validation-errors" *ngIf="Email.touched && Email.invalid"
-                style="color: red; text-align: left">
-                <div *ngIf="Email.errors.required">email address is required!</div> 
-                <div *ngIf="Email.errors?.email">  Email not valid.</div>                
-            </div>
-        </div>
+    <!--<div class="form-group">
+      <label style="color: black">Email : </label>
+      <input
+        name="Email"
+        #Email="ngModel"
+        email="true"
+        [(ngModel)]="patientService.formData.Email"
+        class="form-control"
+        placeholder="Enter email address"
+        minlength="5"
+        maxlength="30"
+        required
+        [ngClass]="{ 'is-invalid': Email.touched && Email.invalid }"
+      />
+     
+      <div
+        class="validation-errors"
+        *ngIf="Email.touched && Email.invalid"
+        style="color: red; text-align: left"
+      >
+        <div *ngIf="Email.errors.required">email address is required!</div>
+        <div *ngIf="Email.errors?.email">Email not valid.</div>
+      </div>
+    </div>-->
 
-        <!-- Patient Address -->
-        <div class="form-group">
-            <label>Patient Address : </label>
-            <input type="text" name="Address" #Address="ngModel" [(ngModel)]="patientService.formData.Address"
-                class="form-control" placeholder="Enter Address" minlength="5" maxlength="25" required
-                [ngClass]="{'is-invalid': Address.touched && Address.invalid}">
-            <!-- validation -->
-            <div class="validation-errors" *ngIf="Address.touched && Address.invalid"
-                style="color: red; text-align: left;">
-                <div *ngIf="Address.errors.required">
-                    Address  is required!
-                </div>
-            </div>
-        </div>
+    <!-- Patient Address -->
+    <div class="form-group">
+      <label>Patient Address : </label>
+      <input
+        type="text"
+        name="Address"
+        #Address="ngModel"
+        [(ngModel)]="patientService.formData.Address"
+        class="form-control"
+        placeholder="Enter Address"
+        minlength="5"
+        maxlength="25"
+        required
+        [ngClass]="{ 'is-invalid': Address.touched && Address.invalid }"
+      />
+      <!-- validation -->
+      <div
+        class="validation-errors"
+        *ngIf="Address.touched && Address.invalid"
+        style="color: red; text-align: left"
+      >
+        <div *ngIf="Address.errors.required">Address is required!</div>
+      </div>
+    </div>
 
-        <!-- Patient DOB -->
-        <div class="form-group">
-            <label>Patient DOB : </label>
-            <input type="date" name="DateOfBirth" #DateOfBirth="ngModel" [max]="dmin" [min]="dmax"  [(ngModel)]="patientService.formData.DateOfBirth"
-                class="form-control" placeholder="Enter DateOfBirth"  required
-                [ngClass]="{'is-invalid': DateOfBirth.touched && DateOfBirth.invalid}">
-            <!-- validation -->
-            <div class="validation-errors" *ngIf="DateOfBirth.touched && DateOfBirth.invalid"
-                style="color: red; text-align: left;">
-                <div *ngIf="DateOfBirth.errors.required">
-                    DateOfBirth  is required!
-                </div>
-            </div>
-        </div>
+    <!-- Patient DOB -->
+    <div class="form-group">
+      <label>Patient DOB : </label>
+      <input
+        type="date"
+        name="DateOfBirth"
+        #DateOfBirth="ngModel"
+        [max]="dmin"
+        [min]="dmax"
+        [(ngModel)]="patientService.formData.DateOfBirth"
+        class="form-control"
+        placeholder="Enter DateOfBirth"
+        required
+        [ngClass]="{ 'is-invalid': DateOfBirth.touched && DateOfBirth.invalid }"
+      />
+      <!-- validation -->
+      <div
+        class="validation-errors"
+        *ngIf="DateOfBirth.touched && DateOfBirth.invalid"
+        style="color: red; text-align: left"
+      >
+        <div *ngIf="DateOfBirth.errors.required">DateOfBirth is required!</div>
+      </div>
+    </div>
 
-        <!-- Patient BloodGroup -->
-        <div class="form-group">
-            <label>Patient Blood Group : </label>
-            <select name="BloodGroup" #BloodGroup="ngModel" [(ngModel)]="patientService.formData.BloodGroup"
-                class="form-control" required
-                [ngClass]="{'is-invalid': BloodGroup.touched && BloodGroup.invalid}">
-                <option selected>A+ve</option>
-                <option>B+ve</option>
-                <option>O+ve</option>
-                <option>A-ve</option>
-                <option>B-ve</option>
-                <option>O-ve</option>
-                </select>
-            <!-- validation -->
-            <div class="validation-errors" *ngIf="BloodGroup.touched && BloodGroup.invalid"
-                style="color: red; text-align: left;">
-                <div *ngIf="BloodGroup.errors.required">
-                    BloodGroup  is required!
-                </div>
-            </div>
-        </div>
-       
-        <!-- submit -->
-        <br>
-        <div class="form-group">
-            <button type="submit" class="btn btn-lg btn-primary form-control"
-                [disabled]="!(form.valid && form.dirty)">Submit</button>
-        </div>
-    </form>
+    <!-- Patient BloodGroup -->
+    <div class="form-group">
+      <label>Patient Blood Group : </label>
+      <select
+        name="BloodGroup"
+        #BloodGroup="ngModel"
+        [(ngModel)]="patientService.formData.BloodGroup"
+        class="form-control"
+        required
+        [ngClass]="{ 'is-invalid': BloodGroup.touched && BloodGroup.invalid }"
+      >
+        <option selected>A+ve</option>
+        <option>B+ve</option>
+        <option>O+ve</option>
+        <option>A-ve</option>
+        <option>B-ve</option>
+        <option>O-ve</option>
+      </select>
+      <!-- validation -->
+      <div
+        class="validation-errors"
+        *ngIf="BloodGroup.touched && BloodGroup.invalid"
+        style="color: red; text-align: left"
+      >
+        <div *ngIf="BloodGroup.errors.required">BloodGroup is required!</div>
+      </div>
+    </div>
 
-</div>
+    <!-- submit -->
+    <br />
+    <div class="form-group px-5">
+      <div class="px-5">
+        <button
+          type="submit"
+          class="button2 form-control"
+          [disabled]="!(form.valid && form.dirty)"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+
+</form>

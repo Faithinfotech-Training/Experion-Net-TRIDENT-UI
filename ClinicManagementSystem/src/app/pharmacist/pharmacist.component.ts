@@ -24,7 +24,17 @@ export class PharmacistComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.username);
     console.log('hello pharmacist ' + this.staffId);
-    this.pharmService.bindListMedicineAdvices();
+    //this.pharmService.bindListMedicineAdvices();
+   this.pharmService.bindListMedicineAdvicesforPharm(+this.staffId);
+    window.location.hash = 'no-back-button';
+
+    window.location.hash = 'Again-No-back-button'; //again because google chrome don't insert first hash into history
+
+    window.onhashchange = function () {
+
+      window.location.hash = 'no-back-button';
+
+    };
     
   }
   //logout function

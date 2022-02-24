@@ -341,7 +341,7 @@ this.doctorService.fetchStock(id).subscribe((res)=>this.MedMax=res,(error)=>cons
         (res) => {
           console.log(res);
           console.log('Inserted Medicine Detail' + i);
-          this.show = !this.show;
+          this.show = false;
         },
         (error) => {
           console.log(error);
@@ -396,6 +396,7 @@ this.doctorService.fetchStock(id).subscribe((res)=>this.MedMax=res,(error)=>cons
           console.log(res);
           console.log('Inserted Test Details' + i);
           this.toastr.success('Test Details Added Successfully', 'Success!');
+          this.visible = false;
         },
         (error) => {
           console.log(error);
