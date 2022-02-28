@@ -35,6 +35,15 @@ export class PharmacistService {
         console.log(response);
       });
   }
+  bindListMedicineAdvicesforPharm(id:number) {
+    this.httpClient
+      .get(environment.apiUrl + '/api/MedicineAdvice/Pharmid/'+id)
+      .toPromise()
+      .then((response) => {
+        this.advice = response as Advice[];
+        console.log(response);
+      });
+  }
   bindListMedicineAdvicesById(id: number) {
     this.httpClient
       .get(environment.apiUrl + '/api/MedicineAdvice/id/' + id)

@@ -43,6 +43,16 @@ export class LabtTestService {
     )
   }
 
+  bindListReportsforPharm(id:number){
+    this.httpClient.get('https://localhost:44381/api/TestReport/GetReport/'+id).toPromise().then(
+      response => {
+        console.log("From Lab test service fetching Test Reports");
+        console.log(response);
+        this.testview = response as Testrep[];
+      }
+    )
+  }
+
   bindListReportsById(id:number){
     this.httpClient.get('https://localhost:44381/api/TestReport/'+id).toPromise().then(
       response => {
@@ -85,6 +95,8 @@ export class LabtTestService {
       }
     )
   }
+
+  
   
  bindListTestReports(){
     this.httpClient.get('https://localhost:44381/api/LabBill').toPromise().then(response=>{

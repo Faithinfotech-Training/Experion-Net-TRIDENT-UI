@@ -65,7 +65,7 @@ export class ViewappointmentComponent implements OnInit {
   myNote: string = '';
   PharmID: number = 0;
   TechID: number = 0;
-
+ MedMax:number=0;
   //selected lab tests
   labTests: Array<Test> = [];
   prescriptions: any[] = [];
@@ -109,6 +109,7 @@ export class ViewappointmentComponent implements OnInit {
     console.log('Binding Appointments');
     this.doctorService.bindListAppointmentsByID(+this.appointmentId);
     this.getAppointmentDetails(this.appointmentId);
+    console.log('Got Patient Details');
     // console.log('patient is ' + this.doctorService);
     // get doctors notes
 
@@ -130,8 +131,8 @@ export class ViewappointmentComponent implements OnInit {
       AppointmentId: new FormControl(+this.appointmentId),
     });
 
-    console.log('patient details');
-    this.doctorService.bindlistPatientNotes(+this.appointmentId);
+    console.log('patient details'+this.patientId);
+    this.doctorService.bindlistPatientNotes(+this.patientId);
     this.doctorService.BindPharmList();
     this.doctorService.BindTechnicianList();
     this.doctorService.bindListTests();
@@ -222,7 +223,11 @@ export class ViewappointmentComponent implements OnInit {
     this.authService.logout();
     this.router.navigateByUrl('/login');
   }
-
+//Find Medicine Stock
+GetMedStock(id:number)
+{
+this.doctorService.fetchStock(id).subscribe((res)=>this.MedMax=res,(error)=>console.log(error));
+}
   onSubmit(form: NgForm) {
     console.log(form.value);
     let addId = this.doctorService.formData.NoteId;
@@ -336,7 +341,7 @@ export class ViewappointmentComponent implements OnInit {
         (res) => {
           console.log(res);
           console.log('Inserted Medicine Detail' + i);
-          this.show = !this.show;
+          this.show = false;
         },
         (error) => {
           console.log(error);

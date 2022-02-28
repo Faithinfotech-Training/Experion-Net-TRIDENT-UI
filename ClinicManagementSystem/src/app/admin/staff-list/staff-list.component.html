@@ -135,7 +135,7 @@
           *ngFor="
             let s of staffService.staffs
               | filter: filter
-              | paginate: { itemsPerPage: 2, currentPage: page }
+              | paginate: { itemsPerPage: 5, currentPage: page }
           "
         >
           <td>{{ s.StaffId }}</td>

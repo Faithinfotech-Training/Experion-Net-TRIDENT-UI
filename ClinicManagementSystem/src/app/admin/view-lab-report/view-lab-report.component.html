@@ -105,7 +105,7 @@
           *ngFor="
             let s of staffService.labreports
               | filter: filter
-              | paginate: { itemsPerPage: 2, currentPage: page }
+              | paginate: { itemsPerPage: 5, currentPage: page }
           "
         >
           <td>{{ s.TestName }}</td>

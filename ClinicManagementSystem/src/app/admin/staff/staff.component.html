@@ -322,25 +322,7 @@
         </div>
       </div>
       <!-- IsActive -->
-      <div class="form-group m-3 mx-4">
-        <div
-          class="form-check"
-          style="display: flex; flex-direction: row; justify-content: end"
-        >
-          <input
-            type="checkbox"
-            name="Status"
-            id="Status"
-            style="width: 0.3rem; height: 0.3rem"
-            #Status="ngModel"
-            [(ngModel)]="staffService.staffFormData.Status"
-            class="form-check-input"
-          />
-          <label class="form-check-label p-0" style="padding: 0"
-            >In Service</label
-          >
-        </div>
-      </div>
+  
       <!-- 
         <div class="form-group">
             <label style="color: black">Email : </label>
@@ -380,6 +362,25 @@
           <div *ngIf="DateOfBirth.errors.required">
             DateOfBirth is required!
           </div>
+        </div>
+      </div>
+      <div class="form-group m-3 mx-4">
+        <div
+          class="form-check"
+          style="display: flex; flex-direction: row; justify-content: start"
+        >
+          <input
+            type="checkbox"
+            name="Status"
+            id="Status"
+            style="width: 0.3rem; height: 0.3rem"
+            #Status="ngModel"
+            [(ngModel)]="staffService.staffFormData.Status"
+            class="form-check-input"
+          />
+          <label class="form-check-label p-0" style="padding: 0"
+            >In Service</label
+          >
         </div>
       </div>
       <!-- submit -->
