@@ -38,7 +38,12 @@ export class LoginComponent implements OnInit {
       Password: ['', [Validators.required]],
     });
     console.log(this.loginForm.value);
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+      history.pushState(null, null, document.URL);
+    });
   }
+
   get formControls() {
     return this.loginForm.controls;
   }
@@ -68,9 +73,8 @@ export class LoginComponent implements OnInit {
         console.log(sessionStorage.getItem('token'));
         console.log(sessionStorage.getItem('staffId'));
 
-
         //check the role based on roleid
-        if (this.loginUser.RoleId === 1 && this.loginUser.Status=='Active' ) {
+        if (this.loginUser.RoleId === 1 && this.loginUser.Status == 'Active') {
           console.log('Doctor');
           localStorage.setItem('userName', this.loginUser.LoginId);
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
@@ -83,17 +87,25 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('token', this.loginUser.token);
           sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
           this.router.navigateByUrl('/doctor');
-        } else if (this.loginUser.RoleId === 5 && this.loginUser.Status=='Active' ) {
+        } else if (
+          this.loginUser.RoleId === 5 &&
+          this.loginUser.Status == 'Active'
+        ) {
           console.log('Pharmacist');
           localStorage.setItem('userName', this.loginUser.LoginId);
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
           sessionStorage.setItem('userName', this.loginUser.LoginId);
-          sessionStorage.setItem('accessRole',this.loginUser.RoleId.toString()
+          sessionStorage.setItem(
+            'accessRole',
+            this.loginUser.RoleId.toString()
           );
           sessionStorage.setItem('token', this.loginUser.token);
           sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
           this.router.navigateByUrl('/pharmacist');
-        } else if (this.loginUser.RoleId === 4 && this.loginUser.Status=='Active' ) {
+        } else if (
+          this.loginUser.RoleId === 4 &&
+          this.loginUser.Status == 'Active'
+        ) {
           console.log('Lab-Technician');
           localStorage.setItem('userName', this.loginUser.LoginId);
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
@@ -107,28 +119,29 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('staffId', this.loginUser.StaffId.toString());
           //this.router.navigateByUrl('/patient-list');
           this.router.navigateByUrl('/lab-technician');
-        } else if (this.loginUser.RoleId === 3 && this.loginUser.Status=='Active' ) {
+        } else if (
+          this.loginUser.RoleId === 3 &&
+          this.loginUser.Status == 'Active'
+        ) {
           console.log('Receptionist');
           localStorage.setItem('userName', this.loginUser.LoginId);
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
           sessionStorage.setItem('userName', this.loginUser.LoginId);
           console.log('Redirecting to Receptionist');
           this.router.navigateByUrl('/receptionist');
-        } else if (this.loginUser.RoleId === 2 && this.loginUser.Status=='Active' ) {
+        } else if (
+          this.loginUser.RoleId === 2 &&
+          this.loginUser.Status == 'Active'
+        ) {
           console.log('System Admin');
           localStorage.setItem('userName', this.loginUser.LoginId);
           localStorage.setItem('accessRole', this.loginUser.RoleId.toString());
           sessionStorage.setItem('userName', this.loginUser.LoginId);
           console.log('Redirecting to Admin Panel');
           this.router.navigateByUrl('/admin');
-         } else if( this.loginUser.Status=='InActive' ){
-          
+        } else if (this.loginUser.Status == 'InActive') {
           this.error = 'Sorry Your Account is Blocked';
-          this.toastr.error(
-            'Your are No longer in Service',
-            'Error'
-          );
-          
+          this.toastr.error('Your are No longer in Service', 'Error');
         } else {
           this.error = 'Sorry not authorised to access this page';
           this.toastr.error(

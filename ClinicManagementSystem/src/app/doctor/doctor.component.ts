@@ -28,6 +28,23 @@ export class DoctorComponent implements OnInit {
     console.log('hello doctor ' + this.staffId);
 
     this.doctorService.bindListAppointmentsForToday(+this.staffId);
+
+    // window.history.pushState(null, null, window.location.href);
+    // window.onpopstate = function () {
+    //   window.history.go(1);
+    // };
+    // setTimeout('preventBack()', 0);
+    // window.onunload = function () {
+    //   null;
+    // };
+    window.location.hash = 'no-back-button';
+    window.location.hash = 'Again-No-back-button'; //again because google chrome don't insert first hash into history
+    window.onhashchange = function () {
+      window.location.hash = 'no-back-button';
+    };
+  }
+  preventBack() {
+    window.history.forward();
   }
   //logout function
   logout() {

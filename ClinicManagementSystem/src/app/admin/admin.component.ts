@@ -6,22 +6,29 @@ import { StaffService } from '../shared/services/staff.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
   username = sessionStorage.getItem('userName');
-  constructor(private router: Router, private authService: AuthService ,public staffService: StaffService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    public staffService: StaffService
+  ) {}
 
   ngOnInit(): void {
-
+    window.location.hash = 'no-back-button';
+    window.location.hash = 'Again-No-back-button'; //again because google chrome don't insert first hash into history
+    window.onhashchange = function () {
+      window.location.hash = 'no-back-button';
+    };
   }
-  toAddStaff(){
+  toAddStaff() {
     this.router.navigateByUrl('add-staff');
-    this.staffService.resetForm();   
+    this.staffService.resetForm();
   }
 
-
- logout() {
+  logout() {
     this.authService.logout();
     this.router.navigateByUrl('/login');
   }
